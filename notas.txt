@@ -1,0 +1,12 @@
+-- CAMBIOS --
+
+
+
+alineacion en tablas =>["D","I","C"],
+colores en scores
+Campos sueltos en cuadro y color
+               ["Monto Solicitado", 85000,"D"],
+               
+
+
+Que En los comentarios se puedan poner enters
