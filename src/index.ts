@@ -1,25 +1,36 @@
 import type { Application, Request, Response } from "express";
 import express from "express";
-import type { RenderPdfRequest } from "./dtos/renderPdfRequest";
-import { PdfService } from "./pdfService";
+import { PdfService } from "./core/pdfService";
+import { TenantManager } from "./core/tenantManager";
 
 const app: Application = express();
-const port = process.env.PORT || 3000;
 
-app.use(express.json({ limit: '50mb' }));
+const port = process.env.PORT || 3005;
 
-app.post("/render", async (req: Request<RenderPdfRequest>, res: Response) => {
+app.use(express.json({ limit: "50mb" }));
+
+try {
+  TenantManager.inicializar();
+} catch (err: unknown) {
+  console.error("[Error] Fallo al inicializar tenants:", err);
+  process.exit(1);
+}
+
+app.post("/render/:clienteNombre", async (req, res) => {
   try {
+    const { clienteNombre } = req.params;
     const { data } = req.body;
-    const pdfService = new PdfService();
 
-    const pdfBuffer = await pdfService.createDocument(data);
+    const compilarTemplate = TenantManager.getTemplate(clienteNombre);
+    const htmlFinal = compilarTemplate(data);
+
+    const pdfService = new PdfService();
+    const pdfBuffer = await pdfService.createDocument(htmlFinal);
 
     res.setHeader("Content-Type", "application/pdf");
     res.send(pdfBuffer);
-  } catch (error) {
-    console.error("Error generando PDF:", error);
-    res.status(500).send("Error interno generando el documento");
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 });
 
