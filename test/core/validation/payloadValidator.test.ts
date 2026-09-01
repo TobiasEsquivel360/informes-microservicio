@@ -38,7 +38,10 @@ describe("validarPayload", () => {
       const validationError = error as PayloadValidationError;
       expect(validationError.issues).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ path: "informe" }),
+          expect.objectContaining({
+            path: "informe",
+            message: expect.stringMatching(/\S/),
+          }),
         ]),
       );
     }

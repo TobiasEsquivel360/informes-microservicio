@@ -36,7 +36,12 @@ describe("POST /render/:clienteNombre", () => {
 
     expect(res.status).toBe(400);
     expect(res.body.issues).toEqual(
-      expect.arrayContaining([expect.objectContaining({ path: "informe" })]),
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: "informe",
+          message: expect.stringMatching(/\S/),
+        }),
+      ]),
     );
   });
 

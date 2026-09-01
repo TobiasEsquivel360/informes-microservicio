@@ -17,8 +17,11 @@ export function crearApp(): Application {
 
   app.post("/render/:clienteNombre", async (req, res) => {
     try {
+      console.log("[Render] Entro al render");
       const { clienteNombre } = req.params;
       const nombreInforme = req.query.nombreInforme as string | undefined;
+      console.log("[Render] Cliente nombre:", clienteNombre);
+      console.log("[Render] Nombre informe:", nombreInforme);
 
       if (!nombreInforme) {
         res
