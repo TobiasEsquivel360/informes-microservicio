@@ -9,9 +9,8 @@ export async function createPdf(
   const compilarTemplate = TenantManager.getTemplateDelegate(clienteNombre, nombreInforme);
   const htmlFinal = compilarTemplate(data);
 
-  const pdfService = new PdfService();
   const pdfBuffer: Buffer<ArrayBufferLike> =
-    await pdfService.createDocument(htmlFinal);
+    await PdfService.createDocument(htmlFinal);
 
   return pdfBuffer;
 }

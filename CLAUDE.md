@@ -95,9 +95,11 @@ export const schema = z.object({
 | basa | califSinLimites | `POST /render/basa?nombreInforme=califSinLimites` |
 | example | default | onboarding reference — not a production tenant |
 
-### PdfService Docker considerations
+### PdfService: shared browser
 
-`PdfService` launches Chromium with `--disable-dev-shm-usage` and `--no-sandbox` for Docker compatibility. `docker-compose.yml` allocates 1 GB shared memory (`shm_size: "1gb"`) — reduce this only if memory is constrained and rendering artifacts appear acceptable.
+`PdfService` is a static singleton, symmetric to `TenantManager`. `PdfService.inicializar()` launches a single Chromium instance once at boot (called from `index.ts` alongside `TenantManager.inicializar()`) and keeps it open for the life of the process. Each `createDocument()` call opens its own `page` on that shared browser, renders, and closes only the `page` — the browser itself is never closed between requests. If the shared browser is found disconnected (crashed, closed externally), the next call to `createDocument()` relaunches it automatically, no process restart needed.
+
+Chromium launches with `--disable-dev-shm-usage` and `--no-sandbox` for Docker compatibility. `docker-compose.yml` allocates 1 GB shared memory (`shm_size: "1gb"`) — reduce this only if memory is constrained and rendering artifacts appear acceptable.
 
 ### DTOs
 
