@@ -79,7 +79,7 @@ Client-level helpers (`src/tenants/{client}/helpers.ts`) are shared across all r
 
 ### DTOs
 
-`src/core/dtos/renderPdfRequest.ts` and `renderPdfResponse.ts` define the shape of the request body and the HTTP response. The body is passed directly to Handlebars as the template context — no validation layer exists today.
+`src/core/dtos/renderPdfRequest.ts` defines the shape of the request body. The response is the raw PDF bytes (`application/pdf`), not a JSON DTO. The body is passed directly to Handlebars as the template context — no validation layer exists today.
 
 ---
 
