@@ -12,7 +12,9 @@ npm run start:prod   # Run compiled production build
 docker compose up    # Run containerized (port 3005)
 ```
 
-No test suite is configured (`npm test` exits with error).
+```bash
+npm test             # Run the Vitest suite once
+```
 
 ## Architecture
 
@@ -27,12 +29,16 @@ Multi-tenant HTTP microservice that generates PDFs from Handlebars templates ren
 
 ```
 POST /render/:clienteNombre?nombreInforme=REPORT_NAME  { body: data }
-  → createPdf.ts
-    → TenantManager: retrieve pre-compiled Handlebars template
-    → Handlebars.execute(template, data) → HTML string
-    → PdfService (Playwright): render HTML in headless Chromium → PDF Buffer
+  → app.ts route handler
+    → validarPayload(): if the tenant/report declared a schema.ts, Zod-validate `data`; throws PayloadValidationError → 400 on mismatch
+    → createPdf.ts
+      → TenantManager: retrieve pre-compiled Handlebars template
+      → Handlebars.execute(template, data) → HTML string
+      → PdfService (Playwright): render HTML in headless Chromium → PDF Buffer
   ← returns PDF bytes
 ```
+
+`src/app.ts` builds the Express app (routes, middleware) without listening — it's what tests import. `src/index.ts` is the boot script: initializes `TenantManager` against the real `src/tenants` and calls `app.listen`.
 
 ### Tenant/template discovery
 
@@ -40,9 +46,11 @@ At startup, `TenantManager.inicializar()` scans `src/tenants/` and compiles ever
 
 ```
 src/tenants/{clienteName}/helpers.ts                              ← optional, shared across all reports for this client
+src/tenants/{clienteName}/schema.ts                               ← optional, shared Zod schema across all reports for this client
 src/tenants/{clienteName}/{nombreInforme}/pdf/template.html       ← required
 src/tenants/{clienteName}/{nombreInforme}/pdf/styles.css          ← optional, prepended as <style> at compile time
 src/tenants/{clienteName}/{nombreInforme}/helpers.ts              ← optional, overrides client-level helpers
+src/tenants/{clienteName}/{nombreInforme}/schema.ts               ← optional, overrides client-level schema
 ```
 
 Example: `src/tenants/basa/menor/` is served by `POST /render/basa?nombreInforme=menor`.
@@ -65,6 +73,20 @@ Templates are compiled once into Handlebars delegate functions and cached in mem
 
 Client-level helpers (`src/tenants/{client}/helpers.ts`) are shared across all reports for that client. Report-level helpers override them when names collide.
 
+### Payload validation (optional, per tenant/report)
+
+Add a `schema.ts` (or `.js`) next to `helpers.ts` — same loading convention (report-level file wins over client-level when both exist; a report with neither skips validation entirely, exactly like today):
+
+```ts
+import { z } from "zod";
+
+export const schema = z.object({
+  campo: z.string(),
+});
+```
+
+`TenantManager.getSchema(cliente, informe)` resolves it at request time; `validarPayload` (`src/core/validation/payloadValidator.ts`) runs it against the request body and throws `PayloadValidationError` (caught in `app.ts`, returned as `400` with the failing field paths) on mismatch. None of the three existing tenants (`basa/menor`, `basa/califSinLimites`, `example/default`) declare a schema, so they behave exactly as before.
+
 ### Existing tenants
 
 | Client | Report | Route |
@@ -79,7 +101,7 @@ Client-level helpers (`src/tenants/{client}/helpers.ts`) are shared across all r
 
 ### DTOs
 
-`src/core/dtos/renderPdfRequest.ts` defines the shape of the request body. The response is the raw PDF bytes (`application/pdf`), not a JSON DTO. The body is passed directly to Handlebars as the template context — no validation layer exists today.
+`src/core/dtos/renderPdfRequest.ts` defines the shape of the request body. The response is the raw PDF bytes (`application/pdf`), not a JSON DTO. The body is passed directly to Handlebars as the template context, optionally Zod-validated first — see "Payload validation" above.
 
 ---
 
