@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{tipoinforme}}</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-left">
+          <img
+            src="data:image/png;base64,{{logoBase64}}"
+            height="90"
+            width="130"
+            alt="Logo"
+          />
+          <h1>{{cabecera.tipoInforme}}</h1>
+        </div>
+        <div class="header-right">
+          <div class="client-info">
+            <div class="info-block">
+              <p>Cuit / Cuil: <strong>{{cabecera.cuitCuil}}</strong></p>
+              <p>
+                Razón Social / Nombre:
+                <strong>{{cabecera.razonsocialNombre}}</strong>
+              </p>
+              <p>
+                Fecha de nacimiento / inicio de actividades:
+                <strong>{{cabecera.fechanacimientoInicioactividades}}</strong>
+              </p>
+            </div>
+            <div class="info-block">
+              <p>Fecha: <strong>{{cabecera.fecha}}</strong></p>
+              <p>Workflow: <strong>{{cabecera.workflow}}</strong></p>
+              <p>País: <strong>{{cabecera.pais}}</strong></p>
+              <p>
+                Sector Económico: <strong>{{cabecera.sectorEconomico}}</strong>
+              </p>
+            </div>
+            <div class="info-block last">
+              <p>
+                Fecha de Informe: <strong>{{cabecera.fechaInforme}}</strong>
+              </p>
+              <p>
+                Fecha Comité de Crédito:
+                <strong>{{cabecera.fechaComiteCredito}}</strong>
+              </p>
+              <p>Analista: <strong>{{cabecera.analista}}</strong></p>
+              <p>Supervisor: <strong>{{cabecera.supervisor}}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="section-oferta">
+        <h3 class="section-title">Oferta</h3>
+        <table class="table-oferta">
+          <thead>
+            <tr>
+              {{#each oferta.tabla.cabecera}}
+              <th>{{this}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each oferta.tabla.filas}}
+            <tr>
+              {{#each this}}
+              <td>{{this}}</td>
+              {{/each}}
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <div class="oferta-seleccionada-container">
+          <span class="oferta-label">Oferta Seleccionada</span>
+          <span class="oferta-badge">{{oferta.ofertaSeleccionada}}</span>
+        </div>
+      </section>
+      <section class="section-scores">
+        <div class="scores-container">
+          {{#each scores}}
+          <div class="score">
+            <p class="score-title">{{titulo}}</p>
+            <div class="score-value-container">
+              <div class="score-numero">{{numero}}</div>
+              <div class="score-rango">{{rango}}</div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        <!-- <div class="score-califications">
+          <p><span class="dot dot-bueno"></span> BUENO</p>
+          <p><span class="dot dot-regular"></span> REGULAR</p>
+          <p><span class="dot dot-critico"></span> CRÍTICO</p>
+        </div> -->
+      </section>
+      <section class="section-actividad-economica">
+        <h3 class="section-title">Actividad Económica</h3>
+        <table class="table-actividad-economica">
+          <thead>
+            <tr>
+              {{#each actividadEconomica.tabla.cabecera}}
+              <th>{{this}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each actividadEconomica.tabla.filas}}
+            <tr>
+              {{#each this}}
+              <td>{{this}}</td>
+              {{/each}}
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <div class="oferta-seleccionada-container">
+          <span class="oferta-label">Perfilado</span>
+          <span class="oferta-badge">{{perfilado}}</span>
+        </div>
+      </section>
+      <section class="section-datos-empleador">
+        <h3>Datos Empleador</h3>
+        <table class="table-datos-empleador">
+          <thead>
+            <tr>
+              {{#each datosEmpleador.tabla.cabecera}}
+              <th>{{this}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each datosEmpleador.tabla.filas}}
+            <tr>
+              {{#each this}}
+              <td>{{this}}</td>
+              {{/each}}
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </section>
+      <section class="section-destacados">
+        <h3>Destacados</h3>
+        <table class="table-destacados">
+          <thead>
+            <tr>
+              {{#each destacados.tabla.cabecera}}
+              <th>{{this}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each destacados.tabla.filas}}
+            <tr>
+              {{#each this}}
+              <td>{{this}}</td>
+              {{/each}}
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <div class="resultado-container">
+          <span class="resultado-label">RESULTADO</span>
+          <span class="resultado-badge">{{resultado}}</span>
+        </div>
+      </section>
+      <section class="section-grupo-familiar">
+        <h3>Grupo Familiar</h3>
+        <table class="table-grupo-familiar">
+          <thead>
+            <tr>
+              {{#each grupoFamiliar.tabla.cabecera}}
+              <th>{{this}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each grupoFamiliar.tabla.filas}}
+            <tr>
+              {{#each this}}
+              <td>{{this}}</td>
+              {{/each}}
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </section>
+      <section class="section-comentarios">
+        <h3>Comentarios</h3>
+        <div class="comentarios-box">
+          {{#each comentarios}}
+          <p>{{this}}</p>
+          {{/each}}
+        </div>
+      </section>
+      <section class="section-firmas">
+        <div class="firma-block">
+          <div class="firma-line"></div>
+          <p>Oficial de Negocios / Gerente de Sucursal</p>
+        </div>
+        <div class="firma-block">
+          <div class="firma-line"></div>
+          <p>Supervisor Comercial</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

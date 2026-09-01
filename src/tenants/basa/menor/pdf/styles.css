@@ -1,0 +1,576 @@
+:root {
+  --corporate-blue: #5097d3;
+  --sub-header-blue: #73ace0;
+  --accent-blue: #3d8bc6;
+  --score-green: #34a853;
+  --score-red: #e03131;
+  --score-orange: #f1c40f;
+  --color-texto: rgb(68, 69, 69);
+  --bg-card: #f4f6f9;
+  --border-color: #e0e0e0;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 38px 35px 0px 35px;
+}
+
+/* ========== HEADER ========== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.header-left {
+  flex: 0 0 28%;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.header-left img {
+  max-width: 180px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.header-left h1 {
+  color: var(--corporate-blue);
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.header-right {
+  flex: 0 0 72%;
+  box-sizing: border-box;
+}
+
+.info-row {
+  display: flex;
+}
+
+.info-block {
+  flex: 1;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.info-block p {
+  margin: 1px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #555;
+}
+
+.info-block p strong {
+  color: #111;
+  font-weight: 700;
+}
+
+.spacer {
+  display: inline-block;
+  width: 20px;
+}
+
+/* ========== SECTION TITLES ========== */
+h3,
+.section-title {
+  font-size: 19px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+/* ========== TABLES - GENERIC ========== */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+tr {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+table th,
+table td {
+  padding: 8px 8px;
+  text-align: left;
+}
+
+table thead tr {
+  background-color: var(--corporate-blue);
+  color: white;
+}
+
+table thead th {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+table thead th:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+table thead th:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+table tbody tr td {
+  border-bottom: 1px solid var(--border-color);
+  color: #444;
+}
+
+/* Multi-level headers */
+table thead tr:first-child th[rowspan],
+table thead tr:first-child th[colspan] {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+table thead tr + tr th {
+  background-color: var(--sub-header-blue);
+  font-size: 13px;
+}
+
+/* Fix corner radii for multi-level headers */
+table thead tr:first-child th[colspan]:last-child {
+  border-bottom-right-radius: 0;
+}
+
+table thead tr:nth-child(2) th:first-child {
+  border-radius: 0;
+}
+
+table thead tr:nth-child(2) th:last-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 5px;
+}
+
+.table-codeudor tbody td:first-child {
+  color: var(--corporate-blue);
+  font-weight: bold;
+}
+
+/* Total rows */
+.total-row td {
+  font-weight: 700;
+  color: var(--accent-blue) !important;
+  border-top: 2px solid var(--corporate-blue);
+}
+
+/* ========== MONTHLY TABLES ========== */
+.table-monthly {
+  font-size: 12px;
+}
+
+.table-monthly th,
+.table-monthly td {
+  padding: 4px 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table-monthly th:first-child,
+.table-monthly td:first-child {
+  text-align: left;
+  min-width: 100px;
+}
+
+.summary-row td {
+  background-color: #f0f4f8;
+  font-weight: 600;
+  color: #333 !important;
+}
+
+.summary-row.highlight td {
+  background-color: #e3edf7;
+  color: var(--accent-blue) !important;
+  font-weight: 700;
+}
+
+.sub-header-label {
+  display: inline-block;
+  background-color: var(--sub-header-blue);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* ========== TABLA INGRESOS UNIFICADA ========== */
+/* Subheader de sección (Fijos / Variables / Unipersonales) */
+.section-subheader-row .section-subheader {
+  background-color: var(--corporate-blue);
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 8px;
+}
+
+/* Sub-encabezado de columnas (MES-AÑO, Salario, Ingresos) */
+.col-subheader-row .col-subheader {
+  background-color: var(--sub-header-blue);
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 5px 8px;
+  text-align: center;
+}
+
+/* Sub-columnas internas para DDJJ de IVA */
+.ddjj-subcols {
+  display: flex;
+  gap: 0;
+  justify-content: space-around;
+}
+
+.ddjj-subcols span {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2px 3px;
+  font-size: 11px;
+}
+
+.ddjj-subcols span:last-child {
+  border-right: none;
+}
+
+/* ===== TABLA INGRESOS UNIFICADA: fixes de header ===== */
+/* El header principal NO debe tener border-radius inferior porque le siguen subheaders */
+.table-ingresos-unificada thead th:first-child {
+  border-bottom-left-radius: 0;
+}
+
+.table-ingresos-unificada thead th:last-child {
+  border-bottom-right-radius: 0;
+}
+
+/* Columna del medio (Titular) centrada */
+.table-ingresos-unificada thead th:nth-child(2),
+.table-ingresos-unificada tbody td:nth-child(2),
+.table-ingresos-unificada .section-subheader:nth-child(2),
+.table-ingresos-unificada .col-subheader:nth-child(2) {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ========== NOTE TEXT ========== */
+.note-text {
+  font-style: italic;
+  font-size: 13px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* ========== ACTIVOS TABLE ========== */
+.table-activos {
+  width: 50%;
+}
+
+.table-activos td:last-child {
+  text-align: right;
+}
+
+/* ========== INFORMES CONFIDENCIALES ========== */
+.table-informes-confidenciales th,
+.table-informes-confidenciales td {
+  font-size: 12px;
+  padding: 6px 8px;
+}
+
+/* ========== COMENTARIOS BOX ========== */
+.comentarios-box {
+  border: 2px solid var(--corporate-blue);
+  border-radius: 6px;
+  padding: 15px 12px;
+  margin-bottom: 15px;
+  min-height: 40px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.comentarios-box p {
+  margin: 0;
+  color: #333;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+/* ========== DICTAMEN BOX ========== */
+.dictamen-box {
+  border: 2px solid var(--corporate-blue);
+  border-radius: 6px;
+  padding: 20px 15px;
+  min-height: 120px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.dictamen-field {
+  margin-bottom: 0px;
+}
+
+.dictamen-label {
+  font-weight: 700;
+  color: #333;
+  font-size: 14px;
+}
+
+.dictamen-value {
+  display: block;
+  min-height: 20px;
+  margin-top: 4px;
+}
+
+.dictamen-field--tall {
+  margin-bottom: 12px;
+}
+
+.dictamen-value--tall {
+  display: block;
+  min-height: 55px;
+  margin-top: 4px;
+  border-bottom: 1px dotted var(--border-color);
+}
+
+.dictamen-footer {
+  margin-top: 25px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+  font-size: 14px;
+  color: var(--corporate-blue);
+  font-weight: bold;
+}
+
+/* ========== SCORE CARDS (Detalle Deudas) ========== */
+.score-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 15px;
+  margin-bottom: 25px;
+}
+
+.score-card {
+  background: white;
+  border-radius: 0;
+  padding: 5px;
+  text-align: left;
+  border: none;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.score-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.score-title {
+  color: #4f98d0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.score-subtitle {
+  color: #4f98d0;
+  font-size: 12px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.score-card-body {
+  display: flex;
+  align-items: center;
+}
+
+.score-value {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-line {
+  width: 1px;
+  height: 35px;
+  background-color: #888;
+  margin: 0 12px;
+}
+
+.score-label {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.2;
+}
+
+.score-value.score-red {
+  color: #ed5129;
+}
+
+.score-value.score-green {
+  color: #5db773;
+}
+
+.score-value.score-orange {
+  color: #f59e1d;
+}
+
+/* Score califications legend */
+.score-califications {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.score-califications p {
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+  color: #333;
+  font-size: 14px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.dot-bueno {
+  background-color: #5db773;
+}
+
+.dot-regular {
+  background-color: #f59e1d;
+}
+
+.dot-critico {
+  background-color: #ed5129;
+}
+
+/* ========== LEGEND FOOTER ========== */
+.legend-grid {
+  display: flex;
+  gap: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+}
+
+.legend-col {
+  flex: 1;
+}
+
+.legend-title {
+  font-weight: 700;
+  color: var(--corporate-blue);
+  margin: 0 0 6px 0;
+  font-size: 14px;
+}
+
+.legend-col p {
+  margin: 2px 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* ========== FIRMAS ========== */
+.section-firmas {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 80px;
+  padding-bottom: 20px;
+  page-break-inside: avoid;
+}
+
+.firma-block {
+  width: 35%;
+  text-align: center;
+}
+
+.firma-line {
+  border-top: 1px dotted var(--corporate-blue);
+  margin-bottom: 8px;
+}
+
+.firma-block p {
+  color: #555;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ========== PILL BADGES ========== */
+.oferta-seleccionada-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.oferta-label {
+  font-weight: bold;
+  color: #222;
+  margin-right: 15px;
+}
+
+.oferta-badge {
+  border: 2px solid var(--corporate-blue);
+  color: var(--corporate-blue);
+  background-color: transparent;
+  padding: 4px 14px;
+  border-radius: 4px;
+  font-weight: normal;
+}
+
+/* ========== RESULTADO BADGE ========== */
+.resultado-container {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.resultado-label {
+  font-weight: bold;
+  color: #111;
+  margin-right: 15px;
+  text-transform: uppercase;
+}
+
+.resultado-badge {
+  background-color: var(--score-green);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}

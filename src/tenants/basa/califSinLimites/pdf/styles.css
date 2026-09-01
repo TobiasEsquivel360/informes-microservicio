@@ -1,0 +1,734 @@
+/* ============================================================
+   INFORME DE RIESGO — CALIF SIN LÍMITES
+   Base visual: mismo sistema de diseño que basa/menor/pdf
+   ============================================================ */
+
+:root {
+  --corporate-blue: #5097d3;
+  --sub-header-blue: #73ace0;
+  --accent-blue: #3d8bc6;
+  --score-green: #34a853;
+  --score-red: #e03131;
+  --score-orange: #f1c40f;
+  --color-texto: rgb(68, 69, 69);
+  --bg-card: #f4f6f9;
+  --border-color: #e0e0e0;
+  --section-dark: #1e4d7b;
+  --foda-green-bg: #e8f5e9;
+  --foda-green-header: #c8e6c9;
+  --foda-pink-bg: #fce8e8;
+  --foda-pink-header: #f5c6c6;
+}
+
+/* ============================================================ BASE */
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 38px 35px 0 35px;
+}
+
+/* ============================================================ HEADER */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.header-left {
+  flex: 0 0 auto;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
+.header-left img {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.header-left h1 {
+  color: var(--corporate-blue);
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.header-right {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.info-row {
+  display: flex;
+}
+
+.info-block {
+  flex: 1;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.info-block p {
+  margin: 1px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #555;
+}
+
+.info-block p strong {
+  color: #111;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* ============================================================ DATOS IDENTIFICATORIOS */
+
+.datos-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.datos-table th,
+.datos-table td {
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.datos-table tbody td {
+  border-bottom: 1px solid var(--border-color);
+  color: #444;
+}
+
+/* First header row — corporate blue */
+.datos-table th.dt-section-header {
+  background-color: var(--corporate-blue);
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Second header row — sub-header blue */
+.datos-table th.dt-col-header {
+  background-color: var(--sub-header-blue);
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.datos-table td.dt-label {
+  font-weight: 600;
+  white-space: nowrap;
+  color: #333;
+  width: 30%;
+}
+
+.datos-table td.dt-value {
+  color: #111;
+}
+
+/* ============================================================ CARD GRID (Fecha Comité, Comité/VTO/RPC, Bureau, UTE, Verificación) */
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.card-grid--3col .card-item {
+  width: calc(33.333% - 3px);
+}
+
+.card-grid--2col .card-item {
+  width: calc(50% - 2px);
+}
+
+.card-item {
+  border: 1px solid var(--border-color);
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.card-item .ci-label {
+  background-color: var(--sub-header-blue);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  display: block;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.card-item .ci-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111;
+  display: block;
+  min-height: 28px;
+  padding: 4px 10px 6px 10px;
+  text-align: center;
+}
+
+/* ============================================================ SECTION TITLES */
+
+h3,
+.section-title {
+  font-size: 19px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+.sh-note {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: #888;
+}
+
+/* ============================================================ UTILITY CLASSES */
+
+td.num, th.num { text-align: right; }
+td.pct, th.pct { text-align: center; color: #555; }
+
+/* ============================================================ TABLE TITLE ROW */
+
+table thead tr.table-title-row th {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+table thead tr.table-title-row.small th {
+  font-size: 13px;
+}
+
+/* ============================================================ TABLE GENERIC */
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+tr {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+table th,
+table td {
+  padding: 8px 8px;
+  text-align: left;
+}
+
+table thead tr {
+  background-color: var(--corporate-blue);
+  color: white;
+}
+
+/* All th: no radius by default — specific row position rules add them back */
+table thead th {
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+/* Top-left: only first-child of first thead row */
+table thead tr:first-child th:first-child {
+  border-top-left-radius: 5px;
+}
+
+/* Top-right: only last-child of first thead row */
+table thead tr:first-child th:last-child {
+  border-top-right-radius: 5px;
+}
+
+/* Bottom-left: only first-child of last thead row */
+table thead tr:last-child th:first-child {
+  border-bottom-left-radius: 5px;
+}
+
+/* Bottom-right: only last-child of last thead row */
+table thead tr:last-child th:last-child {
+  border-bottom-right-radius: 5px;
+}
+
+table tbody tr td {
+  border-bottom: 1px solid var(--border-color);
+  color: #444;
+}
+
+table thead tr:first-child th[rowspan],
+table thead tr:first-child th[colspan] {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+table thead tr + tr th {
+  background-color: var(--sub-header-blue);
+  font-size: 13px;
+}
+
+.total-row td {
+  font-weight: 700;
+  color: var(--accent-blue) !important;
+  border-top: 2px solid var(--corporate-blue);
+}
+
+.subtotal-row td {
+  font-weight: 700;
+  background-color: #dbe8f5;
+  color: var(--section-dark);
+}
+
+.summary-row td {
+  background-color: #f0f4f8;
+  font-weight: 600;
+  color: #333 !important;
+}
+
+.summary-row.highlight td {
+  background-color: #e3edf7;
+  color: var(--accent-blue) !important;
+  font-weight: 700;
+}
+
+.note-text {
+  font-style: italic;
+  font-size: 13px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* ============================================================ PROPUESTA DE MÁRGENES */
+
+/* Ref column has rowspan=2 so its bottom-right corner must be rounded via first-row rule;
+   Plazo (last-child of row 2) must NOT have BR since Moneda/rowspan cells are to its right */
+.table-propuesta thead tr:first-child th:last-child {
+  border-bottom-right-radius: 5px;
+}
+.table-propuesta thead tr:last-child th:last-child {
+  border-bottom-right-radius: 0;
+}
+
+.table-propuesta th,
+.table-propuesta td {
+  font-size: 11px;
+  padding: 5px 5px;
+}
+
+.table-propuesta td.td-code {
+  font-weight: 600;
+  color: var(--section-dark);
+}
+
+.propuesta-desc-row td {
+  font-style: italic;
+  font-size: 11px;
+  color: #555;
+  background-color: #fafafa;
+  border-bottom: 2px solid var(--corporate-blue);
+  padding: 2px 10px;
+}
+
+.propuesta-desc-last td {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.propuesta-desc-row td span.desc-label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* ============================================================ CONDICIONES / FIRMAS / LABELED BOXES */
+
+.info-labeled-box {
+  border: 2px solid var(--sub-header-blue);
+  border-radius: 6px;
+  margin: 10px 0 10px 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.ilb-title {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--sub-header-blue);
+  padding: 6px 12px 4px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ilb-content {
+  padding: 10px 12px;
+  min-height: 40px;
+  font-size: 12px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.info-labeled-box--tall .ilb-content {
+  min-height: 80px;
+}
+
+/* ============================================================ MIX DE ACTIVIDADES */
+
+/* ============================================================ BALANCE TABLES */
+
+.table-balance {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 11px;
+  margin-bottom: 14px;
+}
+
+.table-balance th,
+.table-balance td {
+  padding: 4px 6px;
+}
+
+.table-balance tbody td {
+  border-bottom: 1px solid var(--border-color);
+  color: #444;
+  height: 20px;
+  vertical-align: middle;
+}
+
+/* First header row — corporate blue, rounded top corners only */
+.table-balance .bal-title-row th {
+  background-color: var(--corporate-blue);
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.table-balance .bal-meta-label {
+  background-color: #f0f4f8;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Second header row — sub-header blue */
+.table-balance .bal-header-row th {
+  background-color: var(--sub-header-blue);
+  color: white;
+  font-weight: 500;
+  text-align: center;
+}
+
+.table-balance .bal-header-row th:first-child {
+  text-align: left;
+}
+
+.table-balance .bal-col-header-row td {
+  font-size: 11px;
+}
+
+.table-balance td.bal-sub-header {
+  background-color: var(--sub-header-blue);
+  color: white;
+  font-weight: 700;
+  text-align: center;
+}
+
+.table-balance .bal-spacer td {
+  padding: 0;
+  height: 6px;
+  border-bottom: none;
+}
+
+.table-balance .bal-spacer-md td {
+  padding: 0;
+  height: 12px;
+  border-bottom: none;
+}
+
+.table-balance .bal-spacer-lg td {
+  padding: 0;
+  height: 18px;
+  border-bottom: none;
+}
+
+.bal-recon-label td {
+  font-weight: 600;
+  font-size: 11px;
+  padding: 3px 6px;
+  border-color: var(--border-color);
+}
+
+.bal-note td {
+  font-size: 11px;
+  font-style: italic;
+  color: #555;
+  padding: 3px 6px;
+  border-color: var(--border-color);
+}
+
+.bal-italic td {
+  font-style: italic;
+  color: #555;
+  font-size: 11px;
+}
+
+.table-balance .bal-section-label td {
+  font-weight: 700;
+  color: #111;
+  background-color: #eaf2fb;
+  font-size: 12px;
+  border-top: 2px solid #111;
+}
+
+.table-balance .bal-subtotal td {
+  font-weight: 700;
+  background-color: #dce8f2;
+  color: var(--section-dark);
+}
+
+.table-balance .bal-total td {
+  font-weight: 700;
+  background-color: #c8dcf0;
+  color: var(--section-dark);
+  font-size: 12px;
+}
+
+.table-balance .bal-calc-header td {
+  font-weight: 700;
+  font-style: italic;
+  color: var(--section-dark);
+  background-color: #eaf2fb;
+}
+
+.table-balance td.num {
+  text-align: right;
+}
+
+.table-balance td.pct {
+  text-align: center;
+  color: #555;
+}
+
+.table-balance td.empty {
+  background-color: #fafafa;
+}
+
+/* ESTADO EVOLUCIÓN PN */
+.evpn-label-row td {
+  background-color: #f0f4f8;
+  font-weight: 700;
+  color: #333;
+  border-top: 2px solid #f0f4f8;
+}
+
+/* ============================================================ VENTAS POST BALANCE */
+
+.ventas-totales-row td {
+  font-weight: 700;
+  background-color: #eaf2fb;
+  color: var(--section-dark);
+}
+
+.ventas-highlight-row td {
+  font-weight: 700;
+  color: var(--accent-blue);
+  background-color: #dce8f2;
+}
+
+/* ============================================================ DEUDA BANCARIA */
+
+.table-wide {
+  font-size: 10px;
+}
+
+.table-wide th,
+.table-wide td {
+  padding: 3px 4px;
+}
+
+.deuda-summary-row td {
+  font-weight: 700;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+.deuda-section-row td {
+  font-weight: 700;
+  background-color: #dce8f2;
+  color: var(--section-dark);
+}
+
+.table-cajones thead th:not(:first-child),
+.table-monedas thead th:not(:first-child),
+.table-bcp thead th:not(:first-child) {
+  text-align: center;
+}
+
+/* ============================================================ RESEÑA DE LA EMPRESA */
+
+
+.accionistas-bienes span {
+  display: block;
+  font-size: 11px;
+}
+
+.actividad-section-label {
+  border: 1px solid var(--border-color);
+  padding: 5px 8px;
+  font-weight: 700;
+  font-size: 12px;
+  background-color: #dce8f2;
+  color: var(--section-dark);
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+/* ============================================================ INDICADORES */
+
+/* ============================================================ HIGHLIGHTS & FODA */
+
+.highlights-label {
+  font-weight: 700;
+  font-size: 12px;
+  color: #111;
+  background-color: #eaf2fb;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+}
+
+.highlights-box {
+  border: 1px solid var(--border-color);
+  border-top: none;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  font-size: 12px;
+  color: #333;
+  line-height: 1.6;
+  min-height: 40px;
+}
+
+.foda-section-header {
+  font-weight: 700;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid var(--border-color);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.foda-section-header.foda-green-header {
+  background-color: var(--foda-green-header);
+  color: #1a5c2a;
+}
+
+.foda-section-header.foda-pink-header {
+  background-color: var(--foda-pink-header);
+  color: #7c1a1a;
+}
+
+.foda-detail-label {
+  background-color: #eee;
+  font-weight: 600;
+  padding: 3px 8px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  font-size: 11px;
+}
+
+.foda-row {
+  border: 1px solid var(--border-color);
+  border-top: none;
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  min-height: 30px;
+  color: #333;
+}
+
+.foda-row.row-green {
+  background-color: var(--foda-green-bg);
+}
+
+.foda-row.row-pink {
+  background-color: var(--foda-pink-bg);
+}
+
+/* ============================================================ FLUJO DE FONDOS */
+
+.table-flujo {
+  font-size: 12px;
+}
+
+.table-flujo th,
+.table-flujo td {
+  padding: 4px 6px;
+  text-align: right;
+}
+
+.table-flujo thead tr:not(.table-title-row) th {
+  text-align: center;
+}
+
+.table-flujo th:first-child,
+.table-flujo td:first-child {
+  text-align: left;
+  min-width: 60px;
+}
+
+.two-col-boxes {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 10px 0;
+}
+
+.two-col-box {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  padding: 6px 10px;
+  font-size: 11px;
+  box-sizing: border-box;
+}
+
+.two-col-box .tcb-label {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--corporate-blue);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 3px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.two-col-box .tcb-value {
+  font-size: 11px;
+  color: #333;
+  line-height: 1.5;
+}

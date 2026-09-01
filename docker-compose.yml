@@ -1,0 +1,31 @@
+services:
+  informe-ries:
+    build: .
+    image: informe-ries-microservicio:latest
+    container_name: informe-ries-microservicio
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3005}:3005"
+    environment:
+      - NODE_ENV=production
+      - PORT=3005
+    # Chromium necesita más memoria compartida que los 64MB que Docker asigna por defecto.
+    # Sin esto, pueden ocurrir crashes al renderizar PDFs grandes.
+    shm_size: "1gb"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:3005/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
