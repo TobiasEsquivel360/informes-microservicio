@@ -54,9 +54,7 @@ const ESTILO_CONTENEDOR_A4 =
   `</style>`;
 
 function envolverEnA4(html: string): string {
-  let resultado = html.includes("</head>")
-    ? html.replace("</head>", `${ESTILO_CONTENEDOR_A4}</head>`)
-    : `${ESTILO_CONTENEDOR_A4}\n${html}`;
+  let resultado = insertarAntesDeCierre(html, "</head>", ESTILO_CONTENEDOR_A4);
 
   if (/<body[^>]*>/.test(resultado) && resultado.includes("</body>")) {
     resultado = resultado
@@ -73,7 +71,15 @@ const SCRIPT_AUTO_RELOAD =
   `</script>`;
 
 function inyectarAutoReload(html: string): string {
-  return html.includes("</body>")
-    ? html.replace("</body>", `${SCRIPT_AUTO_RELOAD}</body>`)
-    : `${html}\n${SCRIPT_AUTO_RELOAD}`;
+  return insertarAntesDeCierre(html, "</body>", SCRIPT_AUTO_RELOAD);
+}
+
+function insertarAntesDeCierre(
+  html: string,
+  tagCierre: "</head>" | "</body>",
+  contenido: string,
+): string {
+  return html.includes(tagCierre)
+    ? html.replace(tagCierre, `${contenido}${tagCierre}`)
+    : `${html}\n${contenido}`;
 }
