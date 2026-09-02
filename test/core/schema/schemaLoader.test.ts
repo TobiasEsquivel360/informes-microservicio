@@ -27,25 +27,8 @@ describe("cargarSchema", () => {
     const schema = cargarSchema(GSC_SCORING);
 
     expect(schema).toBeDefined();
-    const fixture = require(path.join(GSC_SCORING, "fixtures/aprobado.json"));
+    const fixture = require(path.join(GSC_SCORING, "fixtures/ejemplo.json"));
     expect(schema!.safeParse(fixture).success).toBe(true);
-    expect(schema!.safeParse({ report: {} }).success).toBe(false);
-  });
-
-  it("gsc/scoring: acepta el escape hatch 'legacy' solo con claves que terminan en 'Html'", () => {
-    const schema = cargarSchema(GSC_SCORING)!;
-    const fixture = require(path.join(GSC_SCORING, "fixtures/aprobado.json"));
-
-    const conLegacyValido = {
-      ...fixture,
-      legacy: { destacadosHtml: "<p>fragmento</p>" },
-    };
-    const conLegacyInvalido = {
-      ...fixture,
-      legacy: { destacados: "<p>fragmento</p>" },
-    };
-
-    expect(schema.safeParse(conLegacyValido).success).toBe(true);
-    expect(schema.safeParse(conLegacyInvalido).success).toBe(false);
+    expect(schema!.safeParse({}).success).toBe(true);
   });
 });

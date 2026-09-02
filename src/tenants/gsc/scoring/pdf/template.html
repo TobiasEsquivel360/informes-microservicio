@@ -1,145 +1,1369 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Informe de Scoring</title>
+    <title>Riesgo Menor</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <!-- ========== HEADER ========== -->
-      <header class="header">
-        <div>
-          <h1>{{report.title}}</h1>
-          <p class="subtitle">{{company.name}}{{#if company.taxId}} — {{company.taxId}}{{/if}}</p>
+      <div class="header">
+        <div class="header-left">
+          <img
+            src="data:image/png;base64,{{logoBase64}}"
+            height="90"
+            width="130"
+            alt="Logo"
+          />
+          <h1>Riesgo Menor</h1>
         </div>
-        <div class="header-meta">
-          <p>Generado: <strong>{{report.generatedAt}}</strong></p>
-          <p>Instancia: <strong>{{report.instanceCode}}</strong></p>
-          <p>Workflow: <strong>{{report.workflowYear}}/{{report.workflowNumber}}</strong></p>
-          <p>Oferta: <strong>{{report.offerYear}}/{{report.offerCode}}</strong></p>
-        </div>
-      </header>
-
-      <!-- ========== SCORING ========== -->
-      <section class="section-scoring">
-        <h2 class="section-title">Scoring</h2>
-        <div class="scoring-summary risk-{{scoring.riskLevel}}">
-          <span class="scoring-status">
-            {{#if scoring.approved}}Aprobado{{else}}Rechazado{{/if}}
-          </span>
-          <span class="scoring-risk-label">Nivel de riesgo: {{scoring.riskLevel}}</span>
-        </div>
-        <div class="indicators-grid">
-          {{#each scoring.indicators}}
-            <div class="indicator indicator-{{colorLevel}}">
-              <h4 class="indicator-label">{{label}}</h4>
-              {{#if isRci}}
-                <p class="indicator-value">{{value}}<span class="indicator-scale">sin máximo</span></p>
-              {{else}}
-                <p class="indicator-value">{{value}}<span class="indicator-scale">{{scale}}</span></p>
-              {{/if}}
+        <div class="header-right">
+          <div class="client-info">
+            <div class="info-row">
+              <div class="info-block">
+                <p>Titular: <strong>{{cabecera.titular_nombre}}</strong></p>
+                <p>C.I.Nº: <strong>{{cabecera.titular_cedula}}</strong></p>
+                <p>
+                  Nacionalidad:
+                  <strong>{{cabecera.titular_nacionalidad}}</strong>
+                </p>
+                <p>
+                  <span
+                    >Cliente Basa:
+                    <strong>{{cabecera.titular_cliente_entidad}}</strong></span
+                  ><span class="spacer"></span
+                  ><span
+                    >Desde:
+                    <strong>{{cabecera.titular_cliente_desde}}</strong></span
+                  >
+                </p>
+                <p>
+                  Edad actual del cliente:
+                  <strong>{{cabecera.titular_edad}}</strong>
+                </p>
+              </div>
+              <div class="info-block">
+                <p>
+                  Cónyuge/Codeudor:
+                  <strong>{{cabecera.firmante1_nombre}}</strong>
+                </p>
+                <p>C.I.Nº: <strong>{{cabecera.firmante1_cedula}}</strong></p>
+                <p>
+                  Nacionalidad:
+                  <strong>{{cabecera.firmante1_nacionalidad}}</strong>
+                </p>
+                <p>
+                  <span
+                    >Cliente Basa:
+                    <strong
+                      >{{cabecera.firmante1_cliente_entidad}}</strong
+                    ></span
+                  ><span class="spacer"></span
+                  ><span
+                    >Desde:
+                    <strong>{{cabecera.firmante1_cliente_desde}}</strong></span
+                  >
+                </p>
+                <p>
+                  Edad actual del cliente:
+                  <strong>{{cabecera.firmante1_edad}}</strong>
+                </p>
+              </div>
             </div>
-          {{/each}}
+            <hr />
+            <div class="info-row">
+              <div class="info-block">
+                <p>Fecha: <strong>{{cabecera.fecha}}</strong></p>
+                <p>Workflow: <strong>{{cabecera.workflow}}</strong></p>
+                <p>País: <strong>{{cabecera.pais}}</strong></p>
+                <p>
+                  Sector Económico:
+                  <strong>{{cabecera.sector_economico}}</strong>
+                </p>
+              </div>
+              <div class="info-block">
+                <p>
+                  Fecha del Informe: <strong>{{cabecera.fecha_informe}}</strong>
+                </p>
+                <p>
+                  Fecha Comité de Crédito:
+                  <strong>{{cabecera.fecha_comite}}</strong>
+                </p>
+                <p>Analista: <strong>{{cabecera.analista}}</strong></p>
+                <p>supervisor: <strong>{{cabecera.supervisor}}</strong></p>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <!-- ========== OFERTA ========== -->
-      <section class="section-oferta">
-        <h2 class="section-title">Oferta</h2>
-        <table class="table-oferta">
+      <!-- ========== CODEUDOR ========== -->
+      <section class="section-codeudor">
+        <h3 class="section-title">Codeudor</h3>
+        <table class="table-codeudor">
           <thead>
             <tr>
-              <th class="col-concepto">{{offer.unitLabel}}</th>
-              <th class="col-valor">Valor</th>
-              {{#each offer.additionalColumns}}
-                <th class="col-adicional">{{this}}</th>
-              {{/each}}
+              <th></th>
+              <th>Nombre</th>
+              <th>C.I. Nº</th>
+              <th>Nacionalidad</th>
+              <th>Cliente Basa</th>
+              <th>Desde</th>
+              <th>Edad actual</th>
             </tr>
           </thead>
           <tbody>
-            {{#each offer.rows}}
-              <tr class="{{#if isGroup}}fila-grupo{{/if}}">
-                <td class="col-concepto">{{label}}</td>
-                <td class="col-valor">{{value}}</td>
-                {{#each additionalValues}}
-                  <td class="col-adicional">{{this}}</td>
-                {{/each}}
-              </tr>
-            {{/each}}
+            <tr>
+              <td>CODEUDOR 1</td>
+              <td>MARTINEZ ROBERTO</td>
+              <td>15234567</td>
+              <td>Paraguaya</td>
+              <td>NO</td>
+              <td>-</td>
+              <td>55</td>
+            </tr>
+            <tr>
+              <td>CÓNYUGE 1</td>
+              <td>LOPEZ MARIA</td>
+              <td>16789012</td>
+              <td>Paraguaya</td>
+              <td>NO</td>
+              <td>-</td>
+              <td>50</td>
+            </tr>
           </tbody>
         </table>
       </section>
 
-      <!-- ========== ACTIVIDAD ECONÓMICA ========== -->
-      <section class="section-actividad-economica">
-        <h2 class="section-title">Actividad Económica</h2>
+      <!-- ========== ACTIVIDAD ECONÓMICA PRINCIPAL ========== -->
+      <section class="section-actividad-principal">
+        <h3 class="section-title">Actividad Económica Principal</h3>
         <table class="table-actividad-economica">
           <thead>
             <tr>
-              <th class="col-actividad">Actividad</th>
-              <th class="col-descripcion">Descripción</th>
+              <th></th>
+              <th>Actividad</th>
+              <th>Antigüedad</th>
+              <th>Lugar</th>
+              <th>Cargo</th>
+              <th>Dirección</th>
+              <th>Emp. Cliente</th>
+              <th>Capital Emp.</th>
             </tr>
           </thead>
           <tbody>
-            {{#each economicActivities}}
-              <tr>
-                <td class="col-actividad">{{type}} ({{source}})</td>
-                <td class="col-descripcion">{{description}}</td>
-              </tr>
-            {{/each}}
+            <tr>
+              <td>Titular</td>
+              <td>Empleado</td>
+              <td>5 años</td>
+              <td>Asunción</td>
+              <td>Analista</td>
+              <td>Av. España 1234</td>
+              <td>SI</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Cónyuge/Codeudor</td>
+              <td>Empleada</td>
+              <td>3 años</td>
+              <td>Asunción</td>
+              <td>Administrativa</td>
+              <td>Av. Mariscal López 456</td>
+              <td>NO</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Codeudor 1</td>
+              <td>Independiente</td>
+              <td>10 años</td>
+              <td>San Lorenzo</td>
+              <td>Gerente</td>
+              <td>Ruta 2 Km 12</td>
+              <td>NO</td>
+              <td>500.000.000</td>
+            </tr>
+            <tr>
+              <td>Cónyuge 1</td>
+              <td>Empleada</td>
+              <td>8 años</td>
+              <td>San Lorenzo</td>
+              <td>Docente</td>
+              <td>Calle 14 de Mayo</td>
+              <td>NO</td>
+              <td>-</td>
+            </tr>
           </tbody>
         </table>
       </section>
 
-      <!-- ========== ALERTAS ========== -->
-      <section class="section-alertas">
-        <h2 class="section-title">Alertas Encontradas</h2>
-        {{#if alerts}}
-          <ul class="alertas-lista">
-            {{#each alerts}}
-              <li>{{this}}</li>
+      <!-- ========== ACTIVIDAD ECONÓMICA SECUNDARIA ========== -->
+      <section class="section-actividad-secundaria">
+        <h3 class="section-title">Actividad Económica Secundaria</h3>
+        <table class="table-actividad-economica">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Actividad</th>
+              <th>Antigüedad</th>
+              <th>Lugar</th>
+              <th>Cargo</th>
+              <th>Dirección</th>
+              <th>Emp. Cliente</th>
+              <th>Capital Emp.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Titular</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Cónyuge/Codeudor</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Codeudor 1</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Cónyuge 1</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== INGRESOS CONSIDERADOS ========== -->
+      <section class="section-ingresos-considerados">
+        <h3 class="section-title">Ingresos Considerados</h3>
+        <table class="table-ingresos-considerados">
+          <thead>
+            <tr>
+              <th rowspan="2">Concepto</th>
+              <th colspan="2">Titular</th>
+            </tr>
+            <tr>
+              <th>Bruto</th>
+              <th>Neto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each ingresosConsiderados}}
+            <tr>
+              <td>{{concepto}}</td>
+              <td class="num">{{titular_bruto}}</td>
+              <td class="num">{{titular_neto}}</td>
+            </tr>
             {{/each}}
-          </ul>
-        {{else}}
-          <p class="sin-datos">Sin alertas.</p>
-        {{/if}}
+            <tr class="total-row">
+              <td>CONSOLIDADO</td>
+              <td class="num">{{consolidado_total}}</td>
+              <td class="num">{{consolidado_considerado}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note-text">
+          *en caso de contar con un preaprobado, confirmar con el oficial que
+          operación prevalecerá de manera a proceder a dar de baja una de ellas
+        </p>
       </section>
 
-      <!-- ========== DESTACADOS ========== -->
-      <section class="section-destacados">
-        <h2 class="section-title">Destacados</h2>
-        {{#if highlights}}
-          <table class="table-destacados">
-            <thead>
-              <tr>
-                <th class="col-item">Ítem</th>
-                <th class="col-descripcion-destacados">Descripción</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each highlights}}
-                <tr>
-                  <td class="col-item">{{label}}</td>
-                  <td class="col-descripcion-destacados">{{value}}</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        {{else}}
-          <p class="sin-datos">Sin destacados.</p>
-        {{/if}}
+      <!-- ========== GARANTÍA VS RIESGO ========== -->
+      <section class="section-garantia-riesgo">
+        <h3 class="section-title">Garantía vs Riesgo</h3>
+        <table class="table-garantia-riesgo">
+          <thead>
+            <tr>
+              <th></th>
+              <th>CDA</th>
+              <th>PCP</th>
+              <th>Diferencia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capital</td>
+              <td>50.000.000</td>
+              <td>45.000.000</td>
+              <td>5.000.000</td>
+            </tr>
+            <tr>
+              <td>Intereses</td>
+              <td>12.000.000</td>
+              <td>10.800.000</td>
+              <td>1.200.000</td>
+            </tr>
+            <tr class="total-row">
+              <td>TOTAL</td>
+              <td>62.000.000</td>
+              <td>55.800.000</td>
+              <td>6.200.000</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
-      {{#if legacy}}
-        <!-- ========== PIEZAS LEGACY (deuda técnica temporal) ========== -->
-        <section class="section-legacy">
-          {{#each legacy}}
-            {{{this}}}
-          {{/each}}
-        </section>
-      {{/if}}
+      <!-- ========== EVALUACIÓN DE CAPACIDAD DE PAGO ========== -->
+      <section class="section-capacidad-pago">
+        <h3 class="section-title">Evaluación de capacidad de pago</h3>
+        <table class="table-capacidad-pago">
+          <thead>
+            <tr>
+              <th rowspan="2">Endeudamiento</th>
+              <th colspan="3">Mensual</th>
+            </tr>
+            <tr>
+              <th>Total Cuotas Mensuales</th>
+              <th>%</th>
+              <th>Riesgo Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ingreso considerado</td>
+              <td>7.225.000</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Solicitud BASA</td>
+              <td>1.200.000</td>
+              <td>16,6%</td>
+              <td>45.000.000</td>
+            </tr>
+            <tr>
+              <td>BASA + Sistema</td>
+              <td>1.450.000</td>
+              <td>20,1%</td>
+              <td>55.000.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== ACTIVOS ========== -->
+      <section class="section-activos">
+        <h3 class="section-title">M.B. Fecha</h3>
+        <table class="table-activos">
+          <tbody>
+            <tr>
+              <td>Activos Fijos</td>
+              <td>150.000.000</td>
+            </tr>
+            <tr>
+              <td>Rodados/Maquin.</td>
+              <td>80.000.000</td>
+            </tr>
+            <tr>
+              <td>Hato</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Acciones</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Inversiones</td>
+              <td>25.000.000</td>
+            </tr>
+            <tr class="total-row">
+              <td>TOTAL ACTIVOS</td>
+              <td>255.000.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== EVALUACIÓN DE INFORMES CONFIDENCIALES ========== -->
+      <section class="section-informes-confidenciales">
+        <h3 class="section-title">Evaluación de informes confidenciales</h3>
+        <table class="table-informes-confidenciales">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Informconf</th>
+              <th>Infocheck</th>
+              <th>Infomercio</th>
+              <th>Adefi</th>
+              <th>REDAM</th>
+              <th>Bicsa/Equifax</th>
+              <th>Edad</th>
+              <th>Observaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SPELZINI JULIAN JORGE</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>40</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Ana Perez</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>Sin datos</td>
+              <td>42</td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== COMENTARIOS DEL ANALISTA ========== -->
+      <section class="section-comentarios">
+        <h3 class="section-title">Comentarios del Analista</h3>
+        <div class="comentarios-box">
+          <p>
+            El cliente presenta buena capacidad de pago y estabilidad laboral.
+            Se recomienda aprobación de la solicitud.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========== PROPUESTA DE RIESGOS ========== -->
+      <section class="section-propuesta-riesgos">
+        <h3 class="section-title">Propuesta de Riesgos</h3>
+        <table class="table-propuesta-riesgos">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Producto 1</th>
+              <th>Producto 2</th>
+              <th>Totales</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Solicita</td>
+              <td>50.000.000</td>
+              <td>-</td>
+              <td>50.000.000</td>
+            </tr>
+            <tr>
+              <td>Propuesta</td>
+              <td>45.000.000</td>
+              <td>-</td>
+              <td>45.000.000</td>
+            </tr>
+            <tr>
+              <td>Posición</td>
+              <td>Nueva</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Moneda</td>
+              <td>Gs.</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Plazo</td>
+              <td>48 meses</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Garantía</td>
+              <td>Codeudoría</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Tasa</td>
+              <td>18%</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Monto Cuota</td>
+              <td>1.200.000</td>
+              <td>-</td>
+              <td>1.200.000</td>
+            </tr>
+            <tr>
+              <td>Fondos</td>
+              <td>Propios</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Destino</td>
+              <td>Consumo</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Operación</td>
+              <td>Préstamo Personal</td>
+              <td>-</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== DICTAMEN ========== -->
+      <section class="section-dictamen">
+        <h3 class="section-title">Dictamen</h3>
+        <div class="dictamen-box">
+          <div class="dictamen-field">
+            <span class="dictamen-label">Dictamen:</span>
+            <span class="dictamen-value"></span>
+          </div>
+          <div class="dictamen-field">
+            <span class="dictamen-label">Motivo de rechazo:</span>
+            <span class="dictamen-value"></span>
+          </div>
+          <div class="dictamen-field dictamen-field--tall">
+            <span class="dictamen-label">Condiciones para desembolso:</span>
+            <span class="dictamen-value dictamen-value--tall"></span>
+          </div>
+          <div class="dictamen-field dictamen-field--tall">
+            <span class="dictamen-label">Documentos pendientes:</span>
+            <span class="dictamen-value dictamen-value--tall"></span>
+          </div>
+          <div class="dictamen-footer">
+            <span>CARGA LOA &nbsp;&nbsp; HECHO ( &nbsp;&nbsp; )</span>
+            <span class="spacer"></span>
+            <span
+              >Preparado &nbsp;&nbsp; SI ( &nbsp;&nbsp; ) &nbsp;&nbsp; NO (
+              &nbsp;&nbsp; )</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== INGRESOS (UNIFICADO) ========== -->
+      <section class="section-ingresos-fijos">
+        <h3 class="section-title">Ingresos</h3>
+        <table class="table-monthly table-ingresos-unificada">
+          <!-- ===== HEADER PRINCIPAL ===== -->
+          <thead>
+            <tr>
+              <th>Ingresos</th>
+              <th>Titular</th>
+              <th>Totales</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- ===== SUBHEADER: FIJOS ===== -->
+            <tr class="section-subheader-row">
+              <td class="section-subheader">Fijos</td>
+              <td class="section-subheader"></td>
+              <td class="section-subheader">Concepto</td>
+            </tr>
+            <!-- Sub-encabezado de columnas para Fijos -->
+            <tr class="col-subheader-row">
+              <td class="col-subheader">MES - AÑO</td>
+              <td class="col-subheader"></td>
+              <td class="col-subheader">Ingresos</td>
+            </tr>
+            <!-- Filas de datos Fijos (una por mes) -->
+            <tr>
+              <td>Abr 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>May 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Jun 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Jul 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Ago 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Sep 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Oct 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Nov 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Dic 2025</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Ene 2026</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Feb 2026</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr>
+              <td>Mar 2026</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <!-- Totales Fijos -->
+            <tr class="summary-row">
+              <td>SUMA</td>
+              <td></td>
+              <td>102.000.000</td>
+            </tr>
+            <tr class="summary-row">
+              <td>PROMEDIO</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr class="summary-row highlight">
+              <td>SUMA-ANALISTA</td>
+              <td></td>
+              <td>102.000.000</td>
+            </tr>
+            <tr class="summary-row highlight">
+              <td>PROMEDIO-ANALISTA</td>
+              <td></td>
+              <td>8.500.000</td>
+            </tr>
+            <tr class="summary-row">
+              <td>VALORACIÓN DE APORTE JUBILATORIO</td>
+              <td></td>
+              <td>765.000</td>
+            </tr>
+
+            <!-- ===== SUBHEADER: VARIABLES ===== -->
+            <tr class="section-subheader-row">
+              <td class="section-subheader">Variables</td>
+              <td class="section-subheader"></td>
+              <td class="section-subheader">Concepto</td>
+            </tr>
+            <!-- Sub-encabezado de columnas para Variables -->
+            <tr class="col-subheader-row">
+              <td class="col-subheader">MES - AÑO</td>
+              <td class="col-subheader">Salario</td>
+              <td class="col-subheader">Ingresos</td>
+            </tr>
+            <!-- Filas de datos Variables -->
+            <tr>
+              <td>Abr 2025</td>
+              <td>8.500.000</td>
+              <td>500.000</td>
+            </tr>
+            <tr>
+              <td>May 2025</td>
+              <td>8.500.000</td>
+              <td>600.000</td>
+            </tr>
+            <tr>
+              <td>Jun 2025</td>
+              <td>8.500.000</td>
+              <td>450.000</td>
+            </tr>
+            <tr>
+              <td>Jul 2025</td>
+              <td>8.500.000</td>
+              <td>700.000</td>
+            </tr>
+            <tr>
+              <td>Ago 2025</td>
+              <td>8.500.000</td>
+              <td>550.000</td>
+            </tr>
+            <tr>
+              <td>Sep 2025</td>
+              <td>8.500.000</td>
+              <td>620.000</td>
+            </tr>
+            <tr>
+              <td>Oct 2025</td>
+              <td>8.500.000</td>
+              <td>480.000</td>
+            </tr>
+            <tr>
+              <td>Nov 2025</td>
+              <td>8.500.000</td>
+              <td>530.000</td>
+            </tr>
+            <tr>
+              <td>Dic 2025</td>
+              <td>8.500.000</td>
+              <td>750.000</td>
+            </tr>
+            <tr>
+              <td>Ene 2026</td>
+              <td>8.500.000</td>
+              <td>580.000</td>
+            </tr>
+            <tr>
+              <td>Feb 2026</td>
+              <td>8.500.000</td>
+              <td>610.000</td>
+            </tr>
+            <tr>
+              <td>Mar 2026</td>
+              <td>8.500.000</td>
+              <td>500.000</td>
+            </tr>
+            <!-- Totales Variables -->
+            <tr class="summary-row">
+              <td>SUMA</td>
+              <td></td>
+              <td>6.870.000</td>
+            </tr>
+            <tr class="summary-row">
+              <td>PROMEDIO</td>
+              <td></td>
+              <td>572.500</td>
+            </tr>
+            <tr class="summary-row highlight">
+              <td>SUMA-ANALISTA</td>
+              <td></td>
+              <td>6.870.000</td>
+            </tr>
+            <tr class="summary-row highlight">
+              <td>PROMEDIO-ANALISTA</td>
+              <td></td>
+              <td>572.500</td>
+            </tr>
+
+            <!-- ===== SUBHEADER: UNIPERSONALES - DDJJ DE IVA ===== -->
+            <tr class="section-subheader-row">
+              <td class="section-subheader">
+                Unipersonales - Comerciantes (DDJJ de IVA)
+              </td>
+              <td class="section-subheader">DDJJ de IVA</td>
+              <td class="section-subheader">Concepto</td>
+            </tr>
+            <!-- Sub-encabezado de columnas para DDJJ -->
+            <tr class="col-subheader-row col-subheader-ddjj">
+              <td class="col-subheader">MES - AÑO</td>
+              <td class="col-subheader">
+                <div class="ddjj-subcols">
+                  <span>Ventas 10%</span>
+                  <span>Ventas 5%</span>
+                  <span>Exentas</span>
+                  <span>Compras</span>
+                  <span>Neto</span>
+                </div>
+              </td>
+              <td class="col-subheader">
+                <div class="ddjj-subcols">
+                  <span>Ventas 10%</span>
+                  <span>Compras</span>
+                  <span>Neto</span>
+                </div>
+              </td>
+            </tr>
+            <!-- Filas de datos DDJJ -->
+            <tr>
+              <td>Abr 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>May 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Jun 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Jul 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Ago 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Sep 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Oct 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Nov 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Dic 2025</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Ene 2026</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Feb 2026</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Mar 2026</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <!-- Totales DDJJ -->
+            <tr class="summary-row">
+              <td>SUMA</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr class="summary-row">
+              <td>PROMEDIO</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr class="summary-row highlight">
+              <td>SUMA-ANALISTA</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr class="summary-row highlight">
+              <td>PROMEDIO-ANALISTA</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span><span>0</span
+                  ><span>0</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0</span><span>0</span><span>0</span>
+                </div>
+              </td>
+            </tr>
+            <tr class="summary-row">
+              <td>MÁRGEN DE COSTOS</td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0%</span><span>0%</span><span>0%</span><span>0%</span
+                  ><span>0%</span>
+                </div>
+              </td>
+              <td>
+                <div class="ddjj-subcols">
+                  <span>0%</span><span>0%</span><span>0%</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <!-- ========== DETALLE DE DEUDAS CONOCIDAS ========== -->
+      <section class="section-detalle-deudas">
+        <h3 class="section-title">
+          Detalle de deudas conocidas y referencias obtenidas
+        </h3>
+        <div class="score-card-grid">
+          <div class="score-card">
+            <div class="score-card-header">
+              <span class="score-title">Deuda Total</span>
+            </div>
+            <div class="score-card-body">
+              <span class="score-value score-red">900</span>
+              <span class="score-line"></span>
+              <span class="score-label">en<br />Millones</span>
+            </div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-header">
+              <span class="score-title">Deuda Total</span>
+              <span class="score-subtitle">sistema<br />financiero</span>
+            </div>
+            <div class="score-card-body">
+              <span class="score-value score-green">180</span>
+              <span class="score-line"></span>
+              <span class="score-label">en<br />Millones</span>
+            </div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-header">
+              <span class="score-title">Deuda Total</span>
+              <span class="score-subtitle"
+                >cooperativas y<br />empresas de crédito</span
+              >
+            </div>
+            <div class="score-card-body">
+              <span class="score-value score-red">820</span>
+              <span class="score-line"></span>
+              <span class="score-label">en<br />Millones</span>
+            </div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-header">
+              <span class="score-title">Total Cuotas</span>
+            </div>
+            <div class="score-card-body">
+              <span class="score-value score-orange">50</span>
+              <span class="score-line"></span>
+              <span class="score-label">compromiso<br />mensual</span>
+            </div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-header">
+              <span class="score-title">Total Cuotas</span>
+              <span class="score-subtitle">sistema<br />financiero</span>
+            </div>
+            <div class="score-card-body">
+              <span class="score-value score-green">30</span>
+              <span class="score-line"></span>
+              <span class="score-label">compromiso<br />mensual</span>
+            </div>
+          </div>
+          <div class="score-card">
+            <div class="score-card-header">
+              <span class="score-title">Total Cuotas</span>
+              <span class="score-subtitle"
+                >cooperativas y<br />empresas de crédito</span
+              >
+            </div>
+            <div class="score-card-body">
+              <span class="score-value score-orange">20</span>
+              <span class="score-line"></span>
+              <span class="score-label">en<br />Millones</span>
+            </div>
+          </div>
+        </div>
+        <div class="score-califications">
+          <p><span class="dot dot-bueno"></span> BUENO</p>
+          <p><span class="dot dot-regular"></span> REGULAR</p>
+          <p><span class="dot dot-critico"></span> CRÍTICO</p>
+        </div>
+      </section>
+
+      <!-- ========== CENTRAL DE RIESGOS BCP ========== -->
+      <section class="section-central-riesgos">
+        <h3 class="section-title">Central de Riesgos BCP</h3>
+        <table class="table-central-riesgos">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Titular</th>
+              <th>Cónyuge/Codeudor</th>
+              <th>Codeudor 1</th>
+              <th>Cónyuge 1</th>
+              <th>TOTALES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mes</td>
+              <td>Feb 2024</td>
+              <td>Feb 2024</td>
+              <td>Feb 2024</td>
+              <td>Feb 2024</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Calificación</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Deuda Basa</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Deuda SF</td>
+              <td>180.000.000</td>
+              <td>0</td>
+              <td>50.000.000</td>
+              <td>0</td>
+              <td>230.000.000</td>
+            </tr>
+            <tr>
+              <td>Total Deuda</td>
+              <td>180.000.000</td>
+              <td>0</td>
+              <td>50.000.000</td>
+              <td>0</td>
+              <td>230.000.000</td>
+            </tr>
+            <tr>
+              <td>Contingencia</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Codeudoría</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Total Riesgo</td>
+              <td>180.000.000</td>
+              <td>0</td>
+              <td>50.000.000</td>
+              <td>0</td>
+              <td>230.000.000</td>
+            </tr>
+            <tr>
+              <td>Depósitos</td>
+              <td>15.000.000</td>
+              <td>0</td>
+              <td>5.000.000</td>
+              <td>0</td>
+              <td>20.000.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== PRÉSTAMOS ========== -->
+      <section class="section-prestamos">
+        <h3 class="section-title">Préstamos</h3>
+        <table class="table-prestamos">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Sujeto 1</th>
+              <th>Sujeto 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tipo de entidad</td>
+              <td>Banco</td>
+              <td>Financiera</td>
+            </tr>
+            <tr>
+              <td>Nombre entidad</td>
+              <td>Banco Continental</td>
+              <td>Financiera El Comercio</td>
+            </tr>
+            <tr>
+              <td>Fecha</td>
+              <td>15/01/2023</td>
+              <td>20/06/2023</td>
+            </tr>
+            <tr>
+              <td>Capital</td>
+              <td>120.000.000</td>
+              <td>30.000.000</td>
+            </tr>
+            <tr>
+              <td>Plazo Cuotas (meses)</td>
+              <td>60</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td>Monto cuotas</td>
+              <td>3.200.000</td>
+              <td>1.100.000</td>
+            </tr>
+            <tr>
+              <td>Abonadas</td>
+              <td>13</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>Saldo</td>
+              <td>98.000.000</td>
+              <td>25.000.000</td>
+            </tr>
+            <tr>
+              <td>Garantía</td>
+              <td>Hipotecaria</td>
+              <td>Codeudoría</td>
+            </tr>
+            <tr>
+              <td>Próximo Vto.</td>
+              <td>15/03/2024</td>
+              <td>20/03/2024</td>
+            </tr>
+            <tr>
+              <td>Comportamiento</td>
+              <td>Normal</td>
+              <td>Normal</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== TC Y SOBREGIRO ========== -->
+      <section class="section-tc-sobregiro">
+        <h3 class="section-title">TC y Sobregiro</h3>
+        <table class="table-tc-sobregiro">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Sujeto 1</th>
+              <th>Sujeto 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tipo de Entidad</td>
+              <td>Banco</td>
+              <td>Banco</td>
+            </tr>
+            <tr>
+              <td>Nombre Entidad</td>
+              <td>Banco Continental</td>
+              <td>Banco Itaú</td>
+            </tr>
+            <tr>
+              <td>Línea de Crédito</td>
+              <td>15.000.000</td>
+              <td>10.000.000</td>
+            </tr>
+            <tr>
+              <td>% de Cuota</td>
+              <td>5%</td>
+              <td>5%</td>
+            </tr>
+            <tr>
+              <td>Saldo</td>
+              <td>3.500.000</td>
+              <td>2.100.000</td>
+            </tr>
+            <tr>
+              <td>Comportamiento</td>
+              <td>Normal</td>
+              <td>Normal</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== LEYENDA ========== -->
+      <section class="section-leyenda">
+        <div class="legend-grid">
+          <div class="legend-col">
+            <p class="legend-title">Sujeto</p>
+            <p>Titular</p>
+            <p>Cónyuge</p>
+            <p>Codeudor</p>
+          </div>
+          <div class="legend-col">
+            <p class="legend-title">Tipo de Entidad</p>
+            <p>Banco / Financiera</p>
+            <p>Cooperativa</p>
+            <p>Casa de Crédito</p>
+            <p>Otro</p>
+          </div>
+          <div class="legend-col">
+            <p class="legend-title">Garantía</p>
+            <p>Cash Colateral</p>
+            <p>Codeudoría</p>
+            <p>Hipotecaria</p>
+            <p>Prendaria</p>
+            <p>Sin Garantía</p>
+          </div>
+        </div>
+      </section>
     </div>
   </body>
 </html>
