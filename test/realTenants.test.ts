@@ -33,8 +33,8 @@ describe("TenantManager — gsc/scoring", () => {
     ).not.toThrow();
   });
 
-  it("el fixture 'ejemplo' pasa el schema y compila el template sin tirar", () => {
-    const fixture = require("../src/tenants/gsc/scoring/fixtures/ejemplo.json");
+  it("el fixture 'default' pasa el schema y compila el template sin tirar", () => {
+    const fixture = require("../src/tenants/gsc/scoring/fixtures/default.json");
     const schema = TenantManager.getSchema("gsc", "scoring")!;
     expect(schema.safeParse(fixture).success).toBe(true);
 

@@ -27,7 +27,7 @@ describe("cargarSchema", () => {
     const schema = cargarSchema(GSC_SCORING);
 
     expect(schema).toBeDefined();
-    const fixture = require(path.join(GSC_SCORING, "fixtures/ejemplo.json"));
+    const fixture = require(path.join(GSC_SCORING, "fixtures/default.json"));
     expect(schema!.safeParse(fixture).success).toBe(true);
     expect(schema!.safeParse({}).success).toBe(true);
   });

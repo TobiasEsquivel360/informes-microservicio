@@ -1,0 +1,82 @@
+{
+  "nombreInforme": "Informe de Scoring",
+  "workflow": "Prendario GSC",
+  "fecha": "02/09/2026",
+  "cuitCuil": "27-98765432-1",
+  "razonSocialNombre": "María Alertada Gómez",
+  "fechaConstitucion": "",
+  "sectorEconomico": "Transporte",
+  "fechaInforme": "02/09/2026",
+  "fechaComiteCredito": "03/09/2026",
+  "analista": "Juan Pérez",
+  "supervisor": "María López",
+  "ofertaSeleccionada": "Plan 36 cuotas",
+  "comentarios": "Revisar con comité por alertas múltiples.",
+  "offer": {
+    "unitLabel": "En miles de $ - segun Matriz",
+    "additionalColumns": ["Plan A", "Plan B"],
+    "rows": [
+      {
+        "label": "Ingresos",
+        "value": "350",
+        "isGroup": true,
+        "additionalValues": []
+      },
+      {
+        "label": "Sueldo",
+        "value": "350",
+        "isGroup": false,
+        "additionalValues": ["330", "360"]
+      }
+    ]
+  },
+  "economicActivities": [
+    {
+      "label": "Principal (AFIP)",
+      "description": "Transporte de cargas"
+    },
+    {
+      "label": "Secundaria (AFIP)",
+      "description": "Sin datos"
+    },
+    {
+      "label": "Principal (CLANAE)",
+      "description": "Transporte automotor"
+    },
+    {
+      "label": "Secundaria (CLANAE)",
+      "description": "Sin datos"
+    }
+  ],
+  "scoring": {
+    "indicators": [
+      {
+        "label": "Score Bureau",
+        "value": 410,
+        "scale": "0-1000"
+      },
+      {
+        "label": "RCI",
+        "value": 58,
+        "isRci": true
+      }
+    ]
+  },
+  "alerts": [
+    "Cheque rechazado en los últimos 12 meses",
+    "Consulta reciente en central de riesgos",
+    "Juicio en trámite",
+    "Mora vigente en otra entidad",
+    "Situación BCRA distinta de 1"
+  ],
+  "highlights": [
+    {
+      "label": "Antigüedad laboral",
+      "value": "8 meses"
+    },
+    {
+      "label": "Vehículo a financiar",
+      "value": "Volkswagen Amarok 2022"
+    }
+  ]
+}

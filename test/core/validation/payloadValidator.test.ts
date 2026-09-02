@@ -49,7 +49,7 @@ describe("validarPayload", () => {
 });
 
 describe("validarPayload — tenant real gsc/scoring", () => {
-  const ejemplo = require("../../../src/tenants/gsc/scoring/fixtures/ejemplo.json");
+  const ejemplo = require("../../../src/tenants/gsc/scoring/fixtures/default.json");
 
   beforeAll(() => {
     TenantManager.inicializar();

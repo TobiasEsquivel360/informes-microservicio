@@ -1,6 +1,7 @@
 import type { Application } from "express";
 import express from "express";
 import { createPdf } from "./core/createPdf";
+import { registrarRutaPreview } from "./dev/previewRoute";
 import {
   PayloadValidationError,
   validarPayload,
@@ -14,6 +15,10 @@ export function crearApp(): Application {
   app.get("/health", (_req, res) => {
     res.status(200).json({ status: "ok" });
   });
+
+  if (process.env.NODE_ENV === "development") {
+    registrarRutaPreview(app);
+  }
 
   app.post("/render/:clienteNombre", async (req, res) => {
     try {
