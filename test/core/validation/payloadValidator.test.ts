@@ -47,3 +47,34 @@ describe("validarPayload", () => {
     }
   });
 });
+
+describe("validarPayload — tenant real gsc/scoring", () => {
+  const rechazado = require("../../../src/tenants/gsc/scoring/fixtures/rechazado.json");
+
+  beforeAll(() => {
+    TenantManager.inicializar();
+  });
+
+  it("no lanza cuando el payload cumple el schema de gsc/scoring", () => {
+    expect(() => validarPayload("gsc", "scoring", rechazado)).not.toThrow();
+  });
+
+  it("lanza PayloadValidationError con el detalle del campo cuando falta un campo requerido", () => {
+    const { scoring, ...sinScoring } = rechazado;
+
+    try {
+      validarPayload("gsc", "scoring", sinScoring);
+      expect.fail("Se esperaba que validarPayload lanzara.");
+    } catch (error) {
+      expect(error).toBeInstanceOf(PayloadValidationError);
+      const validationError = error as PayloadValidationError;
+      expect(validationError.issues).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            path: "scoring",
+          }),
+        ]),
+      );
+    }
+  });
+});

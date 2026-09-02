@@ -1,0 +1,52 @@
+{
+  "report": {
+    "title": "Informe de Scoring",
+    "generatedAt": "2026-09-01T16:00:00-03:00",
+    "instanceCode": "1",
+    "workflowYear": "2026",
+    "workflowNumber": "4545",
+    "offerYear": "2026",
+    "offerCode": "8912"
+  },
+  "company": {
+    "name": "Distribuidora Sur S.A.",
+    "taxId": "30-71112223-4"
+  },
+  "offer": {
+    "unitLabel": "En miles de $ - segun Matriz",
+    "additionalColumns": [],
+    "rows": [
+      {
+        "label": "Cuota Solicitada",
+        "value": 2100,
+        "isGroup": false,
+        "additionalValues": []
+      }
+    ]
+  },
+  "economicActivities": [
+    { "source": "AFIP", "type": "principal", "description": "Distribución mayorista de alimentos" },
+    { "source": "AFIP", "type": "secundaria", "description": "-" },
+    { "source": "CLANAE", "type": "principal", "description": "Comercio al por mayor de productos alimenticios" },
+    { "source": "CLANAE", "type": "secundaria", "description": "-" }
+  ],
+  "scoring": {
+    "riskLevel": "medium",
+    "approved": false,
+    "indicators": [
+      { "label": "RCI", "value": 55, "scale": null, "colorLevel": "regular", "isRci": true },
+      { "label": "Capacidad de Pago", "value": 48, "scale": "0-100", "colorLevel": "regular" }
+    ]
+  },
+  "alerts": [
+    "Deuda vencida en sistema financiero.",
+    "Cheques rechazados en los últimos 12 meses.",
+    "Juicios en trámite contra la empresa.",
+    "Variación brusca de facturación declarada.",
+    "Domicilio fiscal no coincide con domicilio comercial.",
+    "Socio con antecedentes en otra empresa morosa."
+  ],
+  "highlights": [
+    { "label": "Cliente desde", "value": "2021" }
+  ]
+}

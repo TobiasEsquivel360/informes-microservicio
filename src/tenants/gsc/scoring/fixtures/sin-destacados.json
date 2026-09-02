@@ -1,0 +1,43 @@
+{
+  "report": {
+    "title": "Informe de Scoring",
+    "generatedAt": "2026-09-01T16:45:00-03:00",
+    "instanceCode": "1",
+    "workflowYear": "2026",
+    "workflowNumber": "4550",
+    "offerYear": "2026",
+    "offerCode": "8920"
+  },
+  "company": {
+    "name": "Agropecuaria Los Álamos S.A.",
+    "taxId": "30-71333444-5"
+  },
+  "offer": {
+    "unitLabel": "En miles de $ - segun Matriz",
+    "additionalColumns": [],
+    "rows": [
+      {
+        "label": "Cuota Solicitada",
+        "value": 900,
+        "isGroup": false,
+        "additionalValues": []
+      }
+    ]
+  },
+  "economicActivities": [
+    { "source": "AFIP", "type": "principal", "description": "Producción agropecuaria" },
+    { "source": "AFIP", "type": "secundaria", "description": "-" },
+    { "source": "CLANAE", "type": "principal", "description": "Cultivo de cereales y oleaginosas" },
+    { "source": "CLANAE", "type": "secundaria", "description": "-" }
+  ],
+  "scoring": {
+    "riskLevel": "low",
+    "approved": true,
+    "indicators": [
+      { "label": "RCI", "value": 28, "scale": null, "colorLevel": "good", "isRci": true },
+      { "label": "Capacidad de Pago", "value": 90, "scale": "0-100", "colorLevel": "good" }
+    ]
+  },
+  "alerts": [],
+  "highlights": []
+}

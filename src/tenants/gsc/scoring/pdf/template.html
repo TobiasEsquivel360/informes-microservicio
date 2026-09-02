@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informe de Scoring</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- ========== HEADER ========== -->
+      <header class="header">
+        <div>
+          <h1>{{report.title}}</h1>
+          <p class="subtitle">{{company.name}}{{#if company.taxId}} — {{company.taxId}}{{/if}}</p>
+        </div>
+        <div class="header-meta">
+          <p>Generado: <strong>{{report.generatedAt}}</strong></p>
+          <p>Instancia: <strong>{{report.instanceCode}}</strong></p>
+          <p>Workflow: <strong>{{report.workflowYear}}/{{report.workflowNumber}}</strong></p>
+          <p>Oferta: <strong>{{report.offerYear}}/{{report.offerCode}}</strong></p>
+        </div>
+      </header>
+
+      <!-- ========== SCORING ========== -->
+      <section class="section-scoring">
+        <h2 class="section-title">Scoring</h2>
+        <div class="scoring-summary risk-{{scoring.riskLevel}}">
+          <span class="scoring-status">
+            {{#if scoring.approved}}Aprobado{{else}}Rechazado{{/if}}
+          </span>
+          <span class="scoring-risk-label">Nivel de riesgo: {{scoring.riskLevel}}</span>
+        </div>
+        <div class="indicators-grid">
+          {{#each scoring.indicators}}
+            <div class="indicator indicator-{{colorLevel}}">
+              <h4 class="indicator-label">{{label}}</h4>
+              {{#if isRci}}
+                <p class="indicator-value">{{value}}<span class="indicator-scale">sin máximo</span></p>
+              {{else}}
+                <p class="indicator-value">{{value}}<span class="indicator-scale">{{scale}}</span></p>
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      </section>
+
+      <!-- ========== OFERTA ========== -->
+      <section class="section-oferta">
+        <h2 class="section-title">Oferta</h2>
+        <table class="table-oferta">
+          <thead>
+            <tr>
+              <th class="col-concepto">{{offer.unitLabel}}</th>
+              <th class="col-valor">Valor</th>
+              {{#each offer.additionalColumns}}
+                <th class="col-adicional">{{this}}</th>
+              {{/each}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each offer.rows}}
+              <tr class="{{#if isGroup}}fila-grupo{{/if}}">
+                <td class="col-concepto">{{label}}</td>
+                <td class="col-valor">{{value}}</td>
+                {{#each additionalValues}}
+                  <td class="col-adicional">{{this}}</td>
+                {{/each}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== ACTIVIDAD ECONÓMICA ========== -->
+      <section class="section-actividad-economica">
+        <h2 class="section-title">Actividad Económica</h2>
+        <table class="table-actividad-economica">
+          <thead>
+            <tr>
+              <th class="col-actividad">Actividad</th>
+              <th class="col-descripcion">Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each economicActivities}}
+              <tr>
+                <td class="col-actividad">{{type}} ({{source}})</td>
+                <td class="col-descripcion">{{description}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ========== ALERTAS ========== -->
+      <section class="section-alertas">
+        <h2 class="section-title">Alertas Encontradas</h2>
+        {{#if alerts}}
+          <ul class="alertas-lista">
+            {{#each alerts}}
+              <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        {{else}}
+          <p class="sin-datos">Sin alertas.</p>
+        {{/if}}
+      </section>
+
+      <!-- ========== DESTACADOS ========== -->
+      <section class="section-destacados">
+        <h2 class="section-title">Destacados</h2>
+        {{#if highlights}}
+          <table class="table-destacados">
+            <thead>
+              <tr>
+                <th class="col-item">Ítem</th>
+                <th class="col-descripcion-destacados">Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each highlights}}
+                <tr>
+                  <td class="col-item">{{label}}</td>
+                  <td class="col-descripcion-destacados">{{value}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <p class="sin-datos">Sin destacados.</p>
+        {{/if}}
+      </section>
+
+      {{#if legacy}}
+        <!-- ========== PIEZAS LEGACY (deuda técnica temporal) ========== -->
+        <section class="section-legacy">
+          {{#each legacy}}
+            {{{this}}}
+          {{/each}}
+        </section>
+      {{/if}}
+    </div>
+  </body>
+</html>
