@@ -1,0 +1,6 @@
+/*
+ * Placeholder intencional (ticket 01 gsc-scoring-migra-legacy-dompdf):
+ * el diseño visual de gsc/scoring se resuelve en un ticket aparte —
+ * NO copiar ni `estilos.css` del legacy Dompdf de GSC ni el CSS de
+ * `basa/menor` como referencia definitiva (ver ADR-0003).
+ */

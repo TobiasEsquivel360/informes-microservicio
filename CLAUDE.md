@@ -115,4 +115,4 @@ Chromium launches with `--disable-dev-shm-usage` and `--no-sandbox` for Docker c
 > - `.claude/skills/basa-pdf-html/SKILL.md` — HTML structure, sections, tables, Handlebars patterns
 > - `.claude/skills/basa-pdf-css/SKILL.md` — CSS variables, table styles, typography, extension rules
 
-The visual design system is anchored in `src/tenants/basa/menor/pdf/` — every new template must extend that system without replacing it.
+The visual design system is anchored in `src/tenants/basa/menor/pdf/` — every new template must extend that system without replacing it. Exception: a tenant whose report has its own real legacy precedent keeps that precedent as its anchor — `gsc/scoring` is anchored in the GSC Dompdf report (`reporte.html`), not in `basa/menor` (ADR-0003, repo `agregar-reportes`).
