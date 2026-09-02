@@ -11,7 +11,8 @@
     "test": "vitest run",
     "build": "tsc --project tsconfig.json && copyfiles -u 1 \"src/tenants/**/*.{html,css}\" dist",
     "start": "tsx src/index.ts",
-    "start:prod": "node dist/index.js"
+    "start:prod": "node dist/index.js",
+    "pdf:preview": "tsx src/dev/pdfPreviewCli.ts"
   },
   "dependencies": {
     "chokidar": "^4.0.3",

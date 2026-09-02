@@ -82,7 +82,8 @@ build/
 out/
 .nuxt
 
-.output
+# PDFs de prueba generados por `npm run pdf:preview`
+.output/
 # Cache & Temporary
 .cache/
 .temp/
