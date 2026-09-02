@@ -2,6 +2,7 @@ import type { Application } from "express";
 import express from "express";
 import { createPdf } from "./core/createPdf";
 import { registrarRutaPreview } from "./dev/previewRoute";
+import { registrarRutaReload } from "./dev/reloadWatcher";
 import {
   PayloadValidationError,
   validarPayload,
@@ -18,6 +19,7 @@ export function crearApp(): Application {
 
   if (process.env.NODE_ENV === "development") {
     registrarRutaPreview(app);
+    registrarRutaReload(app);
   }
 
   app.post("/render/:clienteNombre", async (req, res) => {

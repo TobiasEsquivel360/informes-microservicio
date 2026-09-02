@@ -41,7 +41,7 @@ function previewHandler(
     const template = compilarInforme(informeDir, helpersCompartidos);
     const htmlInforme = template(fixture);
 
-    res.status(200).send(envolverEnA4(htmlInforme));
+    res.status(200).send(inyectarAutoReload(envolverEnA4(htmlInforme)));
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
@@ -65,4 +65,15 @@ function envolverEnA4(html: string): string {
   }
 
   return resultado;
+}
+
+const SCRIPT_AUTO_RELOAD =
+  `<script>\n` +
+  `  new EventSource("/__dev/reload").addEventListener("reload", () => location.reload());\n` +
+  `</script>`;
+
+function inyectarAutoReload(html: string): string {
+  return html.includes("</body>")
+    ? html.replace("</body>", `${SCRIPT_AUTO_RELOAD}</body>`)
+    : `${html}\n${SCRIPT_AUTO_RELOAD}`;
 }

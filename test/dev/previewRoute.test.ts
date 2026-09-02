@@ -22,6 +22,7 @@ describe("GET /preview/:cliente/:informe (NODE_ENV=development)", () => {
     expect(res.headers["content-type"]).toContain("text/html");
     expect(res.text).toContain("210mm");
     expect(res.text).toContain("Juan Ejemplo Pérez");
+    expect(res.text).toContain("EventSource(\"/__dev/reload\")");
   });
 
   it("devuelve 200 para otro escenario de fixture (con-alertas)", async () => {
