@@ -28,9 +28,10 @@ Multi-tenant HTTP microservice that generates PDFs from Handlebars templates ren
 ### Request flow
 
 ```
-POST /render/:clienteNombre?nombreInforme=REPORT_NAME  { body: data }
+POST /render/:clienteNombre?nombreInforme=REPORT_NAME  { body: { contractVersion?, data } }
   → app.ts route handler
-    → validarPayload(): if the tenant/report declared a schema.ts, Zod-validate `data`; throws PayloadValidationError → 400 on mismatch
+    → if contractVersion is present and isn't 1 → 422 (omitted entirely = accepted, for tenants that don't envelope their payload)
+    → validarPayload(): if the tenant/report declared a schema.ts, Zod-validate `data`; throws PayloadValidationError → 422 on mismatch
     → createPdf.ts
       → TenantManager: retrieve pre-compiled Handlebars template
       → Handlebars.execute(template, data) → HTML string
@@ -85,7 +86,7 @@ export const schema = z.object({
 });
 ```
 
-`TenantManager.getSchema(cliente, informe)` resolves it at request time; `validarPayload` (`src/core/validation/payloadValidator.ts`) runs it against the request body and throws `PayloadValidationError` (caught in `app.ts`, returned as `400` with the failing field paths) on mismatch. None of the three existing tenants (`basa/menor`, `basa/califSinLimites`, `example/default`) declare a schema, so they behave exactly as before.
+`TenantManager.getSchema(cliente, informe)` resolves it at request time; `validarPayload` (`src/core/validation/payloadValidator.ts`) runs it against the request body and throws `PayloadValidationError` (caught in `app.ts`, returned as `422` with the failing field paths) on mismatch. None of the three existing tenants (`basa/menor`, `basa/califSinLimites`, `example/default`) declare a schema, so they behave exactly as before.
 
 ### Existing tenants
 
@@ -93,6 +94,7 @@ export const schema = z.object({
 |--------|--------|-------|
 | basa | menor | `POST /render/basa?nombreInforme=menor` |
 | basa | califSinLimites | `POST /render/basa?nombreInforme=califSinLimites` |
+| gsc | scoring | `POST /render/gsc?nombreInforme=scoring` |
 | example | default | onboarding reference — not a production tenant |
 
 ### PdfService: shared browser

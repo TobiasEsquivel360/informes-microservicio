@@ -30,7 +30,14 @@ export function crearApp(): Application {
         return;
       }
 
-      const { data } = req.body;
+      const { contractVersion, data } = req.body;
+
+      if (contractVersion !== undefined && contractVersion !== 1) {
+        res.status(422).json({
+          error: `contractVersion no soportado: ${contractVersion}. Se espera 1.`,
+        });
+        return;
+      }
 
       validarPayload(clienteNombre, nombreInforme, data);
 
@@ -44,7 +51,7 @@ export function crearApp(): Application {
       res.send(pdfBuffer);
     } catch (error: any) {
       if (error instanceof PayloadValidationError) {
-        res.status(400).json({
+        res.status(422).json({
           error: "El payload no cumple el schema esperado.",
           issues: error.issues,
         });

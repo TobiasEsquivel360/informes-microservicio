@@ -26,7 +26,7 @@ describe("POST /render/:clienteNombre", () => {
     expect(res.headers["content-type"]).toContain("application/pdf");
   });
 
-  it("responde 400 con el detalle del campo cuando el payload no cumple el schema", async () => {
+  it("responde 422 con el detalle del campo cuando el payload no cumple el schema", async () => {
     const { crearApp } = await import("../src/app");
     const app = crearApp();
 
@@ -34,7 +34,7 @@ describe("POST /render/:clienteNombre", () => {
       .post("/render/clienteA?nombreInforme=informeConSchemaPropio")
       .send({ data: { informe: 123 } });
 
-    expect(res.status).toBe(400);
+    expect(res.status).toBe(422);
     expect(res.body.issues).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -54,5 +54,39 @@ describe("POST /render/:clienteNombre", () => {
       .send({ data: { loQueSea: true } });
 
     expect(res.status).toBe(200);
+  });
+
+  it("responde 200 cuando el body no trae contractVersion (compatibilidad hacia atrás)", async () => {
+    const { crearApp } = await import("../src/app");
+    const app = crearApp();
+
+    const res = await request(app)
+      .post("/render/clienteA?nombreInforme=informeConSchemaPropio")
+      .send({ data: { informe: "ok" } });
+
+    expect(res.status).toBe(200);
+  });
+
+  it("responde 200 cuando contractVersion es 1", async () => {
+    const { crearApp } = await import("../src/app");
+    const app = crearApp();
+
+    const res = await request(app)
+      .post("/render/clienteA?nombreInforme=informeConSchemaPropio")
+      .send({ contractVersion: 1, data: { informe: "ok" } });
+
+    expect(res.status).toBe(200);
+  });
+
+  it("responde 422 cuando contractVersion no es 1", async () => {
+    const { crearApp } = await import("../src/app");
+    const app = crearApp();
+
+    const res = await request(app)
+      .post("/render/clienteA?nombreInforme=informeConSchemaPropio")
+      .send({ contractVersion: 2, data: { informe: "ok" } });
+
+    expect(res.status).toBe(422);
+    expect(res.body.error).toMatch(/contractVersion/);
   });
 });
