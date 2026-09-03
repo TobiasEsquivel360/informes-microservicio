@@ -49,20 +49,12 @@ function previewHandler(
 
 const ESTILO_CONTENEDOR_A4 =
   `<style>\n` +
-  `  html, body { margin: 0; }\n` +
-  `  .preview-a4 { width: 210mm; margin: 0 auto; }\n` +
+  `  html { margin: 0; background: #2b2b2b; }\n` +
+  `  body { width: 210mm; margin: 0 auto; background: white; box-sizing: border-box; }\n` +
   `</style>`;
 
 function envolverEnA4(html: string): string {
-  let resultado = insertarAntesDeCierre(html, "</head>", ESTILO_CONTENEDOR_A4);
-
-  if (/<body[^>]*>/.test(resultado) && resultado.includes("</body>")) {
-    resultado = resultado
-      .replace(/(<body[^>]*>)/, `$1<div class="preview-a4">`)
-      .replace("</body>", `</div></body>`);
-  }
-
-  return resultado;
+  return insertarAntesDeCierre(html, "</head>", ESTILO_CONTENEDOR_A4);
 }
 
 const SCRIPT_AUTO_RELOAD =

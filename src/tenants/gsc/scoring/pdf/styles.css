@@ -1,6 +1,235 @@
-/*
- * Placeholder intencional (ticket 01 gsc-scoring-migra-legacy-dompdf):
- * el diseño visual de gsc/scoring se resuelve en un ticket aparte —
- * NO copiar ni `estilos.css` del legacy Dompdf de GSC ni el CSS de
- * `basa/menor` como referencia definitiva (ver ADR-0003).
- */
+:root {
+  --color-texto: rgb(68, 69, 69);
+  --inset-texto: 7px;
+  --corporate-blue: #5097d3;
+  --border-color: #e0e0e0;
+  --rojo-alerta: rgb(239, 71, 34);
+}
+
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: var(--color-texto);
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* demo de padding
+.titulo-oferta {
+  padding-left: var(--inset-texto);
+  padding-right: var(--inset-texto);
+}
+
+*/
+
+.titulo-informe {
+  color: var(--corporate-blue);
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.titulo-seccion {
+  font-size: 19px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+/* ========== TABLAS ========== */
+.tabla {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.tabla tr {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.tabla th,
+.tabla td {
+  padding: 8px 8px;
+  text-align: left;
+}
+
+.tabla thead tr {
+  background-color: var(--corporate-blue);
+  color: white;
+}
+
+.tabla thead th {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.tabla thead th:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.tabla thead th:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.tabla tbody tr td {
+  border-bottom: 1px solid var(--border-color);
+  color: #444;
+}
+
+/* ========== CABECERA ========== */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.cabecera-izquierda {
+  flex: 0 0 35%;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.cabecera-izquierda img {
+  display: block;
+  width: 250px;
+  margin-left: -20px;
+  /* +10% sobre los 114px originales, +30% adicional sobre eso */
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.cabecera-derecha {
+  flex: 0 0 60%;
+  box-sizing: border-box;
+  padding-left: 30px;
+}
+
+.cabecera-derecha p {
+  margin: 1px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #555;
+}
+
+.cabecera-derecha p strong {
+  color: #111;
+  font-weight: 700;
+}
+
+.cabecera-derecha-linea-1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.separador-cabecera {
+  border: none;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 8px 0;
+}
+
+/* ========== OFERTA SELECCIONADA ========== */
+/* Tomado del legacy Dompdf real (estilos.css), no de basa/menor: título
+   y badge van en fila, no apilados. El contenedor se pone en flex para
+   que el badge ocupe todo el espacio restante y su borde llegue lo más
+   a la derecha posible (en vez del `width: 68%` fijo del legacy). */
+.seccion-oferta-seleccionada {
+  display: flex;
+  align-items: center;
+}
+
+.titulo-oferta-seleccionada {
+  margin-right: 8px;
+}
+
+.oferta-seleccionada {
+  flex: 1;
+  border: 3px solid var(--corporate-blue);
+  border-radius: 6px;
+  padding: 3px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* ========== SCORES ========== */
+/* Cada score: [título] arriba, [score, escala] en fila abajo. Ya no es
+   una tabla (era el workaround de Dompdf, que no soportaba flex) — la
+   propia `section.indicadores` es el contenedor flex, con un
+   `div.score` por indicador adentro. La fila de scores usa flex-wrap:
+   si no entran todos en el ancho disponible, el que sobra baja de línea
+   solo. */
+.indicadores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 24px;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.nombre-score {
+  margin: 0;
+  color: var(--corporate-blue);
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.score-izquierda-derecha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-izquierda {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: bolder;
+  line-height: 1;
+  color: var(--corporate-blue);
+}
+
+.score-derecha {
+  margin: 0;
+  padding-left: 7px;
+  font-size: 13px;
+  border-left: 1px solid black;
+}
+
+/* ========== ALERTAS ENCONTRADAS ========== */
+/* Tomado del legacy Dompdf real (estilos.css). */
+.alertas-encontradas {
+  background-color: var(--rojo-alerta);
+  padding: 9px;
+  border-radius: 4px;
+}
+
+.alertas-encontradas p {
+  margin: 2px 0;
+  color: white;
+}
+
+/* ========== COMENTARIOS ========== */
+/* Tomado del legacy Dompdf real (estilos.css). */
+.campo-comentarios {
+  border: 2px solid var(--corporate-blue);
+  border-radius: 5px;
+  padding: 15px;
+  min-height: 30px;
+  margin-bottom: 35px;
+}

@@ -26,9 +26,6 @@ const scoringIndicator = z.object({
   label: z.string(),
   value: numericValue,
   scale: z.string().nullable().optional(),
-  // RCI ("relación cuota/ingreso") se muestra con un layout distinto al
-  // resto de los indicadores — ver Scoring.php del lado GSC-sir.
-  isRci: z.boolean().optional(),
 });
 
 const highlight = z.object({

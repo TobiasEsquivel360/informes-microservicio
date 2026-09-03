@@ -59,7 +59,7 @@
       {
         "label": "RCI",
         "value": 58,
-        "isRci": true
+        "scale": "sin maximo"
       }
     ]
   },

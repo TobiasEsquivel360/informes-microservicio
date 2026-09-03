@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "./src/index.ts",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "cross-env NODE_ENV=development tsx watch src/index.ts",
     "test": "vitest run",
     "build": "tsc --project tsconfig.json && copyfiles -u 1 \"src/tenants/**/*.{html,css}\" dist",
     "start": "tsx src/index.ts",
@@ -26,6 +26,7 @@
     "@types/node": "^25.8.0",
     "@types/supertest": "^7.2.1",
     "copyfiles": "^2.4.1",
+    "cross-env": "^10.1.0",
     "supertest": "^7.2.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",

@@ -17,7 +17,7 @@
             alt="Logo San Cristóbal"
           />
         </picture>
-        <h1>{{nombreInforme}}</h1>
+        <h1 class="titulo-informe">{{nombreInforme}}</h1>
       </div>
       <div class="cabecera-derecha">
         <div class="cabecera-derecha-linea-1">
@@ -38,7 +38,7 @@
 
     <main>
       <section class="oferta">
-        <h3 class="nombre-seccion titulo-oferta">Oferta</h3>
+        <h3 class="titulo-seccion titulo-oferta">Oferta</h3>
         <div class="tabla-oferta">
           <table class="tabla tabla-oferta">
             <thead>
@@ -64,48 +64,23 @@
           </table>
         </div>
         <div class="seccion-oferta-seleccionada">
-          <h3 class="nombre-seccion titulo-oferta-seleccionada">Oferta Seleccionada</h3>
+          <h3 class="titulo-seccion titulo-oferta-seleccionada">Oferta Seleccionada</h3>
           <p class="oferta-seleccionada">{{ofertaSeleccionada}}</p>
         </div>
       </section>
       <section class="indicadores">
-        <div>
-          <table class="tabla-indicadores">
-            <tr>
-              {{#each scoring.indicators}}
-              {{#if isRci}}
-              <td class="score">
-                <table class="wrapper">
-                  <tr>
-                    <td class="col-fija">
-                      <h4 class="nombre-score">RCI</h4>
-                    </td>
-                    <td class="contra-deuda-total-texto">
-                      <p>contra deuda total</p>
-                    </td>
-                  </tr>
-                </table>
-                <div class="scores-rci">
-                  <p class="score-izquierda">{{value}}</p>
-                  <p class="score-derecha">sin maximo</p>
-                </div>
-              </td>
-              {{else}}
-              <td class="score">
-                <h4 class="nombre-score">{{label}}</h4>
-                <div class="score-izquierda-derecha">
-                  <p class="score-izquierda">{{value}}</p>
-                  <p class="score-derecha">{{scale}}</p>
-                </div>
-              </td>
-              {{/if}}
-              {{/each}}
-            </tr>
-          </table>
+        {{#each scoring.indicators}}
+        <div class="score">
+          <h4 class="nombre-score">{{label}}</h4>
+          <div class="score-izquierda-derecha">
+            <p class="score-izquierda">{{value}}</p>
+            <p class="score-derecha">{{scale}}</p>
+          </div>
         </div>
+        {{/each}}
       </section>
       <section class="actividad-economica">
-        <h3 class="nombre-seccion titulo-actividad-economica">
+        <h3 class="titulo-seccion titulo-actividad-economica">
           Actividad Economica
         </h3>
         <div class="tabla-actividad-economica">
@@ -128,7 +103,7 @@
         </div>
       </section>
       <section class="detalle-alertas-encontradas">
-        <h3 class="nombre-seccion titulo-detalle-alertas-encontradas">Detalle de Alertas Encontradas</h3>
+        <h3 class="titulo-seccion titulo-detalle-alertas-encontradas">Detalle de Alertas Encontradas</h3>
         <div class="alertas-encontradas">
           {{#each alerts}}
           <p>{{this}}</p>
@@ -136,7 +111,7 @@
         </div>
       </section>
       <section class="destacados">
-        <h3 class="nombre-seccion titulo-destacados">Destacados</h3>
+        <h3 class="titulo-seccion titulo-destacados">Destacados</h3>
         <div class="tabla-destacados">
           <table class="tabla tabla-destacados">
             <thead>
@@ -157,7 +132,7 @@
         </div>
       </section>
       <section class="comentarios">
-        <h3 class="nombre-seccion titulo-comentarios">Comentarios</h3>
+        <h3 class="titulo-seccion titulo-comentarios">Comentarios</h3>
         <div class="campo-comentarios">
           <p>{{comentarios}}</p>
         </div>
