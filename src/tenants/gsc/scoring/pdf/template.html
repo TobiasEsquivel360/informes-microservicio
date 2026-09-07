@@ -110,21 +110,84 @@
           {{/each}}
         </div>
       </section>
-      <section class="destacados">
-        <h3 class="titulo-seccion titulo-destacados">Destacados</h3>
-        <div class="tabla-destacados">
-          <table class="tabla tabla-destacados">
+      <section class="datos-titular">
+        <h3 class="titulo-seccion titulo-datos-titular">Datos del Titular</h3>
+        <div class="tabla-datos-titular">
+          <table class="tabla tabla-datos-titular">
             <thead>
               <tr>
                 <th class="col-item">Ítem</th>
-                <th class="col-descripcion-destacados">Descripcion</th>
+                <th class="col-descripcion-datos-titular">Descripcion</th>
               </tr>
             </thead>
             <tbody>
-              {{#each highlights}}
+              {{#each titular}}
               <tr>
                 <td class="col-item">{{label}}</td>
-                <td class="col-descripcion-destacados">{{value}}</td>
+                <td class="col-descripcion-datos-titular">{{value}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="datos-conyuge">
+        <h3 class="titulo-seccion titulo-datos-conyuge">Datos del Cónyuge</h3>
+        <div class="tabla-datos-conyuge">
+          <table class="tabla tabla-datos-conyuge">
+            <thead>
+              <tr>
+                <th class="col-item">Ítem</th>
+                <th class="col-descripcion-datos-conyuge">Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each conyuge}}
+              <tr>
+                <td class="col-item">{{label}}</td>
+                <td class="col-descripcion-datos-conyuge">{{value}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="datos-codeudor">
+        <h3 class="titulo-seccion titulo-datos-codeudor">Datos del Codeudor</h3>
+        <div class="tabla-datos-codeudor">
+          <table class="tabla tabla-datos-codeudor">
+            <thead>
+              <tr>
+                <th class="col-item">Ítem</th>
+                <th class="col-descripcion-datos-codeudor">Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each codeudor}}
+              <tr>
+                <td class="col-item">{{label}}</td>
+                <td class="col-descripcion-datos-codeudor">{{value}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="datos-vehiculo">
+        <h3 class="titulo-seccion titulo-datos-vehiculo">Datos del Vehículo</h3>
+        <div class="tabla-datos-vehiculo">
+          <table class="tabla tabla-datos-vehiculo">
+            <thead>
+              <tr>
+                <th class="col-item">Ítem</th>
+                <th class="col-descripcion-datos-vehiculo">Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each vehiculo}}
+              <tr>
+                <td class="col-item">{{label}}</td>
+                <td class="col-descripcion-datos-vehiculo">{{value}}</td>
               </tr>
               {{/each}}
             </tbody>

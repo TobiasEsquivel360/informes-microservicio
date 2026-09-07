@@ -21,7 +21,7 @@
         "label": "Ingresos",
         "value": "350",
         "isGroup": true,
-        "additionalValues": []
+        "additionalValues": [null, null]
       },
       {
         "label": "Sueldo",
@@ -51,16 +51,9 @@
   ],
   "scoring": {
     "indicators": [
-      {
-        "label": "Score Bureau",
-        "value": 410,
-        "scale": "0-1000"
-      },
-      {
-        "label": "RCI",
-        "value": 58,
-        "scale": "sin maximo"
-      }
+      { "label": "Score NOSIS", "value": 480, "scale": "1 a 999" },
+      { "label": "NSE Bureau", "value": "D1", "scale": "A a D2" },
+      { "label": "Score Veraz", "value": 412, "scale": "1 a 999" }
     ]
   },
   "alerts": [
@@ -70,14 +63,85 @@
     "Mora vigente en otra entidad",
     "Situación BCRA distinta de 1"
   ],
-  "highlights": [
-    {
-      "label": "Antigüedad laboral",
-      "value": "8 meses"
-    },
-    {
-      "label": "Vehículo a financiar",
-      "value": "Volkswagen Amarok 2022"
-    }
+  "titular": [
+    { "label": "Id Préstamo", "value": "PR-2026-000512" },
+    { "label": "BCRA BlackList Titular", "value": "NO" },
+    { "label": "Cheques Rechazados Titular", "value": "SI" },
+    { "label": "Tipo de Contribuyente", "value": "Monotributo B" },
+    { "label": "Bases Negativas", "value": "Con Observaciones negativas" },
+    { "label": "Score NOSIS", "value": "480" },
+    { "label": "NSE Bureau", "value": "D1" },
+    { "label": "Score Veraz", "value": "412" },
+    { "label": "Funcional Veraz", "value": "REVISAR" },
+    { "label": "Compromisos Mensuales", "value": "$ 210.000" },
+    { "label": "Deuda Total B.C.R.A.", "value": "$ 680.000" },
+    { "label": "Situación BCRA Actual", "value": "2" },
+    { "label": "Máx. Situación Ult 24 meses", "value": "3" },
+    { "label": "Correo Electrónico", "value": "jperez@example.com" },
+    { "label": "Celular", "value": "11 2233-4455" },
+    { "label": "Nacionalidad (Titular)", "value": "Argentina" },
+    { "label": "Actividad Principal (Titular)", "value": "Comerciantes y Productores" },
+    { "label": "Actividad Laboral (Titular)", "value": "Comerciante" },
+    { "label": "Categoría del Trabajo", "value": "2" },
+    { "label": "Antiguedad Laboral (Meses)", "value": "8" },
+    { "label": "Fecha de Nacimiento (Titular)", "value": "03/03/1988" },
+    { "label": "Edad", "value": "38" },
+    { "label": "Estado Civil", "value": "Soltero/a" },
+    { "label": "Sexo (Titular)", "value": "Masculino" },
+    { "label": "Ingresos Mensuales Declarados", "value": "$ 700.000" },
+    { "label": "Ingresos Mensuales Inferidos", "value": "$ 520.000" },
+    { "label": "Ingresos Mensuales Verificados", "value": "$ 520.000" },
+    { "label": "Ingreso Considerado (Titular)", "value": "$ 520.000" },
+    { "label": "Relación Ingreso (Inferido/Declarado)", "value": "0,74" },
+    { "label": "Tipo de Cliente", "value": "NUEVO" },
+    { "label": "Morosidad Interna (Días)", "value": "15" }
+  ],
+  "conyuge": [],
+  "codeudor": [
+    { "label": "DNI (Codeudor)", "value": "31.987.654" },
+    { "label": "Nombre/s y Apellido/s (Codeudor)", "value": "SUÁREZ, PATRICIA NOEMÍ" },
+    { "label": "BCRA BlackList Codeudor", "value": "NO" },
+    { "label": "Cheques Rechazados Codeudor", "value": "NO" },
+    { "label": "Bases Negativas", "value": "Sin Observaciones negativas" },
+    { "label": "Score NOSIS", "value": "715" },
+    { "label": "NSE Bureau", "value": "C1" },
+    { "label": "Score Veraz", "value": "702" },
+    { "label": "Funcional Veraz", "value": "APROBAR" },
+    { "label": "Compromisos Mensuales", "value": "$ 60.000" },
+    { "label": "Deuda Total B.C.R.A.", "value": "$ 90.000" },
+    { "label": "Situación BCRA Actual", "value": "1" },
+    { "label": "Máx. Situación Ult 24 meses", "value": "1" },
+    { "label": "Nacionalidad (Codeudor)", "value": "Argentina" },
+    { "label": "Actividad Principal (Codeudor)", "value": "Empleados Formales" },
+    { "label": "Actividad Laboral (Codeudor)", "value": "Docente" },
+    { "label": "Categoría del Trabajo", "value": "1" },
+    { "label": "Antiguedad Laboral (Meses)", "value": "120" },
+    { "label": "Fecha de Nacimiento (Codeudor)", "value": "20/09/1975" },
+    { "label": "Edad", "value": "51" },
+    { "label": "Estado Civil", "value": "Divorciado/a" },
+    { "label": "Sexo (Codeudor)", "value": "Femenino" },
+    { "label": "Ingresos mensuales Declarados (Codeudor)", "value": "$ 780.000" },
+    { "label": "Ingresos mensuales Inferidos (Codeudor)", "value": "$ 780.000" },
+    { "label": "Ingresos mensuales Verificados (Codeudor)", "value": "$ 780.000" },
+    { "label": "Ingreso Considerado (Codeudor)", "value": "$ 780.000" },
+    { "label": "Relación Ingreso (Inferido/Declarado)", "value": "1,00" },
+    { "label": "Tipo de Cliente", "value": "HISTORICO" },
+    { "label": "Morosidad Interna (Días)", "value": "0" }
+  ],
+  "vehiculo": [
+    { "label": "Tipo de Vehículo", "value": "Usado" },
+    { "label": "Tipo de Tasa", "value": "UVA" },
+    { "label": "Medio de Pago", "value": "Entrega Usado" },
+    { "label": "Destino de Uso", "value": "Comercial" },
+    { "label": "Marca", "value": "VOLKSWAGEN" },
+    { "label": "Modelo", "value": "AMAROK 20TD 4X4 DC HIGHLINE" },
+    { "label": "Año", "value": "2022" },
+    { "label": "Moneda", "value": "U$S" },
+    { "label": "Precio Unitario", "value": "U$S 28.500,00" },
+    { "label": "% Financ.", "value": "55%" },
+    { "label": "A Financiar", "value": "U$S 15.675,00" },
+    { "label": "Plazo", "value": "48" },
+    { "label": "Tasa", "value": "38,2%" },
+    { "label": "Primera Cuota Pura", "value": "U$S 512,30" }
   ]
 }

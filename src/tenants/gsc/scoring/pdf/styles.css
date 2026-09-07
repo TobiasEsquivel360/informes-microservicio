@@ -4,6 +4,7 @@
   --corporate-blue: #5097d3;
   --border-color: #e0e0e0;
   --rojo-alerta: rgb(239, 71, 34);
+  --color-grupo: rgb(160, 204, 236);
 }
 
 body {
@@ -80,9 +81,28 @@ body {
   border-bottom-right-radius: 5px;
 }
 
+/* La tabla de Oferta tiene filas de grupo con su propio fondo (.fila-grupo)
+   pegadas justo debajo del header — el redondeado inferior del header
+   quedaba flotando sobre esa fila siguiente. Se saca solo acá, no en el
+   resto de las tablas del informe. */
+.tabla-oferta thead th:first-child {
+  border-bottom-left-radius: 0;
+}
+
+.tabla-oferta thead th:last-child {
+  border-bottom-right-radius: 0;
+}
+
 .tabla tbody tr td {
   border-bottom: 1px solid var(--border-color);
   color: #444;
+}
+
+/* Fila de grupo de la tabla de Oferta (TablaOferta): mismo celeste que
+   usaba el legacy Dompdf (estilos.css, --color-grupo) para distinguir la
+   fila del grupo de producto de las filas de los productos que agrupa. */
+.fila-grupo {
+  background-color: var(--color-grupo);
 }
 
 /* ========== CABECERA ========== */

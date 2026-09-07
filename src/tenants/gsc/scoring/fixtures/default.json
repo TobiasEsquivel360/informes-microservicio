@@ -24,7 +24,7 @@
         "label": "Ingresos",
         "value": "500",
         "isGroup": true,
-        "additionalValues": []
+        "additionalValues": [null, null]
       },
       {
         "label": "Sueldo",
@@ -66,30 +66,94 @@
   ],
   "scoring": {
     "indicators": [
-      {
-        "label": "Score Bureau",
-        "value": 720,
-        "scale": "0-1000"
-      },
-      {
-        "label": "RCI",
-        "value": 32,
-        "scale": "sin maximo"
-      }
+      { "label": "Score NOSIS", "value": 742, "scale": "1 a 999" },
+      { "label": "NSE Bureau", "value": "C2", "scale": "A a D2" },
+      { "label": "Score Veraz", "value": 689, "scale": "1 a 999" }
     ]
   },
   "alerts": [
     "Cheque rechazado en los últimos 12 meses",
     "Consulta reciente en central de riesgos"
   ],
-  "highlights": [
-    {
-      "label": "Antigüedad laboral",
-      "value": "5 años"
-    },
-    {
-      "label": "Vehículo a financiar",
-      "value": "Toyota Corolla 2023"
-    }
+  "titular": [
+    { "label": "Id Préstamo", "value": "PR-2026-000451" },
+    { "label": "BCRA BlackList Titular", "value": "NO" },
+    { "label": "Cheques Rechazados Titular", "value": "NO" },
+    { "label": "Tipo de Contribuyente", "value": "Empleado en Rel. Dependencia" },
+    { "label": "Bases Negativas", "value": "Sin Observaciones negativas" },
+    { "label": "Score NOSIS", "value": "742" },
+    { "label": "NSE Bureau", "value": "C2" },
+    { "label": "Score Veraz", "value": "689" },
+    { "label": "Funcional Veraz", "value": "APROBAR" },
+    { "label": "Compromisos Mensuales", "value": "$ 145.000" },
+    { "label": "Deuda Total B.C.R.A.", "value": "$ 320.000" },
+    { "label": "Situación BCRA Actual", "value": "1" },
+    { "label": "Máx. Situación Ult 24 meses", "value": "1" },
+    { "label": "Correo Electrónico", "value": "lorena.dininno@example.com" },
+    { "label": "Celular", "value": "11 4455-6677" },
+    { "label": "Nacionalidad (Titular)", "value": "Argentina" },
+    { "label": "Actividad Principal (Titular)", "value": "Empleados Formales" },
+    { "label": "Actividad Laboral (Titular)", "value": "Administrativa" },
+    { "label": "Categoría del Trabajo", "value": "1" },
+    { "label": "Antiguedad Laboral (Meses)", "value": "60" },
+    { "label": "Fecha de Nacimiento (Titular)", "value": "25/01/1971" },
+    { "label": "Edad", "value": "55" },
+    { "label": "Estado Civil", "value": "Casado/a" },
+    { "label": "Sexo (Titular)", "value": "Femenino" },
+    { "label": "Ingresos Mensuales Declarados", "value": "$ 950.000" },
+    { "label": "Ingresos Mensuales Inferidos", "value": "$ 910.000" },
+    { "label": "Ingresos Mensuales Verificados", "value": "$ 950.000" },
+    { "label": "Ingreso Considerado (Titular)", "value": "$ 950.000" },
+    { "label": "Relación Ingreso (Inferido/Declarado)", "value": "0,96" },
+    { "label": "Tipo de Cliente", "value": "ACTUAL" },
+    { "label": "Morosidad Interna (Días)", "value": "0" }
+  ],
+  "conyuge": [
+    { "label": "DNI (Cónyuge)", "value": "28.456.789" },
+    { "label": "Nombre/s y Apellido/s (Cónyuge)", "value": "GÓMEZ, MARTÍN ALEJANDRO" },
+    { "label": "BCRA BlackList Cónyuge", "value": "NO" },
+    { "label": "Cheques Rechazados Cónyuge", "value": "NO" },
+    { "label": "Bases Negativas", "value": "Sin Observaciones negativas" },
+    { "label": "Score NOSIS", "value": "701" },
+    { "label": "NSE Bureau", "value": "C2" },
+    { "label": "Score Veraz", "value": "654" },
+    { "label": "Funcional Veraz", "value": "APROBAR" },
+    { "label": "Compromisos Mensuales", "value": "$ 80.000" },
+    { "label": "Deuda Total B.C.R.A.", "value": "$ 150.000" },
+    { "label": "Situación BCRA Actual", "value": "1" },
+    { "label": "Máx. Situación Ult 24 meses", "value": "1" },
+    { "label": "Nacionalidad (Cónyuge)", "value": "Argentina" },
+    { "label": "Actividad Principal (Cónyuge)", "value": "Empleados Formales" },
+    { "label": "Actividad Laboral (Cónyuge)", "value": "Comercial" },
+    { "label": "Categoría del Trabajo", "value": "2" },
+    { "label": "Antiguedad Laboral (Meses)", "value": "36" },
+    { "label": "Fecha de Nacimiento (Cónyuge)", "value": "12/06/1969" },
+    { "label": "Edad", "value": "57" },
+    { "label": "Estado Civil", "value": "Casado/a" },
+    { "label": "Sexo (Cónyuge)", "value": "Masculino" },
+    { "label": "Ingresos mensuales Declarados (Cónyuge)", "value": "$ 620.000" },
+    { "label": "Ingresos mensuales Inferidos (Cónyuge)", "value": "$ 600.000" },
+    { "label": "Ingresos mensuales Verificados (Cónyuge)", "value": "$ 620.000" },
+    { "label": "Ingreso Considerado (Cónyuge)", "value": "$ 620.000" },
+    { "label": "Relación Ingreso (Inferido/Declarado)", "value": "0,97" },
+    { "label": "Tipo de Cliente", "value": "ACTUAL" },
+    { "label": "Morosidad Interna (Días)", "value": "0" }
+  ],
+  "codeudor": [],
+  "vehiculo": [
+    { "label": "Tipo de Vehículo", "value": "0 KM" },
+    { "label": "Tipo de Tasa", "value": "Standard" },
+    { "label": "Medio de Pago", "value": "Préstamo Prendario" },
+    { "label": "Destino de Uso", "value": "Personal" },
+    { "label": "Marca", "value": "VOLKSWAGEN" },
+    { "label": "Modelo", "value": "AMAROK 20TD 4X2 DC COMFORTLINE AT L/24" },
+    { "label": "Año", "value": "2025" },
+    { "label": "Moneda", "value": "$" },
+    { "label": "Precio Unitario", "value": "$ 47.790.655,00" },
+    { "label": "% Financ.", "value": "70%" },
+    { "label": "A Financiar", "value": "$ 33.453.458,50" },
+    { "label": "Plazo", "value": "36" },
+    { "label": "Tasa", "value": "45,5%" },
+    { "label": "Primera Cuota Pura", "value": "$ 2.377.116,13" }
   ]
 }

@@ -28,7 +28,7 @@ const scoringIndicator = z.object({
   scale: z.string().nullable().optional(),
 });
 
-const highlight = z.object({
+const labelValueRow = z.object({
   label: z.string(),
   value: z.string(),
 });
@@ -62,5 +62,8 @@ export const schema = z.object({
     })
     .optional(),
   alerts: z.array(z.string()).optional(),
-  highlights: z.array(highlight).optional(),
+  titular: z.array(labelValueRow).optional(),
+  conyuge: z.array(labelValueRow).optional(),
+  codeudor: z.array(labelValueRow).optional(),
+  vehiculo: z.array(labelValueRow).optional(),
 });
