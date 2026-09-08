@@ -66,4 +66,5 @@ export const schema = z.object({
   conyuge: z.array(labelValueRow).optional(),
   codeudor: z.array(labelValueRow).optional(),
   vehiculo: z.array(labelValueRow).optional(),
+  analisisEconomico: z.array(labelValueRow).optional(),
 });

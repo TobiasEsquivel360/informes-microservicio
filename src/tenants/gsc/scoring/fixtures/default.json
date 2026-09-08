@@ -155,5 +155,27 @@
     { "label": "Plazo", "value": "36" },
     { "label": "Tasa", "value": "45,5%" },
     { "label": "Primera Cuota Pura", "value": "$ 2.377.116,13" }
+  ],
+  "analisisEconomico": [
+    { "label": "RCI Interna (Titular) - Sin Flexibilidad", "value": "35" },
+    { "label": "RCI Interna (Titular) - Margen", "value": "5,00" },
+    { "label": "RCI Interna (Titular) - Con Flexibilidad", "value": "37" },
+    { "label": "RCI Externa (Titular) - Sin Flexibilidad", "value": "63" },
+    { "label": "RCI Externa (Titular) - Con Flexibilidad", "value": "70" },
+    { "label": "RCI Ingresos Declarados (Titular)", "value": "61,84" },
+    { "label": "RCI Ingresos Inferidos (Titular)", "value": "92,76" },
+    { "label": "RCI Ingresos Verificados (Titular)", "value": "96,29" },
+    { "label": "RCI Ingresos Verificados (Titular+Cónyuge)", "value": "96,29" },
+    { "label": "RCI Ingresos Verificados (Titular+Codeudor)", "value": "96,29" },
+    { "label": "Excepción para Aprobación", "value": "" },
+    { "label": "RCI Interna (Titular)", "value": "20,00" },
+    { "label": "RCI Externa (Titular)", "value": "40,00" },
+    { "label": "Aforo (Titular) - Con Flexibilidad", "value": "75" },
+    { "label": "Aforo (Titular) - Mínimo Sin Flexibilidad", "value": "50" },
+    { "label": "Aforo (%) (Titular)", "value": "75,00" },
+    { "label": "NDC (%) (Titular)", "value": "81,00" },
+    { "label": "Resultado NDC", "value": "APROBADO Automático (A1)" },
+    { "label": "Control Backoffice", "value": "Validar Documentacion" },
+    { "label": "Control Riesgos", "value": "" }
   ]
 }

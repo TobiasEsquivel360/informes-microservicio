@@ -194,6 +194,27 @@
           </table>
         </div>
       </section>
+      <section class="analisis-economico">
+        <h3 class="titulo-seccion titulo-analisis-economico">Análisis Económico</h3>
+        <div class="tabla-analisis-economico">
+          <table class="tabla tabla-analisis-economico">
+            <thead>
+              <tr>
+                <th class="col-item">Ítem</th>
+                <th class="col-descripcion-analisis-economico">Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each analisisEconomico}}
+              <tr>
+                <td class="col-item">{{label}}</td>
+                <td class="col-descripcion-analisis-economico">{{value}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
       <section class="comentarios">
         <h3 class="titulo-seccion titulo-comentarios">Comentarios</h3>
         <div class="campo-comentarios">
