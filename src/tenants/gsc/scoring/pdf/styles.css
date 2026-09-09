@@ -252,4 +252,6 @@ body {
   padding: 15px;
   min-height: 30px;
   margin-bottom: 35px;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
