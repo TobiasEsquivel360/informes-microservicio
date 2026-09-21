@@ -36,8 +36,91 @@
     </header>
 
     <main>
-      <section class="oferta">
-        <h3 class="titulo-seccion titulo-oferta">Oferta</h3>
+      {{! Reusada por Antecedentes/Ingresos/Endeudamiento: mismas 3 columnas
+          (Titular/Cónyuge/Codeudor) con el mismo criterio de ocultamiento —
+          evita repetir esta tabla 3 veces con solo la colección cambiando. }}
+      {{#*inline "tablaMultiPersona"}}
+      <div class="tabla-{{claseTabla}}">
+        <table class="tabla tabla-{{claseTabla}}">
+          <thead>
+            <tr>
+              <th class="col-item">Ítem</th>
+              <th class="col-titular">Titular</th>
+              {{#if conyugePresente}}
+              <th class="col-conyuge">Cónyuge</th>
+              {{/if}}
+              {{#if codeudorPresente}}
+              <th class="col-codeudor">Codeudor</th>
+              {{/if}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each filas}}
+            <tr>
+              <td class="col-item">{{label}}</td>
+              <td class="col-titular">{{titular}}</td>
+              {{#if ../conyugePresente}}
+              <td class="col-conyuge">{{conyuge}}</td>
+              {{/if}}
+              {{#if ../codeudorPresente}}
+              <td class="col-codeudor">{{codeudor}}</td>
+              {{/if}}
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      {{/inline}}
+
+      <section class="resumen-operacion-resultado">
+        <h3 class="titulo-seccion titulo-resumen-operacion-resultado">
+          Resumen de la operación y resultado
+        </h3>
+
+        <h4 class="titulo-tabla">Resumen de la Operación</h4>
+        <div class="tabla-resumen-operacion">
+          <table class="tabla tabla-resumen-operacion">
+            <thead>
+              <tr>
+                <th class="col-item">Concepto</th>
+                <th class="col-descripcion">Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each resumenOperacion}}
+              <tr>
+                <td class="col-item">{{label}}</td>
+                <td class="col-descripcion">{{value}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="titulo-tabla">Resultado</h4>
+        <div class="tabla-resultado">
+          <table class="tabla tabla-resultado">
+            <thead>
+              <tr>
+                <th class="col-item">Concepto</th>
+                <th class="col-descripcion">Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each resultado}}
+              <tr>
+                <td class="col-item">{{label}}</td>
+                <td class="col-descripcion">{{value}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- "Oferta" (tabla dinámica de productos) no tiene lugar propio en
+             el rediseño de Eugenia — encaja acá por el tipo de dato que
+             contiene (spec, "Implementation Decisions"). -->
+        <h4 class="titulo-tabla">Oferta</h4>
         <div class="tabla-oferta">
           <table class="tabla tabla-oferta">
             <thead>
@@ -63,25 +146,29 @@
           </table>
         </div>
         <div class="seccion-oferta-seleccionada">
-          <h3 class="titulo-seccion titulo-oferta-seleccionada">Oferta Seleccionada</h3>
+          <h4 class="titulo-tabla titulo-oferta-seleccionada">Oferta Seleccionada</h4>
           <p class="oferta-seleccionada">{{ofertaSeleccionada}}</p>
         </div>
       </section>
-      <section class="indicadores">
-        {{#each scoring.indicators}}
-        <div class="score">
-          <h4 class="nombre-score">{{label}}</h4>
-          <div class="score-izquierda-derecha">
-            <p class="score-izquierda">{{value}}</p>
-            <p class="score-derecha">{{scale}}</p>
-          </div>
-        </div>
-        {{/each}}
-      </section>
-      <section class="actividad-economica">
-        <h3 class="titulo-seccion titulo-actividad-economica">
-          Actividad Economica
+
+      <section class="datos-titular-e-intervinientes">
+        <h3 class="titulo-seccion titulo-datos-titular-e-intervinientes">
+          Datos del titular y demás intervinientes
         </h3>
+
+        <section class="indicadores">
+          {{#each scoring.indicators}}
+          <div class="score">
+            <h4 class="nombre-score">{{label}}</h4>
+            <div class="score-izquierda-derecha">
+              <p class="score-izquierda">{{value}}</p>
+              <p class="score-derecha">{{scale}}</p>
+            </div>
+          </div>
+          {{/each}}
+        </section>
+
+        <h4 class="titulo-tabla">Actividad Económica</h4>
         <div class="tabla-actividad-economica">
           <table class="tabla tabla-actividad-economica">
             <thead>
@@ -100,17 +187,8 @@
             </tbody>
           </table>
         </div>
-      </section>
-      <section class="detalle-alertas-encontradas">
-        <h3 class="titulo-seccion titulo-detalle-alertas-encontradas">Detalle de Alertas Encontradas</h3>
-        <div class="alertas-encontradas">
-          {{#each alerts}}
-          <p>{{this}}</p>
-          {{/each}}
-        </div>
-      </section>
-      <section class="datos-titular">
-        <h3 class="titulo-seccion titulo-datos-titular">Datos del Titular</h3>
+
+        <h4 class="titulo-tabla">Datos del Titular</h4>
         <div class="tabla-datos-titular">
           <table class="tabla tabla-datos-titular">
             <thead>
@@ -129,51 +207,49 @@
             </tbody>
           </table>
         </div>
-      </section>
-      <section class="datos-conyuge">
-        <h3 class="titulo-seccion titulo-datos-conyuge">Datos del Cónyuge</h3>
-        <div class="tabla-datos-conyuge">
-          <table class="tabla tabla-datos-conyuge">
+
+        {{#if (or conyugePresente codeudorPresente)}}
+        <h4 class="titulo-tabla">Datos de Cotitulares</h4>
+        <div class="tabla-datos-cotitulares">
+          <table class="tabla tabla-datos-cotitulares">
             <thead>
               <tr>
                 <th class="col-item">Ítem</th>
-                <th class="col-descripcion-datos-conyuge">Descripcion</th>
+                {{#if conyugePresente}}
+                <th class="col-conyuge">Cónyuge</th>
+                {{/if}}
+                {{#if codeudorPresente}}
+                <th class="col-codeudor">Codeudor</th>
+                {{/if}}
               </tr>
             </thead>
             <tbody>
-              {{#each conyuge}}
+              {{#each cotitulares}}
               <tr>
                 <td class="col-item">{{label}}</td>
-                <td class="col-descripcion-datos-conyuge">{{value}}</td>
+                {{#if ../conyugePresente}}
+                <td class="col-conyuge">{{conyuge}}</td>
+                {{/if}}
+                {{#if ../codeudorPresente}}
+                <td class="col-codeudor">{{codeudor}}</td>
+                {{/if}}
               </tr>
               {{/each}}
             </tbody>
           </table>
         </div>
+        {{/if}}
       </section>
-      <section class="datos-codeudor">
-        <h3 class="titulo-seccion titulo-datos-codeudor">Datos del Codeudor</h3>
-        <div class="tabla-datos-codeudor">
-          <table class="tabla tabla-datos-codeudor">
-            <thead>
-              <tr>
-                <th class="col-item">Ítem</th>
-                <th class="col-descripcion-datos-codeudor">Descripcion</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each codeudor}}
-              <tr>
-                <td class="col-item">{{label}}</td>
-                <td class="col-descripcion-datos-codeudor">{{value}}</td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+
+      <section class="antecedentes">
+        <h3 class="titulo-seccion titulo-antecedentes">
+          Antecedentes internos y externos
+        </h3>
+        {{> tablaMultiPersona claseTabla="antecedentes" filas=antecedentes conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
       </section>
+
       <section class="datos-vehiculo">
-        <h3 class="titulo-seccion titulo-datos-vehiculo">Datos del Vehículo</h3>
+        <h3 class="titulo-seccion titulo-datos-vehiculo">Datos del vehículo o garantía</h3>
         <div class="tabla-datos-vehiculo">
           <table class="tabla tabla-datos-vehiculo">
             <thead>
@@ -191,6 +267,28 @@
               {{/each}}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section class="ingresos-endeudamiento">
+        <h3 class="titulo-seccion titulo-ingresos-endeudamiento">
+          Ingresos y endeudamiento
+        </h3>
+        <p class="nota-ingresos">{{ingresosNota}}</p>
+
+        <h4 class="titulo-tabla">Ingresos</h4>
+        {{> tablaMultiPersona claseTabla="ingresos" filas=ingresos conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
+
+        <h4 class="titulo-tabla">Endeudamiento</h4>
+        {{> tablaMultiPersona claseTabla="endeudamiento" filas=endeudamiento conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
+      </section>
+
+      <section class="detalle-alertas-encontradas">
+        <h3 class="titulo-seccion titulo-detalle-alertas-encontradas">Detalle de Alertas Encontradas</h3>
+        <div class="alertas-encontradas">
+          {{#each alerts}}
+          <p>{{this}}</p>
+          {{/each}}
         </div>
       </section>
       <section class="analisis-economico">

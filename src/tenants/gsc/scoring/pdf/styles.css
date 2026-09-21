@@ -41,6 +41,20 @@ body {
   break-after: avoid;
 }
 
+/* Subtítulo de cada tabla dentro de una sección que agrupa varias (ej.
+   "Resumen de la Operación"/"Resultado" dentro de "Resumen de la operación y
+   resultado") — reusado igual en todas las secciones de este rediseño, no
+   una clase distinta por sección. */
+.titulo-tabla {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--corporate-blue);
+  margin-top: 18px;
+  margin-bottom: 8px;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
 /* ========== TABLAS ========== */
 .tabla {
   width: 100%;
