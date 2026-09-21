@@ -4,7 +4,7 @@
   "workflow": "Prendario GSC",
   "fecha": "02/09/2026",
   "cuitCuil": "20-12345678-9",
-  "razonSocialNombre": "Juan Ejemplo Pérez",
+  "razonSocialNombre": "Marcos Sin Codeudor Sosa",
   "fechaInscripcionAfip": "01/06/2015",
   "fechaInforme": "02/09/2026",
   "fechaComiteCredito": "03/09/2026",
@@ -13,7 +13,7 @@
   "ofertaSeleccionada": "Plan 48 cuotas",
   "comentarios": "Sin observaciones adicionales.",
   "conyugePresente": true,
-  "codeudorPresente": true,
+  "codeudorPresente": false,
   "resumenOperacion": [
     {
       "label": "N° de Solicitud / Workflow",
@@ -412,195 +412,162 @@
     {
       "label": "BCRA BlackList",
       "titular": "NO",
-      "conyuge": "NO",
-      "codeudor": "NO"
+      "conyuge": "NO"
     },
     {
       "label": "Cheques Rechazados",
       "titular": "NO",
-      "conyuge": "NO",
-      "codeudor": "SI"
+      "conyuge": "NO"
     },
     {
       "label": "Bases Negativas",
       "titular": "Sin Observaciones negativas",
-      "conyuge": "Sin Observaciones negativas",
-      "codeudor": "Sin Observaciones negativas"
+      "conyuge": "Sin Observaciones negativas"
     },
     {
       "label": "Score NOSIS",
       "titular": "742",
-      "conyuge": "701",
-      "codeudor": "615"
+      "conyuge": "701"
     },
     {
       "label": "NSE Bureau",
       "titular": "C2",
-      "conyuge": "C2",
-      "codeudor": "C3"
+      "conyuge": "C2"
     },
     {
       "label": "Score Veraz",
       "titular": "689",
-      "conyuge": "654",
-      "codeudor": "580"
+      "conyuge": "654"
     },
     {
       "label": "Funcional Veraz",
       "titular": "APROBAR",
-      "conyuge": "APROBAR",
-      "codeudor": "REVISAR"
+      "conyuge": "APROBAR"
     },
     {
       "label": "Compromisos Mensuales",
       "titular": "$ 145.000",
-      "conyuge": "$ 80.000",
-      "codeudor": "$ 60.000"
+      "conyuge": "$ 80.000"
     },
     {
       "label": "Deuda Total B.C.R.A.",
       "titular": "$ 320.000",
-      "conyuge": "$ 150.000",
-      "codeudor": "$ 210.000"
+      "conyuge": "$ 150.000"
     },
     {
       "label": "Situación BCRA Actual",
       "titular": "1",
-      "conyuge": "1",
-      "codeudor": "2"
+      "conyuge": "1"
     },
     {
       "label": "Máx. Situación Ult 24 meses",
       "titular": "1",
-      "conyuge": "1",
-      "codeudor": "2"
+      "conyuge": "1"
     }
   ],
   "ingresos": [
     {
       "label": "Ingresos Mensuales Declarados",
       "titular": "$ 950.000",
-      "conyuge": "$ 620.000",
-      "codeudor": "$ 480.000"
+      "conyuge": "$ 620.000"
     },
     {
       "label": "Ingresos Mensuales Inferidos",
       "titular": "$ 910.000",
-      "conyuge": "$ 600.000",
-      "codeudor": "$ 450.000"
+      "conyuge": "$ 600.000"
     },
     {
       "label": "Ingresos Mensuales Verificados",
       "titular": "$ 950.000",
-      "conyuge": "$ 620.000",
-      "codeudor": null
+      "conyuge": "$ 620.000"
     },
     {
       "label": "Ingreso Considerado",
       "titular": "$ 950.000",
-      "conyuge": "$ 620.000",
-      "codeudor": "$ 450.000"
+      "conyuge": "$ 620.000"
     },
     {
       "label": "Relación Ingreso (Inferido/Declarado)",
       "titular": "0,96",
-      "conyuge": "0,97",
-      "codeudor": "0,94"
+      "conyuge": "0,97"
     }
   ],
   "endeudamiento": [
     {
       "label": "RCI Interna - Sin Flexibilidad",
       "titular": "35",
-      "conyuge": "30",
-      "codeudor": "40"
+      "conyuge": "30"
     },
     {
       "label": "RCI Interna - Con Flexibilidad",
       "titular": "37",
-      "conyuge": "32",
-      "codeudor": "42"
+      "conyuge": "32"
     },
     {
       "label": "RCI Externa - Sin Flexibilidad",
       "titular": "63",
-      "conyuge": "55",
-      "codeudor": "68"
+      "conyuge": "55"
     },
     {
       "label": "RCI Externa - Con Flexibilidad",
       "titular": "70",
-      "conyuge": "60",
-      "codeudor": "72"
+      "conyuge": "60"
     },
     {
       "label": "Aforo - Con Flexibilidad",
       "titular": "75",
-      "conyuge": "—",
-      "codeudor": "—"
+      "conyuge": "—"
     },
     {
       "label": "Aforo - Mínimo Sin Flexibilidad",
       "titular": "50",
-      "conyuge": "—",
-      "codeudor": "—"
+      "conyuge": "—"
     }
   ],
   "cotitulares": [
     {
       "label": "DNI",
-      "conyuge": "28.456.789",
-      "codeudor": "30.112.334"
+      "conyuge": "28.456.789"
     },
     {
       "label": "Nombre y Apellido",
-      "conyuge": "GÓMEZ, MARTÍN ALEJANDRO",
-      "codeudor": "PÉREZ, LUCAS DANIEL"
+      "conyuge": "GÓMEZ, MARTÍN ALEJANDRO"
     },
     {
       "label": "BCRA BlackList",
-      "conyuge": "NO",
-      "codeudor": "NO"
+      "conyuge": "NO"
     },
     {
       "label": "Cheques Rechazados",
-      "conyuge": "NO",
-      "codeudor": "SI"
+      "conyuge": "NO"
     },
     {
       "label": "Score NOSIS",
-      "conyuge": "701",
-      "codeudor": "615"
+      "conyuge": "701"
     },
     {
       "label": "NSE Bureau",
-      "conyuge": "C2",
-      "codeudor": "C3"
+      "conyuge": "C2"
     },
     {
       "label": "Score Veraz",
-      "conyuge": "654",
-      "codeudor": "580"
+      "conyuge": "654"
     },
     {
       "label": "Nacionalidad",
-      "conyuge": "Argentina",
-      "codeudor": "Argentina"
+      "conyuge": "Argentina"
     },
     {
       "label": "Estado Civil",
-      "conyuge": "Casado/a",
-      "codeudor": "Soltero/a"
+      "conyuge": "Casado/a"
     },
     {
       "label": "Fecha de Nacimiento",
-      "conyuge": "12/06/1969",
-      "codeudor": "03/11/1985"
+      "conyuge": "12/06/1969"
     },
     {
       "label": "Edad",
-      "conyuge": "57",
-      "codeudor": "41"
+      "conyuge": "57"
     }
   ]
 }

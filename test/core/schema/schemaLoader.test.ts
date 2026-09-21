@@ -29,6 +29,8 @@ describe("cargarSchema", () => {
     expect(schema).toBeDefined();
     const fixture = require(path.join(GSC_SCORING, "fixtures/default.json"));
     expect(schema!.safeParse(fixture).success).toBe(true);
-    expect(schema!.safeParse({}).success).toBe(true);
+    // conyugePresente/codeudorPresente son obligatorios (rediseño Efren,
+    // ticket 01) — un payload vacío ya no es válido.
+    expect(schema!.safeParse({}).success).toBe(false);
   });
 });

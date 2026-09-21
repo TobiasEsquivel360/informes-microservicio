@@ -59,7 +59,18 @@ describe("validarPayload — tenant real gsc/scoring", () => {
     expect(() => validarPayload("gsc", "scoring", ejemplo)).not.toThrow();
   });
 
-  it("no lanza con payload vacío — todos los campos son opcionales", () => {
-    expect(() => validarPayload("gsc", "scoring", {})).not.toThrow();
+  it("lanza con payload vacío — conyugePresente/codeudorPresente son obligatorios", () => {
+    expect(() => validarPayload("gsc", "scoring", {})).toThrow(
+      PayloadValidationError,
+    );
+  });
+
+  it("no lanza con solo los campos obligatorios (el resto son opcionales)", () => {
+    expect(() =>
+      validarPayload("gsc", "scoring", {
+        conyugePresente: false,
+        codeudorPresente: false,
+      }),
+    ).not.toThrow();
   });
 });

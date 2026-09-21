@@ -25,15 +25,15 @@ describe("GET /preview/:cliente/:informe (NODE_ENV=development)", () => {
     expect(res.text).toContain("EventSource(\"/__dev/reload\")");
   });
 
-  it("devuelve 200 para otro escenario de fixture (con-alertas)", async () => {
+  it("devuelve 200 para otro escenario de fixture (sin-ninguno)", async () => {
     const app = crearApp();
 
     const res = await request(app).get(
-      "/preview/gsc/scoring?fixture=con-alertas",
+      "/preview/gsc/scoring?fixture=sin-ninguno",
     );
 
     expect(res.status).toBe(200);
-    expect(res.text).toContain("María Alertada Gómez");
+    expect(res.text).toContain("María Sin Cotitulares Díaz");
   });
 
   it("usa el fixture 'default' cuando no se pasa el query param fixture", async () => {

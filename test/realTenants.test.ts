@@ -33,12 +33,22 @@ describe("TenantManager — gsc/scoring", () => {
     ).not.toThrow();
   });
 
-  it("el fixture 'default' pasa el schema y compila el template sin tirar", () => {
-    const fixture = require("../src/tenants/gsc/scoring/fixtures/default.json");
-    const schema = TenantManager.getSchema("gsc", "scoring")!;
-    expect(schema.safeParse(fixture).success).toBe(true);
+  it.each([
+    "default",
+    "sin-conyuge",
+    "sin-codeudor",
+    "sin-ninguno",
+  ])(
+    "el fixture '%s' pasa el schema y compila el template sin tirar",
+    (nombreFixture) => {
+      const fixture = require(
+        `../src/tenants/gsc/scoring/fixtures/${nombreFixture}.json`,
+      );
+      const schema = TenantManager.getSchema("gsc", "scoring")!;
+      expect(schema.safeParse(fixture).success).toBe(true);
 
-    const template = TenantManager.getTemplateDelegate("gsc", "scoring");
-    expect(() => template(fixture)).not.toThrow();
-  });
+      const template = TenantManager.getTemplateDelegate("gsc", "scoring");
+      expect(() => template(fixture)).not.toThrow();
+    },
+  );
 });

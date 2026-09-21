@@ -39,7 +39,7 @@ describe("generarPdfPreview (comando pdf:preview) — con tenants reales del rep
 
     const htmlRenderizado = createDocumentMock.mock.calls[0]?.[0] as string;
     expect(htmlRenderizado).toContain("Juan Ejemplo Pérez");
-    expect(htmlRenderizado).not.toContain("María Alertada Gómez");
+    expect(htmlRenderizado).not.toContain("María Sin Cotitulares Díaz");
   });
 
   it("usa el escenario 'default' cuando no se pasa ninguno", async () => {
@@ -52,15 +52,15 @@ describe("generarPdfPreview (comando pdf:preview) — con tenants reales del rep
     expect(htmlRenderizado).toContain("Juan Ejemplo Pérez");
   });
 
-  it("usa el fixture del escenario pedido (con-alertas) en vez del default", async () => {
-    const ruta = await generarPdfPreview("gsc", "scoring", "con-alertas", {
+  it("usa el fixture del escenario pedido (sin-ninguno) en vez del default", async () => {
+    const ruta = await generarPdfPreview("gsc", "scoring", "sin-ninguno", {
       outputDir,
     });
 
-    expect(path.basename(ruta)).toBe("gsc-scoring-con-alertas.pdf");
+    expect(path.basename(ruta)).toBe("gsc-scoring-sin-ninguno.pdf");
     expect(fs.existsSync(ruta)).toBe(true);
     const htmlRenderizado = createDocumentMock.mock.calls[0]?.[0] as string;
-    expect(htmlRenderizado).toContain("María Alertada Gómez");
+    expect(htmlRenderizado).toContain("María Sin Cotitulares Díaz");
     expect(htmlRenderizado).not.toContain("Juan Ejemplo Pérez");
   });
 

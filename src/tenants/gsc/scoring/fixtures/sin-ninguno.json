@@ -3,37 +3,113 @@
   "nombreInforme": "Informe de Scoring",
   "workflow": "Prendario GSC",
   "fecha": "02/09/2026",
-  "cuitCuil": "27-98765432-1",
-  "razonSocialNombre": "María Alertada Gómez",
-  "fechaInscripcionAfip": "15/03/2010",
+  "cuitCuil": "20-12345678-9",
+  "razonSocialNombre": "María Sin Cotitulares Díaz",
+  "fechaInscripcionAfip": "01/06/2015",
   "fechaInforme": "02/09/2026",
   "fechaComiteCredito": "03/09/2026",
   "analista": "Juan Pérez",
   "supervisor": "María López",
-  "ofertaSeleccionada": "Plan 36 cuotas",
-  "comentarios": "Revisar con comité por alertas múltiples.",
+  "ofertaSeleccionada": "Plan 48 cuotas",
+  "comentarios": "Sin observaciones adicionales.",
+  "conyugePresente": false,
+  "codeudorPresente": false,
+  "resumenOperacion": [
+    {
+      "label": "N° de Solicitud / Workflow",
+      "value": "38 / 2026-11"
+    },
+    {
+      "label": "Cliente",
+      "value": "Juan Ejemplo Pérez"
+    },
+    {
+      "label": "Producto",
+      "value": "Préstamo Prendario"
+    },
+    {
+      "label": "Monto Solicitado",
+      "value": "$ 33.453.458,50"
+    },
+    {
+      "label": "Monto Aprobado",
+      "value": "$ 33.453.458,50"
+    },
+    {
+      "label": "Plazo",
+      "value": "36 meses"
+    },
+    {
+      "label": "Tasa",
+      "value": "45,5% TNA"
+    },
+    {
+      "label": "Vehículo / Garantía",
+      "value": "VOLKSWAGEN AMAROK 20TD 4X2 DC COMFORTLINE AT L/24 (2025)"
+    },
+    {
+      "label": "Score",
+      "value": "NOSIS 742 · NSE C2 · Veraz 689"
+    }
+  ],
+  "resultado": [
+    {
+      "label": "Resultado del Motor",
+      "value": "APROBADO Automático (A1)"
+    },
+    {
+      "label": "NDC",
+      "value": "81,00%"
+    },
+    {
+      "label": "Cantidad de Alertas",
+      "value": "2"
+    },
+    {
+      "label": "Gravedad Destacada",
+      "value": "Amarilla — requiere validación de documentación"
+    }
+  ],
   "offer": {
     "unitLabel": "En miles de $ - segun Matriz",
-    "additionalColumns": ["Plan A", "Plan B"],
+    "additionalColumns": [
+      "Plan A",
+      "Plan B"
+    ],
     "rows": [
       {
         "label": "Ingresos",
-        "value": "350",
+        "value": "500",
         "isGroup": true,
-        "additionalValues": [null, null]
+        "additionalValues": [
+          null,
+          null
+        ]
       },
       {
         "label": "Sueldo",
-        "value": "350",
+        "value": "400",
         "isGroup": false,
-        "additionalValues": ["330", "360"]
+        "additionalValues": [
+          "380",
+          "420"
+        ]
+      },
+      {
+        "label": "Alquiler",
+        "value": "100",
+        "isGroup": false,
+        "additionalValues": [
+          "100",
+          "100"
+        ]
       }
     ]
   },
   "economicActivities": [
     {
       "label": "Principal (AFIP)",
-      "description": "Transporte de cargas"
+      "description": "Venta al por menor"
     },
     {
       "label": "Secundaria (AFIP)",
@@ -41,7 +117,7 @@
     },
     {
       "label": "Principal (CLANAE)",
-      "description": "Transporte automotor"
+      "description": "Comercio minorista"
     },
     {
       "label": "Secundaria (CLANAE)",
@@ -50,119 +126,381 @@
   ],
   "scoring": {
     "indicators": [
-      { "label": "Score NOSIS", "value": 480, "scale": "1 a 999" },
-      { "label": "NSE Bureau", "value": "D1", "scale": "A a D2" },
-      { "label": "Score Veraz", "value": 412, "scale": "1 a 999" }
+      {
+        "label": "Score NOSIS",
+        "value": 742,
+        "scale": "1 a 999"
+      },
+      {
+        "label": "NSE Bureau",
+        "value": "C2",
+        "scale": "A a D2"
+      },
+      {
+        "label": "Score Veraz",
+        "value": 689,
+        "scale": "1 a 999"
+      }
     ]
   },
-  "alerts": [
-    "Cheque rechazado en los últimos 12 meses",
-    "Consulta reciente en central de riesgos",
-    "Juicio en trámite",
-    "Mora vigente en otra entidad",
-    "Situación BCRA distinta de 1"
-  ],
   "titular": [
-    { "label": "Id Préstamo", "value": "PR-2026-000512" },
-    { "label": "BCRA BlackList Titular", "value": "NO" },
-    { "label": "Cheques Rechazados Titular", "value": "SI" },
-    { "label": "Tipo de Contribuyente", "value": "Monotributo B" },
-    { "label": "Bases Negativas", "value": "Con Observaciones negativas" },
-    { "label": "Score NOSIS", "value": "480" },
-    { "label": "NSE Bureau", "value": "D1" },
-    { "label": "Score Veraz", "value": "412" },
-    { "label": "Funcional Veraz", "value": "REVISAR" },
-    { "label": "Compromisos Mensuales", "value": "$ 210.000" },
-    { "label": "Deuda Total B.C.R.A.", "value": "$ 680.000" },
-    { "label": "Situación BCRA Actual", "value": "2" },
-    { "label": "Máx. Situación Ult 24 meses", "value": "3" },
-    { "label": "Correo Electrónico", "value": "jperez@example.com" },
-    { "label": "Celular", "value": "11 2233-4455" },
-    { "label": "Nacionalidad (Titular)", "value": "Argentina" },
-    { "label": "Actividad Principal (Titular)", "value": "Comerciantes y Productores" },
-    { "label": "Actividad Laboral (Titular)", "value": "Comerciante" },
-    { "label": "Categoría del Trabajo", "value": "2" },
-    { "label": "Antiguedad Laboral (Meses)", "value": "8" },
-    { "label": "Fecha de Nacimiento (Titular)", "value": "03/03/1988" },
-    { "label": "Edad", "value": "38" },
-    { "label": "Estado Civil", "value": "Soltero/a" },
-    { "label": "Sexo (Titular)", "value": "Masculino" },
-    { "label": "Ingresos Mensuales Declarados", "value": "$ 700.000" },
-    { "label": "Ingresos Mensuales Inferidos", "value": "$ 520.000" },
-    { "label": "Ingresos Mensuales Verificados", "value": "$ 520.000" },
-    { "label": "Ingreso Considerado (Titular)", "value": "$ 520.000" },
-    { "label": "Relación Ingreso (Inferido/Declarado)", "value": "0,74" },
-    { "label": "Tipo de Cliente", "value": "NUEVO" },
-    { "label": "Morosidad Interna (Días)", "value": "15" }
-  ],
-  "conyuge": [],
-  "codeudor": [
-    { "label": "DNI (Codeudor)", "value": "31.987.654" },
-    { "label": "Nombre/s y Apellido/s (Codeudor)", "value": "SUÁREZ, PATRICIA NOEMÍ" },
-    { "label": "BCRA BlackList Codeudor", "value": "NO" },
-    { "label": "Cheques Rechazados Codeudor", "value": "NO" },
-    { "label": "Bases Negativas", "value": "Sin Observaciones negativas" },
-    { "label": "Score NOSIS", "value": "715" },
-    { "label": "NSE Bureau", "value": "C1" },
-    { "label": "Score Veraz", "value": "702" },
-    { "label": "Funcional Veraz", "value": "APROBAR" },
-    { "label": "Compromisos Mensuales", "value": "$ 60.000" },
-    { "label": "Deuda Total B.C.R.A.", "value": "$ 90.000" },
-    { "label": "Situación BCRA Actual", "value": "1" },
-    { "label": "Máx. Situación Ult 24 meses", "value": "1" },
-    { "label": "Nacionalidad (Codeudor)", "value": "Argentina" },
-    { "label": "Actividad Principal (Codeudor)", "value": "Empleados Formales" },
-    { "label": "Actividad Laboral (Codeudor)", "value": "Docente" },
-    { "label": "Categoría del Trabajo", "value": "1" },
-    { "label": "Antiguedad Laboral (Meses)", "value": "120" },
-    { "label": "Fecha de Nacimiento (Codeudor)", "value": "20/09/1975" },
-    { "label": "Edad", "value": "51" },
-    { "label": "Estado Civil", "value": "Divorciado/a" },
-    { "label": "Sexo (Codeudor)", "value": "Femenino" },
-    { "label": "Ingresos mensuales Declarados (Codeudor)", "value": "$ 780.000" },
-    { "label": "Ingresos mensuales Inferidos (Codeudor)", "value": "$ 780.000" },
-    { "label": "Ingresos mensuales Verificados (Codeudor)", "value": "$ 780.000" },
-    { "label": "Ingreso Considerado (Codeudor)", "value": "$ 780.000" },
-    { "label": "Relación Ingreso (Inferido/Declarado)", "value": "1,00" },
-    { "label": "Tipo de Cliente", "value": "HISTORICO" },
-    { "label": "Morosidad Interna (Días)", "value": "0" }
+    {
+      "label": "Id Préstamo",
+      "value": "PR-2026-000451"
+    },
+    {
+      "label": "BCRA BlackList Titular",
+      "value": "NO"
+    },
+    {
+      "label": "Cheques Rechazados Titular",
+      "value": "NO"
+    },
+    {
+      "label": "Tipo de Contribuyente",
+      "value": "Empleado en Rel. Dependencia"
+    },
+    {
+      "label": "Bases Negativas",
+      "value": "Sin Observaciones negativas"
+    },
+    {
+      "label": "Score NOSIS",
+      "value": "742"
+    },
+    {
+      "label": "NSE Bureau",
+      "value": "C2"
+    },
+    {
+      "label": "Score Veraz",
+      "value": "689"
+    },
+    {
+      "label": "Funcional Veraz",
+      "value": "APROBAR"
+    },
+    {
+      "label": "Compromisos Mensuales",
+      "value": "$ 145.000"
+    },
+    {
+      "label": "Deuda Total B.C.R.A.",
+      "value": "$ 320.000"
+    },
+    {
+      "label": "Situación BCRA Actual",
+      "value": "1"
+    },
+    {
+      "label": "Máx. Situación Ult 24 meses",
+      "value": "1"
+    },
+    {
+      "label": "Correo Electrónico",
+      "value": "lorena.dininno@example.com"
+    },
+    {
+      "label": "Celular",
+      "value": "11 4455-6677"
+    },
+    {
+      "label": "Nacionalidad (Titular)",
+      "value": "Argentina"
+    },
+    {
+      "label": "Actividad Principal (Titular)",
+      "value": "Empleados Formales"
+    },
+    {
+      "label": "Actividad Laboral (Titular)",
+      "value": "Administrativa"
+    },
+    {
+      "label": "Categoría del Trabajo",
+      "value": "1"
+    },
+    {
+      "label": "Antiguedad Laboral (Meses)",
+      "value": "60"
+    },
+    {
+      "label": "Fecha de Nacimiento (Titular)",
+      "value": "25/01/1971"
+    },
+    {
+      "label": "Edad",
+      "value": "55"
+    },
+    {
+      "label": "Estado Civil",
+      "value": "Casado/a"
+    },
+    {
+      "label": "Sexo (Titular)",
+      "value": "Femenino"
+    },
+    {
+      "label": "Ingresos Mensuales Declarados",
+      "value": "$ 950.000"
+    },
+    {
+      "label": "Ingresos Mensuales Inferidos",
+      "value": "$ 910.000"
+    },
+    {
+      "label": "Ingresos Mensuales Verificados",
+      "value": "$ 950.000"
+    },
+    {
+      "label": "Ingreso Considerado (Titular)",
+      "value": "$ 950.000"
+    },
+    {
+      "label": "Relación Ingreso (Inferido/Declarado)",
+      "value": "0,96"
+    },
+    {
+      "label": "Tipo de Cliente",
+      "value": "ACTUAL"
+    },
+    {
+      "label": "Morosidad Interna (Días)",
+      "value": "0"
+    }
   ],
   "vehiculo": [
-    { "label": "Tipo de Vehículo", "value": "Usado" },
-    { "label": "Tipo de Tasa", "value": "UVA" },
-    { "label": "Medio de Pago", "value": "Entrega Usado" },
-    { "label": "Destino de Uso", "value": "Comercial" },
-    { "label": "Marca", "value": "VOLKSWAGEN" },
-    { "label": "Modelo", "value": "AMAROK 20TD 4X4 DC HIGHLINE" },
-    { "label": "Año", "value": "2022" },
-    { "label": "Moneda", "value": "U$S" },
-    { "label": "Precio Unitario", "value": "U$S 28.500,00" },
-    { "label": "% Financ.", "value": "55%" },
-    { "label": "A Financiar", "value": "U$S 15.675,00" },
-    { "label": "Plazo", "value": "48" },
-    { "label": "Tasa", "value": "38,2%" },
-    { "label": "Primera Cuota Pura", "value": "U$S 512,30" }
+    {
+      "label": "Tipo de Vehículo",
+      "value": "0 KM"
+    },
+    {
+      "label": "Tipo de Línea",
+      "value": "Standard"
+    },
+    {
+      "label": "Medio de pago",
+      "value": "Préstamo Prendario"
+    },
+    {
+      "label": "Destino de Uso",
+      "value": "Personal"
+    },
+    {
+      "label": "Marca",
+      "value": "VOLKSWAGEN"
+    },
+    {
+      "label": "Modelo",
+      "value": "AMAROK 20TD 4X2 DC COMFORTLINE AT L/24"
+    },
+    {
+      "label": "Año",
+      "value": "2025"
+    },
+    {
+      "label": "Moneda",
+      "value": "$"
+    },
+    {
+      "label": "Precio Unitario",
+      "value": "$ 47.790.655,00"
+    },
+    {
+      "label": "% Financ.",
+      "value": "70%"
+    },
+    {
+      "label": "A Financiar",
+      "value": "$ 33.453.458,50"
+    },
+    {
+      "label": "Plazo",
+      "value": "36"
+    },
+    {
+      "label": "Tasa TNA",
+      "value": "45,5%"
+    },
+    {
+      "label": "Tasa TEM",
+      "value": "3,15%"
+    },
+    {
+      "label": "Primera Cuota Pura",
+      "value": "$ 2.377.116,13"
+    }
   ],
-  "analisisEconomico": [
-    { "label": "RCI Interna (Titular) - Sin Flexibilidad", "value": "58" },
-    { "label": "RCI Interna (Titular) - Margen", "value": "5,00" },
-    { "label": "RCI Interna (Titular) - Con Flexibilidad", "value": "63" },
-    { "label": "RCI Externa (Titular) - Sin Flexibilidad", "value": "89" },
-    { "label": "RCI Externa (Titular) - Con Flexibilidad", "value": "94" },
-    { "label": "RCI Ingresos Declarados (Titular)", "value": "88,10" },
-    { "label": "RCI Ingresos Inferidos (Titular)", "value": "101,42" },
-    { "label": "RCI Ingresos Verificados (Titular)", "value": "104,55" },
-    { "label": "RCI Ingresos Verificados (Titular+Cónyuge)", "value": "0,00" },
-    { "label": "RCI Ingresos Verificados (Titular+Codeudor)", "value": "104,55" },
-    { "label": "Excepción para Aprobación", "value": "Si" },
-    { "label": "RCI Interna (Titular)", "value": "42,00" },
-    { "label": "RCI Externa (Titular)", "value": "68,00" },
-    { "label": "Aforo (Titular) - Con Flexibilidad", "value": "60" },
-    { "label": "Aforo (Titular) - Mínimo Sin Flexibilidad", "value": "50" },
-    { "label": "Aforo (%) (Titular)", "value": "55,00" },
-    { "label": "NDC (%) (Titular)", "value": "48,50" },
-    { "label": "Resultado NDC", "value": "RECHAZADO (R1)" },
-    { "label": "Control Backoffice", "value": "Validar Documentacion" },
-    { "label": "Control Riesgos", "value": "Derivado a Riesgos" }
-  ]
+  "ingresosNota": "Ingreso considerado: se usa el ingreso verificado si existe; si no existe, el menor entre declarado e inferido. Montos en miles de pesos, sin decimales.",
+  "encuadramiento": [
+    {
+      "indicador": "RCI Interna",
+      "resultadoOperacion": "37%",
+      "parametroAplicado": "35% (con flexibilidad)",
+      "desvio": "+2%",
+      "estado": "Requiere revisión"
+    },
+    {
+      "indicador": "RCI Externa",
+      "resultadoOperacion": "70%",
+      "parametroAplicado": "63% (con flexibilidad)",
+      "desvio": "+7%",
+      "estado": "Requiere revisión"
+    },
+    {
+      "indicador": "Aforo",
+      "resultadoOperacion": "75,00%",
+      "parametroAplicado": "75% (con flexibilidad) / 50% (mínimo)",
+      "desvio": "0%",
+      "estado": "Dentro de parámetros"
+    }
+  ],
+  "alertasYExcepciones": {
+    "leyenda": [
+      {
+        "color": "rojo",
+        "texto": "Incumplimiento de regla excluyente o parámetro crítico"
+      },
+      {
+        "color": "amarillo",
+        "texto": "Requiere revisión, validación o documentación adicional"
+      },
+      {
+        "color": "sin-color",
+        "texto": "Dentro de parámetros normales"
+      }
+    ],
+    "conteoTotal": 2,
+    "gravedadDestacada": "Amarilla",
+    "tarjetas": [
+      {
+        "tipo": "amarillo",
+        "titulo": "Cheque rechazado en los últimos 12 meses",
+        "datoQueLaOrigino": "Cheques Rechazados Titular",
+        "parametroAplicable": "Sin rechazos en los últimos 12 meses",
+        "desvioProducido": "1 rechazo registrado"
+      },
+      {
+        "tipo": "amarillo",
+        "titulo": "Consulta reciente en central de riesgos",
+        "datoQueLaOrigino": null,
+        "parametroAplicable": null,
+        "desvioProducido": null
+      }
+    ]
+  },
+  "resultadoMotor": {
+    "resultado": "APROBADO Automático (A1)",
+    "explicacion": "Se ajustaron automáticamente los parámetros. Se requiere validación de documentación respaldatoria.",
+    "fechaHoraEvaluacion": "02/09/2026 14:32",
+    "versionMotor": "—",
+    "idPrestamo": "PR-2026-000451",
+    "ndc": "81,00%",
+    "reglasCumplidas": [
+      "Aforo dentro de parámetro",
+      "Sin BCRA BlackList",
+      "Sin cheques rechazados del titular en 12 meses (con flexibilidad)"
+    ],
+    "reglasIncumplidas": [
+      "RCI Interna por encima del parámetro sin flexibilidad",
+      "RCI Externa por encima del parámetro sin flexibilidad"
+    ],
+    "excepcionesUtilizadas": "Flexibilidad de RCI aplicada por antigüedad laboral",
+    "intervencionesManuales": "—"
+  },
+  "antecedentes": [
+    {
+      "label": "BCRA BlackList",
+      "titular": "NO"
+    },
+    {
+      "label": "Cheques Rechazados",
+      "titular": "NO"
+    },
+    {
+      "label": "Bases Negativas",
+      "titular": "Sin Observaciones negativas"
+    },
+    {
+      "label": "Score NOSIS",
+      "titular": "742"
+    },
+    {
+      "label": "NSE Bureau",
+      "titular": "C2"
+    },
+    {
+      "label": "Score Veraz",
+      "titular": "689"
+    },
+    {
+      "label": "Funcional Veraz",
+      "titular": "APROBAR"
+    },
+    {
+      "label": "Compromisos Mensuales",
+      "titular": "$ 145.000"
+    },
+    {
+      "label": "Deuda Total B.C.R.A.",
+      "titular": "$ 320.000"
+    },
+    {
+      "label": "Situación BCRA Actual",
+      "titular": "1"
+    },
+    {
+      "label": "Máx. Situación Ult 24 meses",
+      "titular": "1"
+    }
+  ],
+  "ingresos": [
+    {
+      "label": "Ingresos Mensuales Declarados",
+      "titular": "$ 950.000"
+    },
+    {
+      "label": "Ingresos Mensuales Inferidos",
+      "titular": "$ 910.000"
+    },
+    {
+      "label": "Ingresos Mensuales Verificados",
+      "titular": "$ 950.000"
+    },
+    {
+      "label": "Ingreso Considerado",
+      "titular": "$ 950.000"
+    },
+    {
+      "label": "Relación Ingreso (Inferido/Declarado)",
+      "titular": "0,96"
+    }
+  ],
+  "endeudamiento": [
+    {
+      "label": "RCI Interna - Sin Flexibilidad",
+      "titular": "35"
+    },
+    {
+      "label": "RCI Interna - Con Flexibilidad",
+      "titular": "37"
+    },
+    {
+      "label": "RCI Externa - Sin Flexibilidad",
+      "titular": "63"
+    },
+    {
+      "label": "RCI Externa - Con Flexibilidad",
+      "titular": "70"
+    },
+    {
+      "label": "Aforo - Con Flexibilidad",
+      "titular": "75"
+    },
+    {
+      "label": "Aforo - Mínimo Sin Flexibilidad",
+      "titular": "50"
+    }
+  ],
+  "cotitulares": []
 }
