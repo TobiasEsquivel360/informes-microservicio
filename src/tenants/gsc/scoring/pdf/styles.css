@@ -5,6 +5,18 @@
   --border-color: #e0e0e0;
   --rojo-alerta: rgb(239, 71, 34);
   --color-grupo: rgb(160, 204, 236);
+
+  /* Semaforización (Encuadramiento, Alertas y Excepciones, Resultado del
+     motor) — mismos 3 colores de estado (rojo/amarillo/sin-color) en toda
+     la sección, más verde reservado únicamente para el resultado general
+     de una operación aprobada (nunca para un dato individual). */
+  --rojo-alerta-fondo: rgb(252, 224, 216);
+  --amarillo-alerta: rgb(196, 130, 11);
+  --amarillo-alerta-fondo: rgb(253, 240, 214);
+  --verde-aprobado: rgb(39, 148, 92);
+  --verde-aprobado-fondo: rgb(214, 240, 227);
+  --gris-neutro: rgb(120, 120, 120);
+  --gris-neutro-fondo: rgb(232, 232, 232);
 }
 
 body {
@@ -245,27 +257,181 @@ body {
   border-left: 1px solid black;
 }
 
-/* ========== ALERTAS ENCONTRADAS ========== */
-/* Tomado del legacy Dompdf real (estilos.css). */
-.alertas-encontradas {
-  background-color: var(--rojo-alerta);
-  padding: 9px;
-  border-radius: 4px;
-}
-
-.alertas-encontradas p {
-  margin: 2px 0;
-  color: white;
-}
-
-/* ========== COMENTARIOS ========== */
-/* Tomado del legacy Dompdf real (estilos.css). */
-.campo-comentarios {
+/* ========== CAJAS ========== */
+/* Contenedor bordeado genérico, reusado por las tarjetas de Alertas y por
+   Resultado del motor y trazabilidad (versión/ID/NDC, reglas,
+   excepciones/intervenciones, usuario responsable, comentarios) — un solo
+   estilo de caja en vez de uno por sección (reemplaza a la vieja
+   `.campo-comentarios`, que era este mismo estilo pero solo para
+   Comentarios). */
+.caja {
   border: 2px solid var(--corporate-blue);
-  border-radius: 5px;
-  padding: 15px;
-  min-height: 30px;
-  margin-bottom: 35px;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 14px;
+  min-height: 20px;
+  box-sizing: border-box;
   page-break-inside: avoid;
   break-inside: avoid;
+}
+
+/* Fila de cajas independientes lado a lado (ej. Versión del motor/ID del
+   préstamo/NDC, o Excepciones utilizadas/Intervenciones manuales) —
+   distinto de `.columnas`, que son columnas DENTRO de una sola caja. */
+.fila-cajas {
+  display: flex;
+  gap: 14px;
+}
+
+.fila-cajas .caja {
+  flex: 1;
+}
+
+/* Columnas genéricas dentro de una caja o sección — reusada por Reglas
+   cumplidas/incumplidas (2 columnas) y Usuario responsable y fecha de
+   aprobación (3 columnas): el número de columnas lo define el contenido,
+   no una clase distinta por cantidad. */
+.columnas {
+  display: flex;
+  gap: 24px;
+}
+
+.columnas > div {
+  flex: 1;
+}
+
+.columnas-centradas {
+  text-align: center;
+}
+
+/* Etiqueta chica en mayúsculas sobre un valor — reusada en las cajas de
+   Resultado del motor y en el detalle de cada tarjeta de alerta. */
+.etiqueta-campo {
+  margin: 0 0 3px 0;
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ========== BADGES / SEMAFORIZACIÓN ========== */
+/* Reusado en la columna Estado de Encuadramiento, en las tarjetas de
+   Alertas y en el resultado principal de Resultado del motor — una sola
+   paleta de 4 colores (rojo/amarillo/sin-color/verde) en vez de definir
+   el color en cada sección. */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-grande {
+  font-size: 15px;
+  padding: 6px 16px;
+}
+
+.badge-rojo {
+  background-color: var(--rojo-alerta-fondo);
+  color: var(--rojo-alerta);
+}
+
+.badge-amarillo {
+  background-color: var(--amarillo-alerta-fondo);
+  color: var(--amarillo-alerta);
+}
+
+.badge-sin-color {
+  background-color: var(--gris-neutro-fondo);
+  color: var(--gris-neutro);
+}
+
+.badge-verde {
+  background-color: var(--verde-aprobado-fondo);
+  color: var(--verde-aprobado);
+}
+
+/* Punto de color de la leyenda de Alertas y Excepciones — mismos 3
+   colores que `.badge`, sin el fondo de pill (la leyenda es texto plano
+   con un punto adelante, no una pill). */
+.badge-punto {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.badge-punto-rojo {
+  background-color: var(--rojo-alerta);
+}
+
+.badge-punto-amarillo {
+  background-color: var(--amarillo-alerta);
+}
+
+.badge-punto-sin-color {
+  background-color: var(--gris-neutro);
+}
+
+/* ========== ENCUADRAMIENTO ========== */
+.leyenda-alertas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 0 0 10px 0;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.conteo-alertas {
+  margin: 0 0 14px 0;
+  font-size: 13px;
+}
+
+/* ========== TARJETA DE ALERTA ========== */
+.tarjeta-alerta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titulo-tarjeta-alerta {
+  margin: 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.tarjeta-alerta-detalle p {
+  margin: 2px 0;
+}
+
+/* ========== RESULTADO DEL MOTOR ========== */
+.resultado-motor-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.resultado-motor-principal-izquierda {
+  flex: 1;
+}
+
+.resultado-motor-explicacion {
+  margin: 8px 0 0 0;
+  color: #555;
+}
+
+.resultado-motor-principal-derecha {
+  text-align: right;
+  white-space: nowrap;
 }

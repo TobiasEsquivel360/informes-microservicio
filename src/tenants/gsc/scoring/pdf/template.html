@@ -283,41 +283,182 @@
         {{> tablaMultiPersona claseTabla="endeudamiento" filas=endeudamiento conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
       </section>
 
-      <section class="detalle-alertas-encontradas">
-        <h3 class="titulo-seccion titulo-detalle-alertas-encontradas">Detalle de Alertas Encontradas</h3>
-        <div class="alertas-encontradas">
-          {{#each alerts}}
-          <p>{{this}}</p>
-          {{/each}}
-        </div>
-      </section>
-      <section class="analisis-economico">
-        <h3 class="titulo-seccion titulo-analisis-economico">Análisis Económico</h3>
-        <div class="tabla-analisis-economico">
-          <table class="tabla tabla-analisis-economico">
+      <section class="encuadramiento">
+        <h3 class="titulo-seccion titulo-encuadramiento">Encuadramiento de la operación</h3>
+        <div class="tabla-encuadramiento">
+          <table class="tabla tabla-encuadramiento">
             <thead>
               <tr>
-                <th class="col-item">Ítem</th>
-                <th class="col-descripcion-analisis-economico">Descripcion</th>
+                <th class="col-indicador">Indicador</th>
+                <th class="col-resultado">Resultado de la operación</th>
+                <th class="col-parametro">Parámetro aplicado</th>
+                <th class="col-desvio">Desvío</th>
+                <th class="col-estado">Estado</th>
               </tr>
             </thead>
             <tbody>
-              {{#each analisisEconomico}}
+              {{#each encuadramiento}}
               <tr>
-                <td class="col-item">{{label}}</td>
-                <td class="col-descripcion-analisis-economico">{{value}}</td>
+                <td class="col-indicador">{{indicador}}</td>
+                <td class="col-resultado">{{resultadoOperacion}}</td>
+                <td class="col-parametro">{{parametroAplicado}}</td>
+                <td class="col-desvio">{{desvio}}</td>
+                <td class="col-estado">
+                  {{#if estadoColor}}
+                  <span class="badge badge-{{estadoColor}}">{{estado}}</span>
+                  {{else}}
+                  {{estado}}
+                  {{/if}}
+                </td>
               </tr>
               {{/each}}
             </tbody>
           </table>
         </div>
       </section>
-      <section class="comentarios">
-        <h3 class="titulo-seccion titulo-comentarios">Comentarios</h3>
-        <div class="campo-comentarios">
+
+      <section class="alertas-y-excepciones">
+        <h3 class="titulo-seccion titulo-alertas-y-excepciones">Alertas y Excepciones</h3>
+
+        {{#if alertasYExcepciones.leyenda}}
+        <div class="leyenda-alertas">
+          {{#each alertasYExcepciones.leyenda}}
+          <p class="leyenda-item"><span class="badge-punto badge-punto-{{color}}"></span>{{texto}}</p>
+          {{/each}}
+        </div>
+        {{/if}}
+
+        <p class="conteo-alertas">
+          Cantidad de alertas: <strong>{{alertasYExcepciones.conteoTotal}}</strong>
+          · Gravedad destacada: <strong>{{alertasYExcepciones.gravedadDestacada}}</strong>
+        </p>
+
+        {{#each alertasYExcepciones.tarjetas}}
+        <div class="caja tarjeta-alerta">
+          {{#if etiqueta}}
+          <span class="badge badge-{{tipo}}">{{etiqueta}}</span>
+          {{/if}}
+          <h4 class="titulo-tarjeta-alerta">{{titulo}}</h4>
+          <div class="columnas tarjeta-alerta-detalle">
+            <div>
+              <p class="etiqueta-campo">Dato que la originó</p>
+              <p>{{#if datoQueLaOrigino}}{{datoQueLaOrigino}}{{else}}—{{/if}}</p>
+            </div>
+            <div>
+              <p class="etiqueta-campo">Parámetro aplicable</p>
+              <p>{{#if parametroAplicable}}{{parametroAplicable}}{{else}}—{{/if}}</p>
+            </div>
+            <div>
+              <p class="etiqueta-campo">Desvío producido</p>
+              <p>{{#if desvioProducido}}{{desvioProducido}}{{else}}—{{/if}}</p>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </section>
+
+      <section class="resultado-motor-trazabilidad">
+        <h3 class="titulo-seccion titulo-resultado-motor-trazabilidad">
+          Resultado del motor y trazabilidad
+        </h3>
+
+        <div class="caja resultado-motor-principal">
+          <div class="resultado-motor-principal-izquierda">
+            {{#if resultadoMotor.resultadoColor}}
+            <span class="badge badge-grande badge-{{resultadoMotor.resultadoColor}}">{{resultadoMotor.resultado}}</span>
+            {{else}}
+            <span class="badge badge-grande badge-sin-color">{{resultadoMotor.resultado}}</span>
+            {{/if}}
+            {{#if resultadoMotor.explicacion}}
+            <p class="resultado-motor-explicacion">{{resultadoMotor.explicacion}}</p>
+            {{/if}}
+          </div>
+          <div class="resultado-motor-principal-derecha">
+            <p class="etiqueta-campo">Fecha y hora de evaluación</p>
+            <p>{{resultadoMotor.fechaHoraEvaluacion}}</p>
+          </div>
+        </div>
+
+        <div class="fila-cajas">
+          <div class="caja">
+            <p class="etiqueta-campo">Versión del motor</p>
+            <p>{{#if resultadoMotor.versionMotor}}{{resultadoMotor.versionMotor}}{{else}}—{{/if}}</p>
+          </div>
+          <div class="caja">
+            <p class="etiqueta-campo">ID del préstamo</p>
+            <p>{{#if resultadoMotor.idPrestamo}}{{resultadoMotor.idPrestamo}}{{else}}—{{/if}}</p>
+          </div>
+          <div class="caja">
+            <p class="etiqueta-campo">NDC</p>
+            <p><strong>{{#if resultadoMotor.ndc}}{{resultadoMotor.ndc}}{{else}}—{{/if}}</strong></p>
+          </div>
+        </div>
+
+        <div class="caja">
+          <h4 class="titulo-tabla">Reglas y excepciones evaluadas</h4>
+          <div class="columnas">
+            <div>
+              <p class="etiqueta-campo">Reglas cumplidas</p>
+              {{#if resultadoMotor.reglasCumplidas}}
+              <ul>
+                {{#each resultadoMotor.reglasCumplidas}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+              {{else}}
+              <p>—</p>
+              {{/if}}
+            </div>
+            <div>
+              <p class="etiqueta-campo">Reglas incumplidas</p>
+              {{#if resultadoMotor.reglasIncumplidas}}
+              <ul>
+                {{#each resultadoMotor.reglasIncumplidas}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+              {{else}}
+              <p>Ninguna registrada</p>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+
+        <div class="fila-cajas">
+          <div class="caja">
+            <p class="etiqueta-campo">Excepciones utilizadas</p>
+            <p>{{#if resultadoMotor.excepcionesUtilizadas}}{{resultadoMotor.excepcionesUtilizadas}}{{else}}—{{/if}}</p>
+          </div>
+          <div class="caja">
+            <p class="etiqueta-campo">Intervenciones o cambios manuales</p>
+            <p>{{#if resultadoMotor.intervencionesManuales}}{{resultadoMotor.intervencionesManuales}}{{else}}—{{/if}}</p>
+          </div>
+        </div>
+
+        <div class="caja">
+          <h4 class="titulo-tabla">Usuario responsable y fecha de aprobación</h4>
+          <div class="columnas columnas-centradas">
+            <div>
+              <p class="etiqueta-campo">Analista</p>
+              <p>{{analista}}</p>
+            </div>
+            <div>
+              <p class="etiqueta-campo">Supervisor</p>
+              <p>{{supervisor}}</p>
+            </div>
+            <div>
+              <p class="etiqueta-campo">Fecha Comité de Crédito</p>
+              <p>{{fechaComiteCredito}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="caja">
+          <h4 class="titulo-tabla">Comentarios</h4>
           <p>{{comentarios}}</p>
         </div>
       </section>
+
       <section class="seccion-final">
         <section class="firmas">
           <table style="width: 100%; border-collapse: collapse; table-layout: fixed; text-align: center;">

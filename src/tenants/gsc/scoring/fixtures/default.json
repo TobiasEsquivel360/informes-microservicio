@@ -338,21 +338,24 @@
       "resultadoOperacion": "37%",
       "parametroAplicado": "35% (con flexibilidad)",
       "desvio": "+2%",
-      "estado": "Requiere revisión"
+      "estado": "Requiere revisión",
+      "estadoColor": "amarillo"
     },
     {
       "indicador": "RCI Externa",
       "resultadoOperacion": "70%",
       "parametroAplicado": "63% (con flexibilidad)",
       "desvio": "+7%",
-      "estado": "Requiere revisión"
+      "estado": "Requiere revisión",
+      "estadoColor": "amarillo"
     },
     {
       "indicador": "Aforo",
       "resultadoOperacion": "75,00%",
       "parametroAplicado": "75% (con flexibilidad) / 50% (mínimo)",
       "desvio": "0%",
-      "estado": "Dentro de parámetros"
+      "estado": "Dentro de parámetros",
+      "estadoColor": "sin-color"
     }
   ],
   "alertasYExcepciones": {
@@ -378,14 +381,16 @@
         "titulo": "Cheque rechazado en los últimos 12 meses",
         "datoQueLaOrigino": "Cheques Rechazados Titular",
         "parametroAplicable": "Sin rechazos en los últimos 12 meses",
-        "desvioProducido": "1 rechazo registrado"
+        "desvioProducido": "1 rechazo registrado",
+        "etiqueta": "Requiere revisión"
       },
       {
         "tipo": "amarillo",
         "titulo": "Consulta reciente en central de riesgos",
         "datoQueLaOrigino": null,
         "parametroAplicable": null,
-        "desvioProducido": null
+        "desvioProducido": null,
+        "etiqueta": "Requiere revisión"
       }
     ]
   },
@@ -406,7 +411,8 @@
       "RCI Externa por encima del parámetro sin flexibilidad"
     ],
     "excepcionesUtilizadas": "Flexibilidad de RCI aplicada por antigüedad laboral",
-    "intervencionesManuales": "—"
+    "intervencionesManuales": "—",
+    "resultadoColor": "verde"
   },
   "antecedentes": [
     {

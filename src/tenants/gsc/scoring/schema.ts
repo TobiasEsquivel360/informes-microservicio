@@ -51,26 +51,34 @@ const multiPersonRow = z.object({
 // tiene su propia tabla completa (`titular`).
 const cotitularRow = multiPersonRow.omit({ titular: true });
 
+const alertaColor = z.enum(["rojo", "amarillo", "sin-color"]);
+
+// `estadoColor` reusa la misma semaforización de 3 colores que Alertas y
+// Excepciones (rojo/amarillo/sin-color) — mismas clases de badge en el
+// template, no una paleta nueva por sección. Opcional: si no viene, la
+// columna Estado se muestra como texto plano sin badge.
 const encuadramientoRow = z.object({
   indicador: z.string(),
   resultadoOperacion: z.string(),
   parametroAplicado: z.string(),
   desvio: z.string(),
   estado: z.string(),
+  estadoColor: alertaColor.optional(),
 });
-
-const alertaColor = z.enum(["rojo", "amarillo", "sin-color"]);
 
 const leyendaAlerta = z.object({
   color: alertaColor,
   texto: z.string(),
 });
 
-// Los tres campos estructurados no tienen fuente real confirmada todavía
-// (ver Out of Scope del spec) — quedan opcionales, el template los muestra
-// en blanco/"—" cuando faltan.
+// Los campos estructurados no tienen fuente real confirmada todavía (ver
+// Out of Scope del spec) — quedan opcionales, el template los muestra en
+// blanco/"—" cuando faltan. `etiqueta` es el texto corto del badge de la
+// tarjeta (ej. "Requiere revisión"/"Informativo"), distinto de `titulo`
+// (el encabezado en negrita de la tarjeta).
 const tarjetaAlerta = z.object({
   tipo: alertaColor,
+  etiqueta: z.string().optional(),
   titulo: z.string(),
   datoQueLaOrigino: z.string().nullable().optional(),
   parametroAplicable: z.string().nullable().optional(),
@@ -87,8 +95,15 @@ const alertasYExcepciones = z.object({
 // Campos sin fuente real confirmada (ver Out of Scope del spec): versión
 // del motor, ID del préstamo, reglas cumplidas/incumplidas en detalle,
 // excepciones utilizadas, intervenciones manuales. Quedan opcionales.
+// `resultadoColor` es un flag de presentación (no un dato nuevo a relevar):
+// "verde" solo para el resultado general de una operación aprobada, nunca
+// para un dato individual — mismo criterio pedido por Efren para el resto
+// de la semaforización. Sin valor "neutral": si no viene, el template ya
+// cae al mismo estilo neutro vía su rama `{{else}}` (badge-sin-color) —
+// un segundo valor para lo mismo sería un enum sin clase CSS propia.
 const resultadoMotor = z.object({
   resultado: z.string(),
+  resultadoColor: z.enum(["verde"]).optional(),
   explicacion: z.string().nullable().optional(),
   fechaHoraEvaluacion: z.string().nullable().optional(),
   versionMotor: z.string().nullable().optional(),
