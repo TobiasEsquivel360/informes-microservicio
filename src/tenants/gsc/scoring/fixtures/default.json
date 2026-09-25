@@ -10,7 +10,6 @@
   "fechaComiteCredito": "03/09/2026",
   "analista": "Juan Pérez",
   "supervisor": "María López",
-  "ofertaSeleccionada": "Plan 48 cuotas",
   "comentarios": "Sin observaciones adicionales.",
   "conyugePresente": true,
   "codeudorPresente": true,
@@ -28,20 +27,12 @@
       "value": "Préstamo Prendario"
     },
     {
-      "label": "Monto Solicitado",
-      "value": "$ 33.453.458,50"
+      "label": "Monto solicitado y aprobado",
+      "value": "Solicitado $ 33.453.458,50 · Aprobado $ 33.453.458,50"
     },
     {
-      "label": "Monto Aprobado",
-      "value": "$ 33.453.458,50"
-    },
-    {
-      "label": "Plazo",
-      "value": "36 meses"
-    },
-    {
-      "label": "Tasa",
-      "value": "45,5% TNA"
+      "label": "Plazo y tasa",
+      "value": "36 meses · 45,5% TNA"
     },
     {
       "label": "Vehículo / Garantía",
@@ -53,6 +44,10 @@
     }
   ],
   "resultado": [
+    {
+      "label": "ID del préstamo",
+      "value": "PR-2026-000451"
+    },
     {
       "label": "Resultado del Motor",
       "value": "APROBADO Automático (A1)"
@@ -66,166 +61,21 @@
       "value": "2"
     },
     {
-      "label": "Gravedad Destacada",
+      "label": "Gravedad de las alertas destacadas",
       "value": "Amarilla — requiere validación de documentación"
     }
   ],
-  "offer": {
-    "unitLabel": "En miles de $ - segun Matriz",
-    "additionalColumns": [
-      "Plan A",
-      "Plan B"
-    ],
-    "rows": [
-      {
-        "label": "Ingresos",
-        "value": "500",
-        "isGroup": true,
-        "additionalValues": [
-          null,
-          null
-        ]
-      },
-      {
-        "label": "Sueldo",
-        "value": "400",
-        "isGroup": false,
-        "additionalValues": [
-          "380",
-          "420"
-        ]
-      },
-      {
-        "label": "Alquiler",
-        "value": "100",
-        "isGroup": false,
-        "additionalValues": [
-          "100",
-          "100"
-        ]
-      }
-    ]
-  },
-  "economicActivities": [
-    {
-      "label": "Principal (AFIP)",
-      "description": "Venta al por menor"
-    },
-    {
-      "label": "Secundaria (AFIP)",
-      "description": "Sin datos"
-    },
-    {
-      "label": "Principal (CLANAE)",
-      "description": "Comercio minorista"
-    },
-    {
-      "label": "Secundaria (CLANAE)",
-      "description": "Sin datos"
-    }
-  ],
-  "scoring": {
-    "indicators": [
-      {
-        "label": "Score NOSIS",
-        "value": 742,
-        "scale": "1 a 999"
-      },
-      {
-        "label": "NSE Bureau",
-        "value": "C2",
-        "scale": "A a D2"
-      },
-      {
-        "label": "Score Veraz",
-        "value": 689,
-        "scale": "1 a 999"
-      }
-    ]
-  },
   "titular": [
     {
-      "label": "Id Préstamo",
-      "value": "PR-2026-000451"
+      "label": "Tipo de Cliente",
+      "value": "ACTUAL"
     },
     {
-      "label": "BCRA BlackList Titular",
-      "value": "NO"
-    },
-    {
-      "label": "Cheques Rechazados Titular",
-      "value": "NO"
-    },
-    {
-      "label": "Tipo de Contribuyente",
-      "value": "Empleado en Rel. Dependencia"
-    },
-    {
-      "label": "Bases Negativas",
-      "value": "Sin Observaciones negativas"
-    },
-    {
-      "label": "Score NOSIS",
-      "value": "742"
-    },
-    {
-      "label": "NSE Bureau",
-      "value": "C2"
-    },
-    {
-      "label": "Score Veraz",
-      "value": "689"
-    },
-    {
-      "label": "Funcional Veraz",
-      "value": "APROBAR"
-    },
-    {
-      "label": "Compromisos Mensuales",
-      "value": "$ 145.000"
-    },
-    {
-      "label": "Deuda Total B.C.R.A.",
-      "value": "$ 320.000"
-    },
-    {
-      "label": "Situación BCRA Actual",
-      "value": "1"
-    },
-    {
-      "label": "Máx. Situación Ult 24 meses",
-      "value": "1"
-    },
-    {
-      "label": "Correo Electrónico",
-      "value": "lorena.dininno@example.com"
-    },
-    {
-      "label": "Celular",
-      "value": "11 4455-6677"
-    },
-    {
-      "label": "Nacionalidad (Titular)",
+      "label": "Nacionalidad",
       "value": "Argentina"
     },
     {
-      "label": "Actividad Principal (Titular)",
-      "value": "Empleados Formales"
-    },
-    {
-      "label": "Actividad Laboral (Titular)",
-      "value": "Administrativa"
-    },
-    {
-      "label": "Categoría del Trabajo",
-      "value": "1"
-    },
-    {
-      "label": "Antiguedad Laboral (Meses)",
-      "value": "60"
-    },
-    {
-      "label": "Fecha de Nacimiento (Titular)",
+      "label": "Fecha de Nacimiento",
       "value": "25/01/1971"
     },
     {
@@ -233,40 +83,32 @@
       "value": "55"
     },
     {
-      "label": "Estado Civil",
-      "value": "Casado/a"
-    },
-    {
-      "label": "Sexo (Titular)",
+      "label": "Sexo",
       "value": "Femenino"
     },
     {
-      "label": "Ingresos Mensuales Declarados",
-      "value": "$ 950.000"
+      "label": "Estado civil",
+      "value": "Casado/a"
     },
     {
-      "label": "Ingresos Mensuales Inferidos",
-      "value": "$ 910.000"
+      "label": "Correo electrónico",
+      "value": "lorena.dininno@example.com"
     },
     {
-      "label": "Ingresos Mensuales Verificados",
-      "value": "$ 950.000"
+      "label": "Celular",
+      "value": "11 4455-6677"
     },
     {
-      "label": "Ingreso Considerado (Titular)",
-      "value": "$ 950.000"
+      "label": "Actividad Principal",
+      "value": "Empleados Formales"
     },
     {
-      "label": "Relación Ingreso (Inferido/Declarado)",
-      "value": "0,96"
+      "label": "Actividad Laboral",
+      "value": "Administrativa"
     },
     {
-      "label": "Tipo de Cliente",
-      "value": "ACTUAL"
-    },
-    {
-      "label": "Morosidad Interna (Días)",
-      "value": "0"
+      "label": "Antigüedad Laboral (meses)",
+      "value": "60"
     }
   ],
   "vehiculo": [
@@ -334,47 +176,44 @@
   "ingresosNota": "Ingreso considerado: se usa el ingreso verificado si existe; si no existe, el menor entre declarado e inferido. Montos en miles de pesos, sin decimales.",
   "encuadramiento": [
     {
-      "indicador": "RCI Interna",
+      "indicador": "RCI interno",
       "resultadoOperacion": "37%",
       "parametroAplicado": "35% (con flexibilidad)",
       "desvio": "+2%",
-      "estado": "Requiere revisión",
-      "estadoColor": "amarillo"
+      "estado": "Requiere revisión"
     },
     {
-      "indicador": "RCI Externa",
+      "indicador": "RCI externa",
       "resultadoOperacion": "70%",
       "parametroAplicado": "63% (con flexibilidad)",
       "desvio": "+7%",
-      "estado": "Requiere revisión",
-      "estadoColor": "amarillo"
+      "estado": "Requiere revisión"
     },
     {
       "indicador": "Aforo",
       "resultadoOperacion": "75,00%",
       "parametroAplicado": "75% (con flexibilidad) / 50% (mínimo)",
       "desvio": "0%",
-      "estado": "Dentro de parámetros",
-      "estadoColor": "sin-color"
+      "estado": "Dentro de parámetros"
     }
   ],
   "alertasYExcepciones": {
     "leyenda": [
       {
         "color": "rojo",
-        "texto": "Incumplimiento de regla excluyente o parámetro crítico"
+        "texto": "Rojo — incumplimiento de regla excluyente o parámetro crítico"
       },
       {
         "color": "amarillo",
-        "texto": "Requiere revisión, validación o documentación adicional"
+        "texto": "Amarillo — requiere revisión, validación o documentación adicional"
       },
       {
         "color": "sin-color",
-        "texto": "Dentro de parámetros normales"
+        "texto": "Sin color — dentro de parámetros normales"
       }
     ],
     "conteoTotal": 2,
-    "gravedadDestacada": "Amarilla",
+    "gravedadDestacada": "Media",
     "tarjetas": [
       {
         "tipo": "amarillo",
@@ -416,28 +255,16 @@
   },
   "antecedentes": [
     {
-      "label": "BCRA BlackList",
-      "titular": "NO",
-      "conyuge": "NO",
-      "codeudor": "NO"
-    },
-    {
-      "label": "Cheques Rechazados",
-      "titular": "NO",
-      "conyuge": "NO",
-      "codeudor": "SI"
+      "label": "Score NOSIS",
+      "titular": "742",
+      "conyuge": "701",
+      "codeudor": "615"
     },
     {
       "label": "Bases Negativas",
       "titular": "Sin Observaciones negativas",
       "conyuge": "Sin Observaciones negativas",
       "codeudor": "Sin Observaciones negativas"
-    },
-    {
-      "label": "Score NOSIS",
-      "titular": "742",
-      "conyuge": "701",
-      "codeudor": "615"
     },
     {
       "label": "NSE Bureau",
@@ -458,145 +285,126 @@
       "codeudor": "REVISAR"
     },
     {
+      "label": "Categoría de Trabajo",
+      "titular": "1",
+      "conyuge": "1",
+      "codeudor": "2"
+    },
+    {
+      "label": "BCRA Blacklist",
+      "titular": "NO",
+      "conyuge": "NO",
+      "codeudor": "NO"
+    },
+    {
+      "label": "Deuda total BCRA",
+      "titular": "$ 320.000",
+      "conyuge": "$ 150.000",
+      "codeudor": "$ 210.000"
+    },
+    {
+      "label": "Situación BCRA actual",
+      "titular": "1",
+      "conyuge": "1",
+      "codeudor": "2"
+    },
+    {
+      "label": "Max. Situación Ult. 24 meses",
+      "titular": "1",
+      "conyuge": "1",
+      "codeudor": "2"
+    },
+    {
+      "label": "Morosidad Interna (Días)",
+      "titular": "0",
+      "conyuge": "0",
+      "codeudor": "5"
+    },
+    {
+      "label": "Cheques Rechazados",
+      "titular": "NO",
+      "conyuge": "NO",
+      "codeudor": "SI"
+    }
+  ],
+  "ingresos": [
+    {
+      "label": "Ingreso considerado",
+      "titular": "$ 950.000",
+      "conyuge": "$ 620.000",
+      "codeudor": "$ 450.000"
+    },
+    {
+      "label": "Tipo de Contribuyente",
+      "titular": "Empleado en Rel. Dependencia",
+      "conyuge": "Empleado en Rel. Dependencia",
+      "codeudor": "Monotributista"
+    },
+    {
+      "label": "Act. Principal (AFIP)",
+      "titular": "Venta al por menor",
+      "conyuge": "Servicios administrativos",
+      "codeudor": "Reparación de vehículos"
+    },
+    {
+      "label": "Act. Secundaria (AFIP)",
+      "titular": "Sin datos",
+      "conyuge": "Sin datos",
+      "codeudor": "Sin datos"
+    },
+    {
+      "label": "Act. Principal (CLANAE)",
+      "titular": "Comercio minorista",
+      "conyuge": "Actividades administrativas",
+      "codeudor": "Mantenimiento y reparación"
+    },
+    {
+      "label": "Act. Secundaria (CLANAE)",
+      "titular": "Sin datos",
+      "conyuge": "Sin datos",
+      "codeudor": "Sin datos"
+    }
+  ],
+  "endeudamiento": [
+    {
       "label": "Compromisos Mensuales",
       "titular": "$ 145.000",
       "conyuge": "$ 80.000",
       "codeudor": "$ 60.000"
     },
     {
-      "label": "Deuda Total B.C.R.A.",
+      "label": "Deuda total BCRA",
       "titular": "$ 320.000",
       "conyuge": "$ 150.000",
       "codeudor": "$ 210.000"
     },
     {
-      "label": "Situación BCRA Actual",
-      "titular": "1",
-      "conyuge": "1",
-      "codeudor": "2"
-    },
-    {
-      "label": "Máx. Situación Ult 24 meses",
-      "titular": "1",
-      "conyuge": "1",
-      "codeudor": "2"
-    }
-  ],
-  "ingresos": [
-    {
-      "label": "Ingresos Mensuales Declarados",
-      "titular": "$ 950.000",
-      "conyuge": "$ 620.000",
-      "codeudor": "$ 480.000"
-    },
-    {
-      "label": "Ingresos Mensuales Inferidos",
-      "titular": "$ 910.000",
-      "conyuge": "$ 600.000",
-      "codeudor": "$ 450.000"
-    },
-    {
-      "label": "Ingresos Mensuales Verificados",
-      "titular": "$ 950.000",
-      "conyuge": "$ 620.000",
-      "codeudor": null
-    },
-    {
-      "label": "Ingreso Considerado",
-      "titular": "$ 950.000",
-      "conyuge": "$ 620.000",
-      "codeudor": "$ 450.000"
-    },
-    {
-      "label": "Relación Ingreso (Inferido/Declarado)",
-      "titular": "0,96",
-      "conyuge": "0,97",
-      "codeudor": "0,94"
-    }
-  ],
-  "endeudamiento": [
-    {
-      "label": "RCI Interna - Sin Flexibilidad",
-      "titular": "35",
-      "conyuge": "30",
-      "codeudor": "40"
-    },
-    {
-      "label": "RCI Interna - Con Flexibilidad",
-      "titular": "37",
-      "conyuge": "32",
-      "codeudor": "42"
-    },
-    {
-      "label": "RCI Externa - Sin Flexibilidad",
-      "titular": "63",
-      "conyuge": "55",
-      "codeudor": "68"
-    },
-    {
-      "label": "RCI Externa - Con Flexibilidad",
-      "titular": "70",
-      "conyuge": "60",
-      "codeudor": "72"
-    },
-    {
-      "label": "Aforo - Con Flexibilidad",
-      "titular": "75",
-      "conyuge": "—",
-      "codeudor": "—"
-    },
-    {
-      "label": "Aforo - Mínimo Sin Flexibilidad",
-      "titular": "50",
-      "conyuge": "—",
-      "codeudor": "—"
+      "label": "Morosidad Interna (Días)",
+      "titular": "0",
+      "conyuge": "0",
+      "codeudor": "5"
     }
   ],
   "cotitulares": [
+    {
+      "label": "Nombre/s y Apellido/s",
+      "conyuge": "GÓMEZ, MARTÍN ALEJANDRO",
+      "codeudor": "PÉREZ, LUCAS DANIEL"
+    },
     {
       "label": "DNI",
       "conyuge": "28.456.789",
       "codeudor": "30.112.334"
     },
     {
-      "label": "Nombre y Apellido",
-      "conyuge": "GÓMEZ, MARTÍN ALEJANDRO",
-      "codeudor": "PÉREZ, LUCAS DANIEL"
-    },
-    {
-      "label": "BCRA BlackList",
-      "conyuge": "NO",
-      "codeudor": "NO"
-    },
-    {
-      "label": "Cheques Rechazados",
-      "conyuge": "NO",
-      "codeudor": "SI"
-    },
-    {
-      "label": "Score NOSIS",
-      "conyuge": "701",
-      "codeudor": "615"
-    },
-    {
-      "label": "NSE Bureau",
-      "conyuge": "C2",
-      "codeudor": "C3"
-    },
-    {
-      "label": "Score Veraz",
-      "conyuge": "654",
-      "codeudor": "580"
+      "label": "Tipo de Cliente",
+      "conyuge": "ACTUAL",
+      "codeudor": "ACTUAL"
     },
     {
       "label": "Nacionalidad",
       "conyuge": "Argentina",
       "codeudor": "Argentina"
-    },
-    {
-      "label": "Estado Civil",
-      "conyuge": "Casado/a",
-      "codeudor": "Soltero/a"
     },
     {
       "label": "Fecha de Nacimiento",
@@ -607,6 +415,41 @@
       "label": "Edad",
       "conyuge": "57",
       "codeudor": "41"
+    },
+    {
+      "label": "Sexo",
+      "conyuge": "Masculino",
+      "codeudor": "Masculino"
+    },
+    {
+      "label": "Estado civil",
+      "conyuge": "Casado/a",
+      "codeudor": "Soltero/a"
+    },
+    {
+      "label": "Correo electrónico",
+      "conyuge": "martin.gomez@example.com",
+      "codeudor": "lucas.perez@example.com"
+    },
+    {
+      "label": "Celular",
+      "conyuge": "11 5566-7788",
+      "codeudor": "11 6677-8899"
+    },
+    {
+      "label": "Actividad Principal",
+      "conyuge": "Empleados Formales",
+      "codeudor": "Empleados Formales"
+    },
+    {
+      "label": "Actividad Laboral",
+      "conyuge": "Comercial",
+      "codeudor": "Técnica"
+    },
+    {
+      "label": "Antigüedad Laboral (meses)",
+      "conyuge": "84",
+      "codeudor": "24"
     }
   ]
 }

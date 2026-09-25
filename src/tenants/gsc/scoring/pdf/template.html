@@ -43,8 +43,11 @@
       <div class="tabla-{{claseTabla}}">
         <table class="tabla tabla-{{claseTabla}}">
           <thead>
-            <tr>
-              <th class="col-item">Ítem</th>
+            <tr class="fila-cabecera-tabla">
+              <th colspan="100" class="cabecera-tabla">{{tituloTabla}}</th>
+            </tr>
+            <tr class="fila-subcabecera-tabla">
+              <th class="col-item">Concepto</th>
               <th class="col-titular">Titular</th>
               {{#if conyugePresente}}
               <th class="col-conyuge">Cónyuge</th>
@@ -77,11 +80,13 @@
           Resumen de la operación y resultado
         </h3>
 
-        <h4 class="titulo-tabla">Resumen de la Operación</h4>
         <div class="tabla-resumen-operacion">
           <table class="tabla tabla-resumen-operacion">
             <thead>
-              <tr>
+              <tr class="fila-cabecera-tabla">
+                <th colspan="2" class="cabecera-tabla">Resumen de la Operación</th>
+              </tr>
+              <tr class="fila-subcabecera-tabla">
                 <th class="col-item">Concepto</th>
                 <th class="col-descripcion">Descripción</th>
               </tr>
@@ -97,11 +102,13 @@
           </table>
         </div>
 
-        <h4 class="titulo-tabla">Resultado</h4>
         <div class="tabla-resultado">
           <table class="tabla tabla-resultado">
             <thead>
-              <tr>
+              <tr class="fila-cabecera-tabla">
+                <th colspan="2" class="cabecera-tabla">Resultado</th>
+              </tr>
+              <tr class="fila-subcabecera-tabla">
                 <th class="col-item">Concepto</th>
                 <th class="col-descripcion">Descripción</th>
               </tr>
@@ -116,39 +123,6 @@
             </tbody>
           </table>
         </div>
-
-        <!-- "Oferta" (tabla dinámica de productos) no tiene lugar propio en
-             el rediseño de Eugenia — encaja acá por el tipo de dato que
-             contiene (spec, "Implementation Decisions"). -->
-        <h4 class="titulo-tabla">Oferta</h4>
-        <div class="tabla-oferta">
-          <table class="tabla tabla-oferta">
-            <thead>
-              <tr>
-                <th class="col-en-miles">{{offer.unitLabel}}</th>
-                <th class="col-valor">Valor</th>
-                {{#each offer.additionalColumns}}
-                <th class="col-adicional">{{this}}</th>
-                {{/each}}
-              </tr>
-            </thead>
-            <tbody>
-              {{#each offer.rows}}
-              <tr {{#if isGroup}}class="fila-grupo"{{/if}}>
-                <td class="col-en-miles">{{label}}</td>
-                <td class="col-valor">{{value}}</td>
-                {{#each additionalValues}}
-                <td>{{this}}</td>
-                {{/each}}
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-        <div class="seccion-oferta-seleccionada">
-          <h4 class="titulo-tabla titulo-oferta-seleccionada">Oferta Seleccionada</h4>
-          <p class="oferta-seleccionada">{{ofertaSeleccionada}}</p>
-        </div>
       </section>
 
       <section class="datos-titular-e-intervinientes">
@@ -156,44 +130,14 @@
           Datos del titular y demás intervinientes
         </h3>
 
-        <section class="indicadores">
-          {{#each scoring.indicators}}
-          <div class="score">
-            <h4 class="nombre-score">{{label}}</h4>
-            <div class="score-izquierda-derecha">
-              <p class="score-izquierda">{{value}}</p>
-              <p class="score-derecha">{{scale}}</p>
-            </div>
-          </div>
-          {{/each}}
-        </section>
-
-        <h4 class="titulo-tabla">Actividad Económica</h4>
-        <div class="tabla-actividad-economica">
-          <table class="tabla tabla-actividad-economica">
-            <thead>
-              <tr>
-                <th class="col-actividad">Actividad</th>
-                <th class="col-descripcion">Descripcion</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each economicActivities}}
-              <tr>
-                <td class="col-actividad">{{label}}</td>
-                <td class="col-descripcion">{{description}}</td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-
-        <h4 class="titulo-tabla">Datos del Titular</h4>
         <div class="tabla-datos-titular">
           <table class="tabla tabla-datos-titular">
             <thead>
-              <tr>
-                <th class="col-item">Ítem</th>
+              <tr class="fila-cabecera-tabla">
+                <th colspan="2" class="cabecera-tabla">Datos del Titular</th>
+              </tr>
+              <tr class="fila-subcabecera-tabla">
+                <th class="col-item">Concepto</th>
                 <th class="col-descripcion-datos-titular">Descripcion</th>
               </tr>
             </thead>
@@ -209,12 +153,14 @@
         </div>
 
         {{#if (or conyugePresente codeudorPresente)}}
-        <h4 class="titulo-tabla">Datos de Cotitulares</h4>
         <div class="tabla-datos-cotitulares">
           <table class="tabla tabla-datos-cotitulares">
             <thead>
-              <tr>
-                <th class="col-item">Ítem</th>
+              <tr class="fila-cabecera-tabla">
+                <th colspan="100" class="cabecera-tabla">Datos de Cotitulares</th>
+              </tr>
+              <tr class="fila-subcabecera-tabla">
+                <th class="col-item">Concepto</th>
                 {{#if conyugePresente}}
                 <th class="col-conyuge">Cónyuge</th>
                 {{/if}}
@@ -245,7 +191,7 @@
         <h3 class="titulo-seccion titulo-antecedentes">
           Antecedentes internos y externos
         </h3>
-        {{> tablaMultiPersona claseTabla="antecedentes" filas=antecedentes conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
+        {{> tablaMultiPersona claseTabla="antecedentes" tituloTabla="Antecedentes" filas=antecedentes conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
       </section>
 
       <section class="datos-vehiculo">
@@ -253,8 +199,11 @@
         <div class="tabla-datos-vehiculo">
           <table class="tabla tabla-datos-vehiculo">
             <thead>
-              <tr>
-                <th class="col-item">Ítem</th>
+              <tr class="fila-cabecera-tabla">
+                <th colspan="2" class="cabecera-tabla">Vehículo o Garantía</th>
+              </tr>
+              <tr class="fila-subcabecera-tabla">
+                <th class="col-item">Concepto</th>
                 <th class="col-descripcion-datos-vehiculo">Descripcion</th>
               </tr>
             </thead>
@@ -276,11 +225,9 @@
         </h3>
         <p class="nota-ingresos">{{ingresosNota}}</p>
 
-        <h4 class="titulo-tabla">Ingresos</h4>
-        {{> tablaMultiPersona claseTabla="ingresos" filas=ingresos conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
+        {{> tablaMultiPersona claseTabla="ingresos" tituloTabla="Ingresos" filas=ingresos conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
 
-        <h4 class="titulo-tabla">Endeudamiento</h4>
-        {{> tablaMultiPersona claseTabla="endeudamiento" filas=endeudamiento conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
+        {{> tablaMultiPersona claseTabla="endeudamiento" tituloTabla="Endeudamiento" filas=endeudamiento conyugePresente=conyugePresente codeudorPresente=codeudorPresente}}
       </section>
 
       <section class="encuadramiento">
@@ -288,7 +235,10 @@
         <div class="tabla-encuadramiento">
           <table class="tabla tabla-encuadramiento">
             <thead>
-              <tr>
+              <tr class="fila-cabecera-tabla">
+                <th colspan="5" class="cabecera-tabla">Datos de Encuadramiento</th>
+              </tr>
+              <tr class="fila-subcabecera-tabla">
                 <th class="col-indicador">Indicador</th>
                 <th class="col-resultado">Resultado de la operación</th>
                 <th class="col-parametro">Parámetro aplicado</th>
@@ -303,13 +253,7 @@
                 <td class="col-resultado">{{resultadoOperacion}}</td>
                 <td class="col-parametro">{{parametroAplicado}}</td>
                 <td class="col-desvio">{{desvio}}</td>
-                <td class="col-estado">
-                  {{#if estadoColor}}
-                  <span class="badge badge-{{estadoColor}}">{{estado}}</span>
-                  {{else}}
-                  {{estado}}
-                  {{/if}}
-                </td>
+                <td class="col-estado">{{estado}}</td>
               </tr>
               {{/each}}
             </tbody>
@@ -330,7 +274,9 @@
 
         <p class="conteo-alertas">
           Cantidad de alertas: <strong>{{alertasYExcepciones.conteoTotal}}</strong>
+          {{#if alertasYExcepciones.gravedadDestacada}}
           · Gravedad destacada: <strong>{{alertasYExcepciones.gravedadDestacada}}</strong>
+          {{/if}}
         </p>
 
         {{#each alertasYExcepciones.tarjetas}}
@@ -375,7 +321,7 @@
           </div>
           <div class="resultado-motor-principal-derecha">
             <p class="etiqueta-campo">Fecha y hora de evaluación</p>
-            <p>{{resultadoMotor.fechaHoraEvaluacion}}</p>
+            <p><strong>{{resultadoMotor.fechaHoraEvaluacion}}</strong></p>
           </div>
         </div>
 
@@ -387,10 +333,6 @@
           <div class="caja">
             <p class="etiqueta-campo">ID del préstamo</p>
             <p>{{#if resultadoMotor.idPrestamo}}{{resultadoMotor.idPrestamo}}{{else}}—{{/if}}</p>
-          </div>
-          <div class="caja">
-            <p class="etiqueta-campo">NDC</p>
-            <p><strong>{{#if resultadoMotor.ndc}}{{resultadoMotor.ndc}}{{else}}—{{/if}}</strong></p>
           </div>
         </div>
 
@@ -437,7 +379,7 @@
 
         <div class="caja">
           <h4 class="titulo-tabla">Usuario responsable y fecha de aprobación</h4>
-          <div class="columnas columnas-centradas">
+          <div class="columnas">
             <div>
               <p class="etiqueta-campo">Analista</p>
               <p>{{analista}}</p>

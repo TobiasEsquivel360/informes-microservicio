@@ -2,9 +2,13 @@
   --color-texto: rgb(68, 69, 69);
   --inset-texto: 7px;
   --corporate-blue: #5097d3;
+  /* Cabecera y subcabecera de las tablas de dos niveles — colores exactos
+     dados por el usuario, no tomados de --corporate-blue (que queda para
+     el resto del toolkit visual: títulos, scores, etc.). */
+  --azul-cabecera-tabla: #57aadc;
+  --azul-subcabecera-tabla: #7bc1e5;
   --border-color: #e0e0e0;
   --rojo-alerta: rgb(239, 71, 34);
-  --color-grupo: rgb(160, 204, 236);
 
   /* Semaforización (Encuadramiento, Alertas y Excepciones, Resultado del
      motor) — mismos 3 colores de estado (rojo/amarillo/sin-color) en toda
@@ -53,16 +57,14 @@ body {
   break-after: avoid;
 }
 
-/* Subtítulo de cada tabla dentro de una sección que agrupa varias (ej.
-   "Resumen de la Operación"/"Resultado" dentro de "Resumen de la operación y
-   resultado") — reusado igual en todas las secciones de este rediseño, no
-   una clase distinta por sección. */
+/* Título de cada caja de "Resultado del motor y trazabilidad" (única
+   sección que usa esta clase) — mismo azul oscuro que el título de una
+   tarjeta de alerta, tomado del PDF de referencia de Eugenia. */
 .titulo-tabla {
-  font-size: 15px;
-  font-weight: bold;
-  color: var(--corporate-blue);
-  margin-top: 18px;
-  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #302b73;
+  margin: 0 0 14px 0;
   page-break-after: avoid;
   break-after: avoid;
 }
@@ -87,36 +89,46 @@ body {
   text-align: left;
 }
 
-.tabla thead tr {
-  background-color: var(--corporate-blue);
+.tabla thead th {
   color: white;
 }
 
-.tabla thead th {
-  font-weight: 500;
-  font-size: 14px;
+.tabla thead tr:first-child th:first-child {
+  border-top-left-radius: 5px;
 }
 
-.tabla thead th:first-child {
-  border-top-left-radius: 5px;
+.tabla thead tr:first-child th:last-child {
+  border-top-right-radius: 5px;
+}
+
+.tabla thead tr:last-child th:first-child {
   border-bottom-left-radius: 5px;
 }
 
-.tabla thead th:last-child {
-  border-top-right-radius: 5px;
+.tabla thead tr:last-child th:last-child {
   border-bottom-right-radius: 5px;
 }
 
-/* La tabla de Oferta tiene filas de grupo con su propio fondo (.fila-grupo)
-   pegadas justo debajo del header — el redondeado inferior del header
-   quedaba flotando sobre esa fila siguiente. Se saca solo acá, no en el
-   resto de las tablas del informe. */
-.tabla-oferta thead th:first-child {
-  border-bottom-left-radius: 0;
+/* Tabla de dos niveles (patrón del PDF de Eugenia, repetido en casi todo
+   el informe): la cabecera es el nombre de la tabla, una sola celda a
+   todo el ancho; la subcabecera son los encabezados de columna reales
+   (Concepto/Descripción, o Concepto/Titular/Cónyuge/Codeudor). */
+.fila-cabecera-tabla th {
+  background-color: var(--azul-cabecera-tabla);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 700;
+  font-size: 13px;
 }
 
-.tabla-oferta thead th:last-child {
-  border-bottom-right-radius: 0;
+.fila-subcabecera-tabla th {
+  background-color: var(--azul-subcabecera-tabla);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  font-size: 11px;
 }
 
 .tabla tbody tr td {
@@ -124,11 +136,10 @@ body {
   color: #444;
 }
 
-/* Fila de grupo de la tabla de Oferta (TablaOferta): mismo celeste que
-   usaba el legacy Dompdf (estilos.css, --color-grupo) para distinguir la
-   fila del grupo de producto de las filas de los productos que agrupa. */
-.fila-grupo {
-  background-color: var(--color-grupo);
+/* Columna "Indicador" de Encuadramiento — fondo gris pedido por el
+   usuario, para destacarla del resto de las columnas de la fila. */
+.tabla-encuadramiento tbody .col-indicador {
+  background-color: #ebeaea;
 }
 
 /* ========== CABECERA ========== */
@@ -184,79 +195,6 @@ body {
   margin: 8px 0;
 }
 
-/* ========== OFERTA SELECCIONADA ========== */
-/* Tomado del legacy Dompdf real (estilos.css), no de basa/menor: título
-   y badge van en fila, no apilados. El contenedor se pone en flex para
-   que el badge ocupe todo el espacio restante y su borde llegue lo más
-   a la derecha posible (en vez del `width: 68%` fijo del legacy). */
-.seccion-oferta-seleccionada {
-  display: flex;
-  align-items: center;
-}
-
-.titulo-oferta-seleccionada {
-  margin-right: 8px;
-}
-
-.oferta-seleccionada {
-  flex: 1;
-  border: 3px solid var(--corporate-blue);
-  border-radius: 6px;
-  padding: 3px;
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-/* ========== SCORES ========== */
-/* Cada score: [título] arriba, [score, escala] en fila abajo. Ya no es
-   una tabla (era el workaround de Dompdf, que no soportaba flex) — la
-   propia `section.indicadores` es el contenedor flex, con un
-   `div.score` por indicador adentro. La fila de scores usa flex-wrap:
-   si no entran todos en el ancho disponible, el que sobra baja de línea
-   solo. */
-.indicadores {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 100%;
-  gap: 24px;
-}
-
-.score {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.nombre-score {
-  margin: 0;
-  color: var(--corporate-blue);
-  font-size: 1.3rem;
-  text-align: center;
-}
-
-.score-izquierda-derecha {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.score-izquierda {
-  margin: 0;
-  font-size: 2.4rem;
-  font-weight: bolder;
-  line-height: 1;
-  color: var(--corporate-blue);
-}
-
-.score-derecha {
-  margin: 0;
-  padding-left: 7px;
-  font-size: 13px;
-  border-left: 1px solid black;
-}
-
 /* ========== CAJAS ========== */
 /* Contenedor bordeado genérico, reusado por las tarjetas de Alertas y por
    Resultado del motor y trazabilidad (versión/ID/NDC, reglas,
@@ -298,10 +236,6 @@ body {
 
 .columnas > div {
   flex: 1;
-}
-
-.columnas-centradas {
-  text-align: center;
 }
 
 /* Etiqueta chica en mayúsculas sobre un valor — reusada en las cajas de
@@ -353,15 +287,30 @@ body {
   color: var(--verde-aprobado);
 }
 
-/* Punto de color de la leyenda de Alertas y Excepciones — mismos 3
-   colores que `.badge`, sin el fondo de pill (la leyenda es texto plano
-   con un punto adelante, no una pill). */
-.badge-punto {
+/* El badge de una tarjeta de alerta lleva un punto del mismo color
+   adelante del texto (ej. "● Requiere revisión") — reusa los colores de
+   `.badge-*`, vía `currentColor`, sin declarar el color de nuevo. */
+.tarjeta-alerta .badge::before {
+  content: "";
   display: inline-block;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
   margin-right: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  vertical-align: middle;
+}
+
+/* Punto de la leyenda de Alertas y Excepciones — mismos 3 colores que
+   `.badge`, en forma de cápsula (no círculo), sin el fondo de pill (la
+   leyenda es texto plano con un punto adelante). */
+.badge-punto {
+  display: inline-block;
+  width: 6px;
+  height: 10px;
+  border-radius: 999px;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
 .badge-punto-rojo {
@@ -376,38 +325,73 @@ body {
   background-color: var(--gris-neutro);
 }
 
-/* ========== ENCUADRAMIENTO ========== */
+/* ========== ALERTAS Y EXCEPCIONES ========== */
+/* Caja azul con la leyenda de colores — reemplaza el texto plano por un
+   bloque destacado, mismo azul que la cabecera de las tablas de dos
+   niveles. */
 .leyenda-alertas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin: 0 0 10px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background-color: var(--azul-cabecera-tabla);
+  border-radius: 18px;
+  margin: 0 0 14px 0;
 }
 
 .leyenda-item {
   display: flex;
   align-items: center;
   margin: 0;
-  font-size: 12px;
-  color: #555;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #fff;
 }
 
 .conteo-alertas {
   margin: 0 0 14px 0;
   font-size: 13px;
+  color: #888;
+}
+
+.conteo-alertas strong {
+  color: #333;
 }
 
 /* ========== TARJETA DE ALERTA ========== */
 .tarjeta-alerta {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  border-width: 3px;
+  border-radius: 20px;
+  padding: 18px 24px;
+}
+
+/* Sin esto el badge se estira a todo el ancho: `.tarjeta-alerta` es un
+   flex column, y por defecto los hijos hacen stretch en el eje cruzado. */
+.tarjeta-alerta .badge {
+  align-self: flex-start;
 }
 
 .titulo-tarjeta-alerta {
   margin: 0;
-  font-size: 16px;
-  color: #222;
+  font-size: 20px;
+  font-weight: 600;
+  color: #302b73;
+}
+
+/* Las etiquetas de campo de la tarjeta ya vienen en formato oración
+   ("Dato que la originó") — a diferencia de `.etiqueta-campo` en el
+   resto del documento, acá no van en mayúsculas. */
+.tarjeta-alerta-detalle .etiqueta-campo {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.tarjeta-alerta-detalle {
+  gap: 32px;
 }
 
 .tarjeta-alerta-detalle p {
@@ -415,6 +399,34 @@ body {
 }
 
 /* ========== RESULTADO DEL MOTOR ========== */
+/* Cajas de esta sección: mismo borde que la tarjeta de alerta de la
+   sección anterior (`.tarjeta-alerta`) — grueso y muy redondeado. */
+.resultado-motor-trazabilidad .caja {
+  border-width: 3px;
+  border-radius: 20px;
+  padding: 18px 22px;
+}
+
+/* Reglas cumplidas/incumplidas: la lista arranca alineada con su título
+   ("Reglas cumplidas"), no indentada hacia adentro como el `<ul>` por
+   defecto del navegador. */
+.resultado-motor-trazabilidad .columnas ul {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+}
+
+/* Las etiquetas de esta sección ya vienen en formato oración ("Versión
+   del motor", "Reglas cumplidas") — a diferencia de `.etiqueta-campo` en
+   el resto del documento, acá no van en mayúsculas. */
+.resultado-motor-trazabilidad .etiqueta-campo {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 13px;
+  color: #9a9aa5;
+  margin-bottom: 4px;
+}
+
 .resultado-motor-principal {
   display: flex;
   justify-content: space-between;
@@ -424,6 +436,19 @@ body {
 
 .resultado-motor-principal-izquierda {
   flex: 1;
+}
+
+/* El badge principal ("APROBADO Automático (A1)") lleva el mismo punto de
+   color adelante del texto que el badge de una tarjeta de alerta. */
+.badge-grande::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  vertical-align: middle;
 }
 
 .resultado-motor-explicacion {

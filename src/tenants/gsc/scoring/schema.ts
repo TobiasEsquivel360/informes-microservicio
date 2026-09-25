@@ -13,26 +13,6 @@ import { z } from "zod";
 // (ver "Out of Scope" del spec): quedan opcionales, mostrados en blanco/"—"
 // cuando no hay dato.
 
-const numericValue = z.union([z.string(), z.number()]);
-
-const offerRow = z.object({
-  label: z.string(),
-  value: numericValue.nullable(),
-  isGroup: z.boolean(),
-  additionalValues: z.array(numericValue.nullable()),
-});
-
-const economicActivity = z.object({
-  label: z.string(),
-  description: z.string(),
-});
-
-const scoringIndicator = z.object({
-  label: z.string(),
-  value: numericValue,
-  scale: z.string().nullable().optional(),
-});
-
 const labelValueRow = z.object({
   label: z.string(),
   value: z.string(),
@@ -53,17 +33,12 @@ const cotitularRow = multiPersonRow.omit({ titular: true });
 
 const alertaColor = z.enum(["rojo", "amarillo", "sin-color"]);
 
-// `estadoColor` reusa la misma semaforización de 3 colores que Alertas y
-// Excepciones (rojo/amarillo/sin-color) — mismas clases de badge en el
-// template, no una paleta nueva por sección. Opcional: si no viene, la
-// columna Estado se muestra como texto plano sin badge.
 const encuadramientoRow = z.object({
   indicador: z.string(),
   resultadoOperacion: z.string(),
   parametroAplicado: z.string(),
   desvio: z.string(),
   estado: z.string(),
-  estadoColor: alertaColor.optional(),
 });
 
 const leyendaAlerta = z.object({
@@ -128,7 +103,6 @@ export const schema = z.object({
   fechaComiteCredito: z.string().optional(),
   analista: z.string().optional(),
   supervisor: z.string().optional(),
-  ofertaSeleccionada: z.string().optional(),
   comentarios: z.string().optional(),
 
   // Único criterio de presencia para todas las tablas combinadas — "ausente"
@@ -137,27 +111,11 @@ export const schema = z.object({
   conyugePresente: z.boolean(),
   codeudorPresente: z.boolean(),
 
-  // 1. Resumen de la operación y resultado — incluye "Oferta" (tabla
-  // dinámica de productos), que no tiene lugar propio en el rediseño de
-  // Eugenia y encaja acá por el tipo de dato que contiene.
+  // 1. Resumen de la operación y resultado
   resumenOperacion: z.array(labelValueRow).optional(),
   resultado: z.array(labelValueRow).optional(),
-  offer: z
-    .object({
-      unitLabel: z.string(),
-      additionalColumns: z.array(z.string()),
-      rows: z.array(offerRow),
-    })
-    .optional(),
 
-  // 2. Datos del titular y demás intervinientes — incluye "Actividad
-  // Económica" por el mismo motivo que "Oferta" queda en la sección 1.
-  economicActivities: z.array(economicActivity).optional(),
-  scoring: z
-    .object({
-      indicators: z.array(scoringIndicator),
-    })
-    .optional(),
+  // 2. Datos del titular y demás intervinientes
   titular: z.array(labelValueRow).optional(),
   cotitulares: z.array(cotitularRow).optional(),
 
