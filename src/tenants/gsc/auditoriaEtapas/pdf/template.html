@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auditoría de etapas</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    {{! Cabecera idéntica a la de gsc/scoring (copiada, no compartida). }}
+    <header class="cabecera">
+      <div class="cabecera-izquierda">
+        <picture>
+          <img
+            src="data:image/png;base64,{{logoBase64}}"
+            height="116"
+            width="114"
+            alt="Logo San Cristóbal"
+          />
+        </picture>
+        <h1 class="titulo-informe">{{nombreInforme}}</h1>
+      </div>
+      <div class="cabecera-derecha">
+        <div class="cabecera-derecha-linea-1">
+          <p class="cabecera-workflow">Workflow: <strong>{{workflow}}</strong></p>
+          <p class="cabecera-fecha">Fecha: <strong>{{fecha}}</strong></p>
+        </div>
+        <p>Cuit / Cuil: <strong>{{cuitCuil}}</strong></p>
+        <p>Razón Social / Nombre: <strong>{{razonSocialNombre}}</strong></p>
+        <p>Fecha de Inscripción AFIP: <strong>{{fechaInscripcionAfip}}</strong></p>
+        <hr class="separador separador-cabecera" />
+        <p>Fecha de Informe: <strong>{{fechaInforme}}</strong></p>
+        <p>Fecha Comité de Crédito: <strong>{{fechaComiteCredito}}</strong></p>
+        <p>Analista: <strong>{{analista}}</strong></p>
+        <p>Supervisor: <strong>{{supervisor}}</strong></p>
+      </div>
+    </header>
+
+    <main>
+      <section class="etapas-solicitud">
+        <table class="tabla tabla-etapas">
+          <colgroup>
+            <col class="col-fecha-hora" />
+            <col class="col-tiempo-en-etapa" />
+            <col class="col-apellido-nombre" />
+            <col class="col-sucursal-zonal" />
+            <col class="col-etapa" />
+            <col class="col-observaciones" />
+          </colgroup>
+          <thead>
+            <tr class="fila-cabecera-tabla">
+              <th colspan="6" class="cabecera-tabla">Etapas de la solicitud</th>
+            </tr>
+            <tr class="fila-subcabecera-tabla">
+              <th class="col-fecha-hora">Fecha y hora</th>
+              <th class="col-tiempo-en-etapa">Tiempo en etapa</th>
+              <th class="col-apellido-nombre">Apellido y nombre</th>
+              <th class="col-sucursal-zonal">Sucursal / Zonal</th>
+              <th class="col-etapa">Etapa workflow</th>
+              <th class="col-observaciones">Observaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each etapas}}
+            <tr class="fila-etapa">
+              <td class="col-fecha-hora">{{fechaHora}}</td>
+              <td class="col-tiempo-en-etapa">
+                {{tiempoEnEtapa}}
+                {{#if enCurso}}<br /><span class="etiqueta-en-curso">En curso</span>{{/if}}
+              </td>
+              <td class="col-apellido-nombre">{{apellidoNombre}}</td>
+              <td class="col-sucursal-zonal">{{sucursalZonal}}</td>
+              <td class="col-etapa">{{etapa}}</td>
+              <td class="col-observaciones">{{#if observaciones}}{{observaciones}}{{else}}—{{/if}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

@@ -95,6 +95,7 @@ export const schema = z.object({
 | basa | menor | `POST /render/basa?nombreInforme=menor` |
 | basa | califSinLimites | `POST /render/basa?nombreInforme=califSinLimites` |
 | gsc | scoring | `POST /render/gsc?nombreInforme=scoring` |
+| gsc | auditoriaEtapas | `POST /render/gsc?nombreInforme=auditoriaEtapas` |
 | example | default | onboarding reference — not a production tenant |
 
 ### PdfService: shared browser
